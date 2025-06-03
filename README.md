@@ -5,7 +5,7 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 4
 
 * **Integrante 1** - [integrante1](https://github.com/agusferronato)
 * **Integrante 2** - [integrante2](https://github.com/)
