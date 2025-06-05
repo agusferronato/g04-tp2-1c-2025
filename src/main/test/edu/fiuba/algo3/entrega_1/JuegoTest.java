@@ -61,4 +61,36 @@ public class JuegoTest {
         /* Assert */
         assertEquals(1, tablero.cantidadDeCartasEnSeccion(seccion));
     }
+
+    @Test
+    public void test04JugadorJuegaCartaDeSuMazoYTienePuntajeParcial(){
+        /* Arrange */
+        Seccion seccion = new Seccion();
+        Tablero tablero = new Tablero();
+        tablero.agregarSeccion(seccion);
+
+        int puntaje = 25;
+        Carta carta = new Unidad(seccion, puntaje);
+        jugador.agregarSeccion(seccion);
+        //Jugador jugadorMock = mock(Jugador.class);
+        //jugadorMock.agregarSeccion(seccion);
+        //when(jugadorMock.seleccionarCarta()).thenReturn(new Unidad(seccion, puntaje));
+
+
+        //Carta carta = jugadorMock.seleccionarCarta();
+
+        /* Act */
+        carta.usar();
+
+        //int puntajeJugador = jugadorMock.calcularPuntaje();
+        int puntaje2 = jugador.calcularPuntaje();
+        /* Assert */
+
+        assertEquals(puntaje, puntaje2);
+    }
+
+    @Test
+    public void test05LasCartasPasenAPilaDesacrte(){
+
+    }
 }
