@@ -1,21 +1,23 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Seccion {
-    List<Carta> cartas;
-    public int sumarPuntos(){
-        int puntos = 0;
-        for (Carta carta : this.cartas) {
-            puntos = carta.calcularPuntaje(puntos);
-        }
-        return puntos;
-    }
-    public Seccion() {
+    private List<Carta> cartas;
 
+
+    public Seccion () {
+        this.cartas = new ArrayList<Carta>();
     }
 
-    public void colocarCarta(Carta nuevaCarta){
-        cartas.add(nuevaCarta);
+    public void ubicar(Unidad unidad) {
+        this.cartas.add(unidad);
     }
+
+    /* Metodo para test */
+    public int cantidadDeCartas() {
+        return this.cartas.size();
+    }
+
 }

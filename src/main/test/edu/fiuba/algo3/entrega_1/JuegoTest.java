@@ -27,7 +27,6 @@ public class JuegoTest {
         List<Mazo> mazos = new ArrayList<>();
         mazos.add(mazo);
         jugador = new Jugador("Matias", mazos);
-
         mazoSeleccionado = jugador.seleccionarMazo();
     }
 
@@ -61,19 +60,5 @@ public class JuegoTest {
 
         /* Assert */
         assertEquals(1, tablero.cantidadDeCartasEnSeccion(seccion));
-    }
-
-    @Test
-    public void test04JugadorJuegaCartaDeSuMazoYTienePuntajeParcial(){
-        Tablero tablero = new Tablero();
-        Seccion seccion = new Seccion();
-        tablero.agregarSeccion(seccion);
-
-        int puntaje = 25;
-        Carta carta = new Unidad(seccion, puntaje);
-
-        /* Act */
-        carta.usar();
-
     }
 }
