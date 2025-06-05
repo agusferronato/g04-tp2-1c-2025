@@ -1,14 +1,25 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.List;
+
 public class Jugador {
     private String nombre;
-    private Mazo mazo;
+    private List<Mazo> mazos;
 
-    public Jugador(String nombre, Mazo mazo) {
-        this.nombre = nombre;
-        this.mazo = mazo;
+    public Jugador() {
+
     }
-    public int cantidad_cartas_mazo(){
-        return mazo.cantidad_cartas();
+
+    public Jugador(String nombre, List<Mazo> mazos) {
+        this.nombre = nombre;
+        this.mazos = mazos;
+    }
+
+    public Mazo seleccionarMazo () {
+        return this.mazos.get(this.mazos.size()-1);
+    }
+
+    public Carta seleccionarCarta() {
+        return new Unidad();
     }
 }

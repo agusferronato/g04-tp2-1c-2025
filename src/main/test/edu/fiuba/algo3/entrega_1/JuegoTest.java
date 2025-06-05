@@ -1,43 +1,64 @@
 package edu.fiuba.algo3.entrega_1;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Mazo;
-import edu.fiuba.algo3.modelo.Mano;
+import edu.fiuba.algo3.modelo.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class JuegoTest {
 
+    private Mazo mazo;
+    private Jugador jugador;
+    private Mazo mazoSeleccionado;
+
+    @BeforeEach
+    public void setUp() {
+        mazo = new Mazo();
+        for (int i = 0; i < 21; i++) {
+            Carta carta = (i < 15) ? new Unidad() : new Especial();
+            mazo.agregarCarta(carta);
+        }
+        List<Mazo> mazos = new ArrayList<>();
+        mazos.add(mazo);
+        jugador = new Jugador("Matias", mazos);
+        Mazo mazoSeleccionado = jugador.seleccionarMazo();
+    }
+
     @Test
     public void test01UnJugadorPoseeCartasSuficientesParaEmpezarElJuego() {
-        Mazo mazoInicial = new Mazo(25);
-        Jugador jugador = new Jugador("Matias", mazoInicial);
-        int cantidad_cartas = jugador.cantidad_cartas_mazo();
-
-        assertEquals(25,cantidad_cartas);
-    } // si le dan 10 cartas y puede cambiar 2 quedaria 12 cartas minimas para tener a disposicion
+        assertEquals(21, mazoSeleccionado.cantidadDeCartas());
+    }
 
     @Test
     public void test02AUnJugadorLeReparten10CartasDeSuMazo(){
-        Mazo mazoInicial = new Mazo(25);
-        Jugador jugador = new Jugador("Matias", mazoInicial);
-        List<Carta> cartas_seleccionadas = mazoInicial.seleccionarCartasAlAzar(10);
-        Mano mano = new Mano(cartas_seleccionadas);
-    }
-
-    /*@Test
-    public void messageGreetingDefaultLanguage() {
-        Message message = new Message("Hola Mundo!", "Hello world!");
-
-        assertEquals("Hola Mundo!", message.greet());
+        /* Act */
+        List<Carta> mano = mazoSeleccionado.seleccionarCartasAlAzar(10);
+        /* Assert */
+        assertEquals(10, mano.size());
     }
 
     @Test
-    public void messageGreetingDefaultLanguage2() {
-        Message message = new Message("Hola Mundo!", "Hello world!");
+    public void test03JugadorPuedeColocarUnaCartaEnUnaSeccion() {
+        /* Arrange */
+        Seccion seccion = new Seccion();
+        Tablero tablero = new Tablero();
+        tablero.agregarSeccion(seccion);
 
-        assertEquals("Hola Mundo!", message.greet());
-    }*/
+        Jugador jugadorMock = mock(Jugador.class);
+        when(jugadorMock.seleccionarCarta()).thenReturn(new Unidad(seccion));
+
+        Carta carta = jugadorMock.seleccionarCarta();
+
+        /* Act */
+        carta.usar();
+
+        /* Assert */
+        assertEquals(1, tablero.cantidadDeCartasEnSeccion(seccion));
+    }
 }
