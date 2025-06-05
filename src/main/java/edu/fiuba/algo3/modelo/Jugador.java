@@ -5,6 +5,7 @@ import java.util.List;
 public class Jugador {
     private String nombre;
     private List<Mazo> mazos;
+    private int puntos;
 
     public Jugador() {
 
@@ -16,10 +17,14 @@ public class Jugador {
     }
 
     public Mazo seleccionarMazo () {
-        return this.mazos.get(this.mazos.size()-1);
+        return this.mazos.get(0);
     }
 
     public Carta seleccionarCarta() {
         return new Unidad();
+    }
+
+    public int actualizarPuntos(int sumar_puntos) {
+        return this.puntos += sumar_puntos;
     }
 }
