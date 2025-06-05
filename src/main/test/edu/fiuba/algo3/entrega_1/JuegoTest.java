@@ -27,7 +27,7 @@ public class JuegoTest {
         List<Mazo> mazos = new ArrayList<>();
         mazos.add(mazo);
         jugador = new Jugador("Matias", mazos);
-        Mazo mazoSeleccionado = jugador.seleccionarMazo();
+        mazoSeleccionado = jugador.seleccionarMazo();
     }
 
     @Test

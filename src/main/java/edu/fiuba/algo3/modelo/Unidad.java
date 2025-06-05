@@ -10,6 +10,6 @@ public class Unidad implements Carta {
     }
 
     public void usar () {
-
+        this.seccion.ubicar(this);
     }
 }

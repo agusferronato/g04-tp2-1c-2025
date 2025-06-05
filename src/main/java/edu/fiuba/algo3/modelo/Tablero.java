@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class Tablero {
@@ -12,10 +11,15 @@ public class Tablero {
     }
 
     public void agregarSeccion(Seccion seccion) {
-
+        this.secciones.add(seccion);
     }
 
+    /* Metodo para test */
     public int cantidadDeCartasEnSeccion(Seccion seccion) {
-        return 1;
+        for (Seccion seccionActual : this.secciones) {
+            if (seccionActual.equals(seccion))
+                return seccionActual.cantidadDeCartas();
+        }
+        return 0;
     }
 }
