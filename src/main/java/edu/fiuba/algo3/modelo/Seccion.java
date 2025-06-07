@@ -16,6 +16,7 @@ public abstract class Seccion {
 
     public abstract int calcularPuntaje();
 
+    public abstract void limpiarSeccion(List<Unidad> pilaDescarte);
 
     /* Metodo para test */
     public abstract int cantidadDeCartas();

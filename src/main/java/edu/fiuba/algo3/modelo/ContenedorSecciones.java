@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ContenedorSecciones extends Seccion {
     private List<Seccion> secciones;
+
     public ContenedorSecciones () {
         secciones = new ArrayList<>();
     }
@@ -27,5 +28,11 @@ public class ContenedorSecciones extends Seccion {
             acumulador += seccion.calcularPuntaje();
         }
         return acumulador;
+    }
+    @Override
+    public void limpiarSeccion (List<Unidad> pilaDescarte) {
+        for (Seccion seccion : this.secciones) {
+            seccion.limpiarSeccion(pilaDescarte);
+        }
     }
 }

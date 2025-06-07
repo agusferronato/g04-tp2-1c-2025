@@ -27,4 +27,11 @@ public class CuerpoACuerpo extends Seccion {
         }
         return acumulador;
     }
+    @Override
+    public void limpiarSeccion(List<Unidad> pilaDescarte) {
+        for (Unidad unidad : this.unidades) {
+            pilaDescarte.add(unidad);
+        }
+        unidades.clear();
+    }
 }

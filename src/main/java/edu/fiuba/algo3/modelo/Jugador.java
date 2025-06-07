@@ -8,11 +8,13 @@ public class Jugador {
     private String nombre;
     private List<Mazo> mazos;
     private ContenedorSecciones secciones;
+    private List<Unidad> pilaDescarte;
 
     public Jugador(String nombre, List<Mazo> mazos, ContenedorSecciones secciones) {
         this.nombre = nombre;
         this.secciones = secciones;
         this.mazos = mazos;
+        this.pilaDescarte = new ArrayList<>();
     }
 
     public Jugador(String nombre, List<Mazo> mazos) {
@@ -32,5 +34,11 @@ public class Jugador {
         Mazo mazo = this.mazos.get(0);
         List<Carta> cartas = mazo.seleccionarCartasAlAzar(1);
         cartas.get(0).usar();
+    }
+    public void descartarCartas(){
+        this.secciones.limpiarSeccion(this.pilaDescarte);
+    }
+    public int cartasEnDescarte(){
+        return this.pilaDescarte.size();
     }
 }

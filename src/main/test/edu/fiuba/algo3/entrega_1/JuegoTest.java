@@ -126,7 +126,7 @@ public class JuegoTest {
         /* Arrange */
         CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
         ContenedorSecciones contenedor = new ContenedorSecciones();
-
+        contenedor.agregar(seccionCuerpoACuerpo);
         Mazo mazo = new Mazo();
         for (int i = 0; i < CARTAS_MAZO; i++) {
             if (i < CARTAS_UNIDAD) {
@@ -136,8 +136,9 @@ public class JuegoTest {
             } else {
                 Especial carta = new Especial();
                 mazo.agregarCarta(carta);
-            }
+               }
         }
+
 
         List<Mazo> mazos = new ArrayList<>();
         mazos.add(mazo);
@@ -154,7 +155,7 @@ public class JuegoTest {
         juego.pasarDeRonda();
 
         /* Assert */
-        assertEquals(1, jugador.cartasEnDescarte());
+        assertEquals(15, jugador.cartasEnDescarte());
     }
 
 
