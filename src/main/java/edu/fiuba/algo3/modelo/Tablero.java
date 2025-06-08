@@ -15,11 +15,11 @@ public class Tablero {
     }
 
     /* Metodo para test */
-    public int cantidadDeCartasEnSeccion(Seccion seccion) {
-        for (Seccion seccionActual : this.secciones) {
-            if (seccionActual.equals(seccion))
-                return seccionActual.cantidadDeCartas();
+    public int cantidadDeCartasEnTotal() {
+        int acumulador = 0;
+        for (Seccion seccion : this.secciones) {
+            acumulador += seccion.cantidadDeCartas();
         }
-        return 0;
+        return acumulador;
     }
 }

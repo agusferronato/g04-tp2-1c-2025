@@ -13,130 +13,149 @@ import static org.mockito.Mockito.when;
 
 public class JuegoTest {
 
+    private final int CARTAS_MAZO = 21;
+    private final int CARTAS_UNIDAD = 15;
+    private final int CARTAS_MANO = 10;
+
+
     @Test
-    public void test01UnJugadorPoseeCartasSuficientesParaEmpezarElJuego() {
+    public void test01JugadorPoseeCartasSuficientes () {
         /* Arrange */
         Mazo mazo = new Mazo();
-        for (int i = 0; i < 21; i++) {
-            Carta carta = (i < 15) ? new Unidad() : new Especial();
+        for (int i = 0; i < CARTAS_MAZO; i++) {
+            Carta carta = (i < CARTAS_UNIDAD) ? new Unidad() : new Especial();
             mazo.agregarCarta(carta);
         }
 
         List<Mazo> mazos = new ArrayList<>();
         mazos.add(mazo);
 
-        Jugador jugador = new Jugador("Matias", mazos);
+        Jugador jugador = new Jugador("Agustin", mazos);
 
         /* Act */
         Mazo mazoSeleccionado = jugador.seleccionarMazo();
 
         /* Assert */
-        assertEquals(21, mazoSeleccionado.cantidadDeCartas());
+        assertEquals(CARTAS_MAZO, mazoSeleccionado.cantidadDeCartas());
     }
-
     @Test
-    public void test02AUnJugadorLeReparten10CartasDeSuMazo(){
+    public void test02JugadorRecibe10CartasDeSuMazo () {
         /* Arrange */
         Mazo mazo = new Mazo();
-        for (int i = 0; i < 21; i++) {
-            Carta carta = (i < 15) ? new Unidad() : new Especial();
+        for (int i = 0; i < CARTAS_MAZO; i++) {
+            Carta carta = (i < CARTAS_UNIDAD) ? new Unidad() : new Especial();
             mazo.agregarCarta(carta);
         }
 
         List<Mazo> mazos = new ArrayList<>();
         mazos.add(mazo);
 
-        Jugador jugador = new Jugador("Matias", mazos);
+        Jugador jugador = new Jugador("Agustin", mazos);
         Mazo mazoSeleccionado = jugador.seleccionarMazo();
 
         /* Act */
-        List<Carta> mano = mazoSeleccionado.seleccionarCartasAlAzar(10);
+        List<Carta> mano = mazoSeleccionado.seleccionarCartasAlAzar(CARTAS_MANO);
 
         /* Assert */
-        assertEquals(10, mano.size());
+        assertEquals(CARTAS_MANO, mano.size());
     }
 
     @Test
-    public void test03JugadorPuedeColocarUnaCartaEnUnaSeccion() {
+    public void test03JugadorPuedeColocarUnaCartaEnUnaSeccionDelTablero () {
         /* Arrange */
-        Seccion seccion = new Seccion();
-        Tablero tablero = new Tablero();
-        tablero.agregarSeccion(seccion);
-
-        Jugador jugadorMock = mock(Jugador.class);
-        when(jugadorMock.seleccionarCarta()).thenReturn(new Unidad(seccion));
-
-        Carta carta = jugadorMock.seleccionarCarta();
-
-        /* Act */
-        carta.usar();
-
-        /* Assert */
-        assertEquals(1, tablero.cantidadDeCartasEnSeccion(seccion));
-    }
-
-    @Test
-    public void test04JugadorJuegaCartaDeSuMazoYTienePuntajeParcial(){
-        /* Arrange */
-        int puntaje = 25;
-        Seccion seccion = new Seccion();
-        Carta carta = new Unidad(seccion, puntaje);
-
+        int cantidadDeCartasEsperadas = 1;
         Mazo mazo = new Mazo();
-        mazo.agregarCarta(carta);
+
+        CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
+
+        ContenedorSecciones contenedor = new ContenedorSecciones();
+        contenedor.agregar(seccionCuerpoACuerpo);
+
+        Unidad unidad = new Unidad(seccionCuerpoACuerpo);
+        mazo.agregarCarta(unidad);
 
         List<Mazo> mazos = new ArrayList<>();
         mazos.add(mazo);
 
-        Jugador jugador = new Jugador("Matias", mazos);
-
         Tablero tablero = new Tablero();
-        tablero.agregarSeccion(seccion);
+        Jugador jugador = new Jugador("Faustino", mazos, contenedor);
 
-        jugador.agregarSeccion(seccion);
+        seccionCuerpoACuerpo.agregarCarta(unidad);
+        tablero.agregarSeccion(contenedor);
 
         /* Act */
-        carta.usar();
-
-        int puntajeJugador = jugador.calcularPuntaje();
+        jugador.jugarCarta();
 
         /* Assert */
-        assertEquals(puntaje, puntajeJugador);
+        assertEquals(cantidadDeCartasEsperadas, tablero.cantidadDeCartasEnTotal());
     }
 
-    /*
+
     @Test
-    public void test05LasCartasPasenAPilaDescarte(){
-        // Arrange
-        Seccion seccion = new Seccion();
+    public void test04VerificarQueUnJugadorTieneUnPuntajeParcialAlJugarUnaCarta() {
+        /* Arrange */
+        int puntajeEsperado = 25;
         Mazo mazo = new Mazo();
-        for (int i = 0; i < 21; i++) {
-            Carta carta = (i < 15) ? new Unidad(seccion) : new Especial();
-            mazo.agregarCarta(carta);
+
+        CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
+
+        ContenedorSecciones contenedor = new ContenedorSecciones();
+        contenedor.agregar(seccionCuerpoACuerpo);
+
+        Unidad unidad = new Unidad(seccionCuerpoACuerpo, puntajeEsperado);
+        mazo.agregarCarta(unidad);
+
+        List<Mazo> mazos = new ArrayList<>();
+        mazos.add(mazo);
+
+        Tablero tablero = new Tablero();
+        Jugador jugador = new Jugador("Faustino", mazos, contenedor);
+
+        seccionCuerpoACuerpo.agregarCarta(unidad);
+        tablero.agregarSeccion(contenedor);
+
+        /* Act */
+        jugador.jugarCarta();
+
+        /* Assert */
+        assertEquals(puntajeEsperado, jugador.calcularPuntaje());
+    }
+
+    @Test
+    public void test05VerificarQueLasCartasPasenADescarte () {
+        /* Arrange */
+        CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
+        ContenedorSecciones contenedor = new ContenedorSecciones();
+
+        Mazo mazo = new Mazo();
+        for (int i = 0; i < CARTAS_MAZO; i++) {
+            if (i < CARTAS_UNIDAD) {
+                Unidad carta = new Unidad(seccionCuerpoACuerpo);
+                seccionCuerpoACuerpo.agregarCarta(carta);
+                mazo.agregarCarta(carta);
+            } else {
+                Especial carta = new Especial();
+                mazo.agregarCarta(carta);
+            }
         }
 
         List<Mazo> mazos = new ArrayList<>();
         mazos.add(mazo);
 
-        Jugador jugador = new Jugador("Matias", mazos);
-
         Tablero tablero = new Tablero();
-        tablero.agregarSeccion(seccion);
-
-        jugador.agregarSeccion(seccion);
+        Jugador jugador = new Jugador("Faustino", mazos, contenedor);
+        tablero.agregarSeccion(contenedor);
 
         Juego juego = new Juego(tablero);
         juego.agregarJugador(jugador);
+        jugador.jugarCarta();
 
-        Carta carta = jugador.seleccionarCarta();
-        carta.usar();
+        /* Act */
+        juego.pasarDeRonda();
 
-        // Act
-
-        juego.cambiarDeRonda();
-
-        // Assert
-        assertEquals(1, jugador.largoPilaDescarte());
+        /* Assert */
+        assertEquals(1, jugador.cartasEnDescarte());
     }
-    */
+
+
 }

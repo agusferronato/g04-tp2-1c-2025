@@ -18,7 +18,6 @@ public class Mazo {
 
     public List<Carta> seleccionarCartasAlAzar(int cantidadDeCartas) {
         List<Carta> cartas = GeneradorAleatorioCartas.cartasAlAzar(this.cartas, cantidadDeCartas);
-        // descontas
         return cartas;
     }
 

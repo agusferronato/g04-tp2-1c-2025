@@ -1,42 +1,36 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Jugador {
     private String nombre;
     private List<Mazo> mazos;
-    private List<Seccion> secciones;
+    private ContenedorSecciones secciones;
 
-
-    public Jugador() {
-        this.secciones = new ArrayList<Seccion>();
-    }
-
-    public void agregarSeccion(Seccion seccion) {
-        secciones.add(seccion);
-
+    public Jugador(String nombre, List<Mazo> mazos, ContenedorSecciones secciones) {
+        this.nombre = nombre;
+        this.secciones = secciones;
+        this.mazos = mazos;
     }
 
     public Jugador(String nombre, List<Mazo> mazos) {
         this.nombre = nombre;
         this.mazos = mazos;
-        this.secciones = new ArrayList<Seccion>();
     }
 
     public Mazo seleccionarMazo () {
         return this.mazos.get(0);
     }
 
-    public Carta seleccionarCarta() {
-        return new Unidad();
+    public int calcularPuntaje(){
+        return secciones.calcularPuntaje();
     }
 
-    public int calcularPuntaje(){
-        int acumulador = 0;
-        for (Seccion seccion : this.secciones) {
-            acumulador += seccion.calcularPuntaje();
-        }
-        return acumulador;
+    public void jugarCarta() {
+        Mazo mazo = this.mazos.get(0);
+        List<Carta> cartas = mazo.seleccionarCartasAlAzar(1);
+        cartas.get(0).usar();
     }
 }

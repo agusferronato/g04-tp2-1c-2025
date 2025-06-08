@@ -3,9 +3,8 @@ package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Seccion {
+public abstract class Seccion {
     private List<Unidad> cartas;
-
 
     public Seccion () {
         this.cartas = new ArrayList<Unidad>();
@@ -15,18 +14,10 @@ public class Seccion {
         this.cartas.add(unidad);
     }
 
-    public int calcularPuntaje(){
-        int acumulador = 0;
-        for (Unidad carta : this.cartas) {
-            acumulador = carta.calcularPuntaje(acumulador);
-        }
-        return acumulador;
-    }
+    public abstract int calcularPuntaje();
 
 
     /* Metodo para test */
-    public int cantidadDeCartas() {
-        return this.cartas.size();
-    }
+    public abstract int cantidadDeCartas();
 
 }
