@@ -4,34 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CuerpoACuerpo extends Seccion {
-    List<Unidad> unidades;
 
     public CuerpoACuerpo () {
-        unidades = new ArrayList<Unidad>();
-    }
-
-    public void agregarCarta(Unidad unidad) {
-        this.unidades.add(unidad);
+        super();
     }
 
     @Override
     public int cantidadDeCartas() {
-        return unidades.size();
+        return this.cartas.size();
     }
 
     @Override
     public int calcularPuntaje () {
         int acumulador = 0;
-        for (Unidad unidad : this.unidades) {
+        for (Unidad unidad : this.cartas) {
             acumulador = unidad.calcularPuntaje(acumulador);
         }
         return acumulador;
     }
+
     @Override
     public void limpiarSeccion(List<Unidad> pilaDescarte) {
-        for (Unidad unidad : this.unidades) {
-            pilaDescarte.add(unidad);
-        }
-        unidades.clear();
+        List<Unidad> cartas = List.copyOf(this.cartas);
+        pilaDescarte.addAll(cartas);
+        this.cartas.clear();
     }
 }

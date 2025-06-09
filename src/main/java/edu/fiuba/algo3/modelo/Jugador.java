@@ -5,14 +5,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class Jugador {
+
     private String nombre;
     private List<Mazo> mazos;
-    private ContenedorSecciones secciones;
+    private ContenedorSecciones seccion;
     private List<Unidad> pilaDescarte;
 
     public Jugador(String nombre, List<Mazo> mazos, ContenedorSecciones secciones) {
         this.nombre = nombre;
-        this.secciones = secciones;
+        this.seccion = secciones;
         this.mazos = mazos;
         this.pilaDescarte = new ArrayList<>();
     }
@@ -26,19 +27,21 @@ public class Jugador {
         return this.mazos.get(0);
     }
 
-    public int calcularPuntaje(){
-        return secciones.calcularPuntaje();
+    public int calcularPuntaje() {
+        return seccion.calcularPuntaje();
     }
 
     public void jugarCarta() {
         Mazo mazo = this.mazos.get(0);
-        List<Carta> cartas = mazo.seleccionarCartasAlAzar(1);
-        cartas.get(0).usar();
+        Carta carta = mazo.seleccionarCartaAlAzar();
+        carta.usar();
     }
-    public void descartarCartas(){
-        this.secciones.limpiarSeccion(this.pilaDescarte);
+
+    public void descartarCartas() {
+        this.seccion.limpiarSeccion(this.pilaDescarte);
     }
-    public int cartasEnDescarte(){
+
+    public int cartasEnDescarte() {
         return this.pilaDescarte.size();
     }
 }

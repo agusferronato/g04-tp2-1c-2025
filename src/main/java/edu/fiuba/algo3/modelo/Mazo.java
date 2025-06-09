@@ -8,7 +8,7 @@ import static edu.fiuba.algo3.modelo.GeneradorAleatorioCartas.*;
 public class Mazo {
     private List<Carta> cartas;
 
-    public Mazo() {
+    public Mazo () {
         this.cartas = new ArrayList<Carta>();
     }
 
@@ -16,9 +16,13 @@ public class Mazo {
         this.cartas.add(carta);
     }
 
-    public List<Carta> seleccionarCartasAlAzar(int cantidadDeCartas) {
+    public List<Carta> seleccionarCartasAlAzar (int cantidadDeCartas) {
         List<Carta> cartas = GeneradorAleatorioCartas.cartasAlAzar(this.cartas, cantidadDeCartas);
         return cartas;
+    }
+
+    public Carta seleccionarCartaAlAzar () {
+        return seleccionarCartasAlAzar(1).get(0);
     }
 
     /* Metodo para test */

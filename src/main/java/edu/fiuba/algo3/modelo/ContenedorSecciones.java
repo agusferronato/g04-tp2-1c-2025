@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContenedorSecciones extends Seccion {
+
     private List<Seccion> secciones;
 
     public ContenedorSecciones () {
         secciones = new ArrayList<>();
     }
+
     public void agregar(Seccion seccion) {
         secciones.add(seccion);
     }
+
     @Override
     public int cantidadDeCartas () {
         int acumulador = 0;
@@ -29,6 +32,7 @@ public class ContenedorSecciones extends Seccion {
         }
         return acumulador;
     }
+
     @Override
     public void limpiarSeccion (List<Unidad> pilaDescarte) {
         for (Seccion seccion : this.secciones) {

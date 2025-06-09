@@ -2,7 +2,6 @@ package edu.fiuba.algo3.entrega_1;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,6 @@ public class JuegoTest {
     private final int CARTAS_MAZO = 21;
     private final int CARTAS_UNIDAD = 15;
     private final int CARTAS_MANO = 10;
-
 
     @Test
     public void test01JugadorPoseeCartasSuficientes () {
@@ -80,7 +78,6 @@ public class JuegoTest {
         Tablero tablero = new Tablero();
         Jugador jugador = new Jugador("Faustino", mazos, contenedor);
 
-        seccionCuerpoACuerpo.agregarCarta(unidad);
         tablero.agregarSeccion(contenedor);
 
         /* Act */
@@ -111,7 +108,6 @@ public class JuegoTest {
         Tablero tablero = new Tablero();
         Jugador jugador = new Jugador("Faustino", mazos, contenedor);
 
-        seccionCuerpoACuerpo.agregarCarta(unidad);
         tablero.agregarSeccion(contenedor);
 
         /* Act */
@@ -124,21 +120,15 @@ public class JuegoTest {
     @Test
     public void test05VerificarQueLasCartasPasenADescarte () {
         /* Arrange */
+        int cartasEnDescarteEsperadas = 1;
+
         CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
         ContenedorSecciones contenedor = new ContenedorSecciones();
         contenedor.agregar(seccionCuerpoACuerpo);
-        Mazo mazo = new Mazo();
-        for (int i = 0; i < CARTAS_MAZO; i++) {
-            if (i < CARTAS_UNIDAD) {
-                Unidad carta = new Unidad(seccionCuerpoACuerpo);
-                seccionCuerpoACuerpo.agregarCarta(carta);
-                mazo.agregarCarta(carta);
-            } else {
-                Especial carta = new Especial();
-                mazo.agregarCarta(carta);
-               }
-        }
 
+        Mazo mazo = new Mazo();
+        Carta carta = new Unidad(seccionCuerpoACuerpo);
+        mazo.agregarCarta(carta);
 
         List<Mazo> mazos = new ArrayList<>();
         mazos.add(mazo);
@@ -155,8 +145,38 @@ public class JuegoTest {
         juego.pasarDeRonda();
 
         /* Assert */
-        assertEquals(15, jugador.cartasEnDescarte());
+        assertEquals(cartasEnDescarteEsperadas, jugador.cartasEnDescarte());
     }
 
+    @Test
+    public void test06CartasUnidasAcumulanSuPuntaje () {
+        /* Arrange */
+        int puntajeEsperado = 15;
+        int puntajeCartas = 5;
+
+        CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
+        Unida modificador = new Unida();
+        Unidad primeraCarta = new Unidad(modificador, seccionCuerpoACuerpo, puntajeCartas);
+        Unidad segundaCarta = new Unidad(modificador, seccionCuerpoACuerpo, puntajeCartas);
+
+        Mazo mazo = new Mazo();
+        mazo.agregarCarta(primeraCarta);
+        mazo.agregarCarta(segundaCarta);
+        List<Mazo> mazos = new ArrayList<>();
+        mazos.add(mazo);
+
+        ContenedorSecciones contenedor = new ContenedorSecciones();
+        contenedor.agregar(seccionCuerpoACuerpo);
+
+        Jugador jugador = new Jugador("Agustin", mazos, contenedor);
+
+        primeraCarta.usar();
+
+        /* Act */
+        segundaCarta.usar();
+
+        /* Assert */
+        assertEquals(puntajeEsperado, jugador.calcularPuntaje());
+    }
 
 }

@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Seccion {
-    private List<Unidad> cartas;
+    protected List<Unidad> cartas;
 
     public Seccion () {
-        this.cartas = new ArrayList<Unidad>();
+        this.cartas = new ArrayList<>();
     }
 
-    public void ubicar(Unidad unidad) {
-        this.cartas.add(unidad);
+    public void ubicar(Unidad carta) {
+        this.cartas.add(carta);
     }
 
-    public abstract int calcularPuntaje();
+    public abstract int calcularPuntaje ();
 
-    public abstract void limpiarSeccion(List<Unidad> pilaDescarte);
+    public abstract void limpiarSeccion (List<Unidad> pilaDescarte);
 
     /* Metodo para test */
-    public abstract int cantidadDeCartas();
+    public abstract int cantidadDeCartas ();
 
 }

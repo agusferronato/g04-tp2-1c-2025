@@ -7,7 +7,7 @@ public class Tablero {
     private List<Seccion> secciones;
 
     public Tablero() {
-        this.secciones = new ArrayList<Seccion>();
+        this.secciones = new ArrayList<>();
     }
 
     public void agregarSeccion(Seccion seccion) {
