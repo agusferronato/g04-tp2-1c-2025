@@ -5,20 +5,30 @@ import java.util.List;
 
 public abstract class Seccion {
     protected List<Unidad> cartas;
+    private EstrategiaCambioPuntos estrategia;
 
-    public Seccion () {
+    public Seccion() {
         this.cartas = new ArrayList<>();
+        this.estrategia = new Comun();
     }
 
     public void ubicar(Unidad carta) {
         this.cartas.add(carta);
     }
 
-    public abstract int calcularPuntaje ();
+    public abstract int calcularPuntaje();
 
-    public abstract void limpiarSeccion (List<Unidad> pilaDescarte);
+    public abstract void limpiarSeccion(List<Unidad> pilaDescarte);
 
     /* Metodo para test */
-    public abstract int cantidadDeCartas ();
+    public abstract int cantidadDeCartas();
+
+    public void setStrategy(EstrategiaCambioPuntos estrategia) {
+        this.estrategia = estrategia;
+    }
+
+    public void actualizarValores() {
+        this.estrategia.modificarPuntosCartas(this.cartas);
+    }
 
 }

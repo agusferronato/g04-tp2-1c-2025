@@ -149,18 +149,21 @@ public class JuegoTest {
     }
 
     @Test
-    public void test06CartasUnidasAcumulanSuPuntaje () {
+    public void test06CartasUnidasDeMismoTipoAcumulanSuPuntaje () {
         /* Arrange */
-        int puntajeEsperado = 15;
+        int puntajeEsperado = 20;
         int puntajeCartas = 5;
+        String tipo = "Catapulta";
 
         CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
-        Unida modificador = new Unida();
-        Unidad primeraCarta = new Unidad(modificador, seccionCuerpoACuerpo, puntajeCartas);
-        Unidad segundaCarta = new Unidad(modificador, seccionCuerpoACuerpo, puntajeCartas);
+
+        Unidad primeraCarta = new Unidad(tipo, seccionCuerpoACuerpo, puntajeCartas);
+        Unidad segundaCarta = new Unidad(tipo, seccionCuerpoACuerpo, puntajeCartas);
+
+        Unida cartaModificada = new Unida(primeraCarta, seccionCuerpoACuerpo, tipo, puntajeCartas);
 
         Mazo mazo = new Mazo();
-        mazo.agregarCarta(primeraCarta);
+        mazo.agregarCarta(cartaModificada);
         mazo.agregarCarta(segundaCarta);
         List<Mazo> mazos = new ArrayList<>();
         mazos.add(mazo);
@@ -170,7 +173,7 @@ public class JuegoTest {
 
         Jugador jugador = new Jugador("Agustin", mazos, contenedor);
 
-        primeraCarta.usar();
+        cartaModificada.usar();
 
         /* Act */
         segundaCarta.usar();

@@ -1,26 +1,33 @@
 package edu.fiuba.algo3.modelo;
 
 public class Unidad implements Carta {
-    private Seccion seccion;
-    private int puntos;
-    private Unida modificador;
+    protected String tipo;
+    protected Seccion seccion;
+    private int puntos, puntosIniciales;
 
     public Unidad (Seccion seccion) {
         this.seccion = seccion;
     }
 
+    public Unidad (Seccion seccion, String tipo) {
+        this.seccion = seccion;
+        this.tipo = tipo;
+    }
+
     public Unidad (Seccion seccion, int puntos) {
         this.seccion = seccion;
         this.puntos = puntos;
+        this.puntosIniciales = puntos;
+    }
+
+    public Unidad (String tipo, Seccion seccion, int puntos) {
+        this.seccion = seccion;
+        this.tipo = tipo;
+        this.puntos = puntos;
+        this.puntosIniciales = puntos;
     }
 
     public Unidad() {
-    }
-
-    public Unidad(Unida modificador, Seccion seccion, int puntajeCartas) {
-        this.seccion = seccion;
-        this.puntos = puntajeCartas;
-        this.modificador = modificador;
     }
 
     public int calcularPuntaje(int acumulador){
@@ -29,5 +36,17 @@ public class Unidad implements Carta {
 
     public void usar () {
         this.seccion.ubicar(this);
+        this.seccion.actualizarValores();
+    }
+
+    public int esDeTipo (String tipo) {
+        return tipo.equals(this.tipo) ? 1 : 0;
+    }
+
+
+    public void modificarPuntaje(String tipo, int acumulador) {
+        if (this.tipo.equals(tipo)) {
+            this.puntos = acumulador * puntosIniciales;
+        }
     }
 }
