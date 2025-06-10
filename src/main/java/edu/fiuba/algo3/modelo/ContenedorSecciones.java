@@ -25,6 +25,20 @@ public class ContenedorSecciones extends Seccion {
     }
 
     @Override
+    public void setStrategy(EstrategiaCambioPuntos estrategia) {
+        for (Seccion seccion : secciones) {
+            seccion.setStrategy(estrategia);
+        }
+    }
+
+    @Override
+    public void actualizarValores() {
+        for (Seccion seccion : secciones) {
+            seccion.actualizarValores();
+        }
+    }
+
+    @Override
     public int calcularPuntaje () {
         int acumulador = 0;
         for (Seccion seccion : this.secciones) {

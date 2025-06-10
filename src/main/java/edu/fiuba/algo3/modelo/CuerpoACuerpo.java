@@ -4,14 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CuerpoACuerpo extends Seccion {
+    private EstrategiaCambioPuntos estrategia;
 
     public CuerpoACuerpo () {
         super();
+        estrategia = new Comun();
     }
 
     @Override
     public int cantidadDeCartas() {
         return this.cartas.size();
+    }
+
+    @Override
+    public void setStrategy(EstrategiaCambioPuntos estrategia) {
+        this.estrategia = estrategia;
+    }
+
+    @Override
+    public void actualizarValores() {
+        this.estrategia.modificarPuntosCartas(this.cartas);
     }
 
     @Override
@@ -22,6 +34,8 @@ public class CuerpoACuerpo extends Seccion {
         }
         return acumulador;
     }
+
+
 
     @Override
     public void limpiarSeccion(List<Unidad> pilaDescarte) {

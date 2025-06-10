@@ -181,5 +181,28 @@ public class JuegoTest {
         /* Assert */
         assertEquals(puntajeEsperado, jugador.calcularPuntaje());
     }
+    @Test
+    public void test07ClimaReduceElValorDeLasCartasDeUnaSeccion () {
+        /* Arrange */
+        int puntosCarta = 10;
+        int puntajeTotalEsperado = 2;
+        CuerpoACuerpo seccionJugador1 = new CuerpoACuerpo();
+        CuerpoACuerpo seccionJugador2 = new CuerpoACuerpo();
+        ContenedorSecciones contenedor = new ContenedorSecciones();
+        contenedor.agregar(seccionJugador1);
+        contenedor.agregar(seccionJugador2);
 
+        Unidad cartaJugador1 = new Unidad(seccionJugador1, puntosCarta);
+        Unidad cartaJugador2 = new Unidad(seccionJugador2, puntosCarta);
+        Clima carta = new Clima(contenedor);
+
+        cartaJugador1.usar();
+        cartaJugador2.usar();
+
+        /* Act */
+        carta.usar();
+
+        /* Assert */
+        assertEquals(puntajeTotalEsperado, contenedor.calcularPuntaje());
+    }
 }

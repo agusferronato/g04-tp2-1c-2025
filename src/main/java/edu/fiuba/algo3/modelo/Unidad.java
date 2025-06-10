@@ -43,6 +43,9 @@ public class Unidad implements Carta {
         return tipo.equals(this.tipo) ? 1 : 0;
     }
 
+    public void congelarPuntaje() {
+        this.puntos = 1;
+    }
 
     public void modificarPuntaje(String tipo, int acumulador) {
         if (this.tipo.equals(tipo)) {
