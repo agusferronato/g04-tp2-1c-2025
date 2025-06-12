@@ -2,14 +2,17 @@ package edu.fiuba.algo3.modelo;
 
 public class Unida extends Unidad {
     private Unidad carta;
+    private String tipo;
+    private Seccion seccion;
 
-    public Unida (Unidad carta, Seccion seccion, String tipo, int puntos) {
-        super(tipo, seccion, puntos);
+    public Unida (Unidad carta, Seccion seccion, String tipo) {
         this.carta = carta;
+        this.seccion = seccion;
+        this.tipo = tipo;
     }
 
-    public void usar () {
+    public void usar (Jugador jugador) {
         this.seccion.setStrategy(new Duplicador(tipo));
-        super.usar();
+        this.carta.usar(jugador);
     }
 }

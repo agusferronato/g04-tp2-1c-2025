@@ -7,7 +7,7 @@ public class Clima implements Carta {
         this.seccion = seccion;
     }
 
-    public void usar() {
+    public void usar(Jugador jugador) {
         this.seccion.setStrategy(new CongelarPuntos());
         this.seccion.actualizarValores();
     }

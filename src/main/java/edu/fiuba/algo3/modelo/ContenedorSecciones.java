@@ -66,7 +66,9 @@ public class ContenedorSecciones extends Seccion {
     public void quemarCartasMasFuertes() {
         int puntajeMaximo = -1;
         for (Seccion seccion : secciones) {
-            puntajeMaximo = seccion.puntajeMaximoCartas();
+            int puntaje = seccion.puntajeMaximoCartas();
+            if (puntaje >= puntajeMaximo)
+                puntajeMaximo = puntaje;
         }
         for (Seccion seccion : secciones) {
             seccion.quemarCartasDePuntaje(puntajeMaximo);

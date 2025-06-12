@@ -34,7 +34,7 @@ public class Unidad implements Carta {
         return acumulador + puntos;
     }
 
-    public void usar () {
+    public void usar (Jugador jugador) {
         this.seccion.ubicar(this);
         this.seccion.actualizarValores();
     }
@@ -63,5 +63,10 @@ public class Unidad implements Carta {
 
     public boolean superaPuntaje (int puntaje) {
         return this.puntos >= puntaje;
+    }
+
+    public void ubicarEn(Seccion seccion) {
+        seccion.ubicar(this);
+        seccion.actualizarValores();
     }
 }

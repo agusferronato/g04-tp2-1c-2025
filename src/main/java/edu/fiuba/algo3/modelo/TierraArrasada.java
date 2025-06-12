@@ -7,7 +7,7 @@ public class TierraArrasada extends Especial {
         this.secciones = secciones;
     }
 
-    public void usar () {
+    public void usar (Jugador jugador) {
         secciones.quemarCartasMasFuertes();
     }
 

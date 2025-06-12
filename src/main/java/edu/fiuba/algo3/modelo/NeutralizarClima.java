@@ -1,14 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
 public class NeutralizarClima extends Especial {
-    private ContenedorSecciones secciones;
+    private Seccion seccion;
 
-    public NeutralizarClima(ContenedorSecciones secciones) {
-        this.secciones = secciones;
+    public NeutralizarClima(Seccion seccion) {
+        this.seccion = seccion;
     }
 
     @Override
-    public void usar() {
-        secciones.reestablecerPuntajeCartas();
+    public void usar(Jugador jugador) {
+        seccion.reestablecerPuntajeCartas();
     }
 }

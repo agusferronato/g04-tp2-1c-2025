@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Duplicador implements EstrategiaCambioPuntos {
     private String tipo;
-    Duplicador (String tipo) {
+    public Duplicador (String tipo) {
         this.tipo = tipo;
     }
     public void modificarPuntosCartas(List<Unidad> cartas) {

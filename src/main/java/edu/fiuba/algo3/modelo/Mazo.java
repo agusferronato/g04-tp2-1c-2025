@@ -29,4 +29,8 @@ public class Mazo {
     public int cantidadDeCartas() {
         return this.cartas.size();
     }
+
+    public void quitarCartas(List<Carta> mano) {
+        this.cartas.removeAll(mano);
+    }
 }

@@ -5,36 +5,41 @@ import java.util.Collections;
 import java.util.List;
 
 public class Jugador {
-
+    private final int CARTAS_MANO = 10;
+    private List<Carta> mano;
     private String nombre;
-    private List<Mazo> mazos;
+    private Mazo mazo;
     private ContenedorSecciones seccion;
     private List<Unidad> pilaDescarte;
 
-    public Jugador(String nombre, List<Mazo> mazos, ContenedorSecciones secciones) {
+    public Jugador(String nombre, Mazo mazo, ContenedorSecciones secciones) {
         this.nombre = nombre;
         this.seccion = secciones;
-        this.mazos = mazos;
+        this.mazo = mazo;
         this.pilaDescarte = new ArrayList<>();
+        this.mano = new ArrayList<>();
     }
 
-    public Jugador(String nombre, List<Mazo> mazos) {
+    public Jugador(String nombre, Mazo mazo) {
         this.nombre = nombre;
-        this.mazos = mazos;
+        this.mazo = mazo;
+        this.pilaDescarte = new ArrayList<>();
+        this.mano = new ArrayList<>();
     }
+
 
     public Mazo seleccionarMazo () {
-        return this.mazos.get(0);
+        // this.mano = mazo.seleccionarCartasAlAzar(CARTAS_MANO);
+        // this.mazos.get(0).quitarCartas(this.mano);
+        return this.mazo;
     }
 
     public int calcularPuntaje() {
         return seccion.calcularPuntaje();
     }
 
-    public void jugarCarta() {
-        Mazo mazo = this.mazos.get(0);
-        Carta carta = mazo.seleccionarCartaAlAzar();
-        carta.usar();
+    public void jugarCarta(Carta carta) {
+        carta.usar(this);
     }
 
     public void descartarCartas() {
@@ -43,5 +48,25 @@ public class Jugador {
 
     public int cartasEnDescarte() {
         return this.pilaDescarte.size();
+    }
+
+    public void tomarCartasDelMazo(int cartasDelMazoATomar) {
+        List<Carta> cartas = this.mazo.seleccionarCartasAlAzar(cartasDelMazoATomar);
+        this.mazo.quitarCartas(cartas);
+        this.mano.addAll(cartas);
+    }
+
+    /* Metodo para test */
+    public int cantidadDeCartasEnMano() {
+        return this.mano.size();
+    }
+
+    public void descartar(Carta carta) {
+        this.mano.remove(carta);
+    }
+
+    /* Metodo para test */
+    public int cantidadDeCartasEnMazo () {
+        return this.mazo.cantidadDeCartas();
     }
 }

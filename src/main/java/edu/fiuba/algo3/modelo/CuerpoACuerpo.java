@@ -7,7 +7,6 @@ public class CuerpoACuerpo extends Seccion {
     private EstrategiaCambioPuntos estrategia;
 
     public CuerpoACuerpo () {
-        super();
         estrategia = new Comun();
     }
 

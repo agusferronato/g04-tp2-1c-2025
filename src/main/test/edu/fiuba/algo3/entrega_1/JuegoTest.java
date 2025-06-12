@@ -25,16 +25,13 @@ public class JuegoTest {
             mazo.agregarCarta(carta);
         }
 
-        List<Mazo> mazos = new ArrayList<>();
-        mazos.add(mazo);
-
-        Jugador jugador = new Jugador("Agustin", mazos);
+        Jugador jugador = new Jugador("Agustin", mazo);
 
         /* Act */
-        Mazo mazoSeleccionado = jugador.seleccionarMazo();
+        int cantidadDeCartasEnMazo = jugador.cantidadDeCartasEnMazo();
 
         /* Assert */
-        assertEquals(CARTAS_MAZO, mazoSeleccionado.cantidadDeCartas());
+        assertEquals(CARTAS_MAZO, cantidadDeCartasEnMazo);
     }
     @Test
     public void test02JugadorRecibe10CartasDeSuMazo () {
@@ -45,17 +42,14 @@ public class JuegoTest {
             mazo.agregarCarta(carta);
         }
 
-        List<Mazo> mazos = new ArrayList<>();
-        mazos.add(mazo);
-
-        Jugador jugador = new Jugador("Agustin", mazos);
-        Mazo mazoSeleccionado = jugador.seleccionarMazo();
+        Jugador jugador = new Jugador("Agustin", mazo);
+        jugador.tomarCartasDelMazo(CARTAS_MANO);
 
         /* Act */
-        List<Carta> mano = mazoSeleccionado.seleccionarCartasAlAzar(CARTAS_MANO);
+        int cantidadDeCartasEnMano = jugador.cantidadDeCartasEnMano();
 
         /* Assert */
-        assertEquals(CARTAS_MANO, mano.size());
+        assertEquals(CARTAS_MANO, cantidadDeCartasEnMano);
     }
 
     @Test
@@ -64,24 +58,22 @@ public class JuegoTest {
         int cantidadDeCartasEsperadas = 1;
         Mazo mazo = new Mazo();
 
-        CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
+        CuerpoACuerpo seccion = new CuerpoACuerpo();
 
         ContenedorSecciones contenedor = new ContenedorSecciones();
-        contenedor.agregar(seccionCuerpoACuerpo);
+        contenedor.agregar(seccion);
 
-        Unidad unidad = new Unidad(seccionCuerpoACuerpo);
+        Unidad unidad = new Unidad(seccion);
         mazo.agregarCarta(unidad);
 
-        List<Mazo> mazos = new ArrayList<>();
-        mazos.add(mazo);
-
         Tablero tablero = new Tablero();
-        Jugador jugador = new Jugador("Faustino", mazos, contenedor);
+        Jugador jugador = new Jugador("Faustino", mazo, contenedor);
+        jugador.tomarCartasDelMazo(1);
 
         tablero.agregarSeccion(contenedor);
 
         /* Act */
-        jugador.jugarCarta();
+        jugador.jugarCarta(unidad);
 
         /* Assert */
         assertEquals(cantidadDeCartasEsperadas, tablero.cantidadDeCartasEnTotal());
@@ -94,24 +86,19 @@ public class JuegoTest {
         int puntajeEsperado = 25;
         Mazo mazo = new Mazo();
 
-        CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
+        CuerpoACuerpo seccion = new CuerpoACuerpo();
 
         ContenedorSecciones contenedor = new ContenedorSecciones();
-        contenedor.agregar(seccionCuerpoACuerpo);
+        contenedor.agregar(seccion);
 
-        Unidad unidad = new Unidad(seccionCuerpoACuerpo, puntajeEsperado);
+        Unidad unidad = new Unidad(seccion, puntajeEsperado);
         mazo.agregarCarta(unidad);
 
-        List<Mazo> mazos = new ArrayList<>();
-        mazos.add(mazo);
-
-        Tablero tablero = new Tablero();
-        Jugador jugador = new Jugador("Faustino", mazos, contenedor);
-
-        tablero.agregarSeccion(contenedor);
+        Jugador jugador = new Jugador("Faustino", mazo, contenedor);
+        jugador.tomarCartasDelMazo(1);
 
         /* Act */
-        jugador.jugarCarta();
+        jugador.jugarCarta(unidad);
 
         /* Assert */
         assertEquals(puntajeEsperado, jugador.calcularPuntaje());
@@ -122,24 +109,22 @@ public class JuegoTest {
         /* Arrange */
         int cartasEnDescarteEsperadas = 1;
 
-        CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
+        CuerpoACuerpo seccion = new CuerpoACuerpo();
         ContenedorSecciones contenedor = new ContenedorSecciones();
-        contenedor.agregar(seccionCuerpoACuerpo);
+        contenedor.agregar(seccion);
 
         Mazo mazo = new Mazo();
-        Carta carta = new Unidad(seccionCuerpoACuerpo);
+        Carta carta = new Unidad(seccion);
         mazo.agregarCarta(carta);
 
-        List<Mazo> mazos = new ArrayList<>();
-        mazos.add(mazo);
-
         Tablero tablero = new Tablero();
-        Jugador jugador = new Jugador("Faustino", mazos, contenedor);
+        Jugador jugador = new Jugador("Faustino", mazo, contenedor);
         tablero.agregarSeccion(contenedor);
 
         Juego juego = new Juego(tablero);
         juego.agregarJugador(jugador);
-        jugador.jugarCarta();
+        jugador.tomarCartasDelMazo(1);
+        jugador.jugarCarta(carta);
 
         /* Act */
         juego.pasarDeRonda();
@@ -155,28 +140,25 @@ public class JuegoTest {
         int puntajeCartas = 5;
         String tipo = "Catapulta";
 
-        CuerpoACuerpo seccionCuerpoACuerpo = new CuerpoACuerpo();
-
-        Unidad primeraCarta = new Unidad(tipo, seccionCuerpoACuerpo, puntajeCartas);
-        Unidad segundaCarta = new Unidad(tipo, seccionCuerpoACuerpo, puntajeCartas);
-
-        Unida cartaModificada = new Unida(primeraCarta, seccionCuerpoACuerpo, tipo, puntajeCartas);
+        CuerpoACuerpo seccion = new CuerpoACuerpo();
+        Unidad primeraCarta = new Unidad(tipo, seccion, puntajeCartas);
+        Unidad segundaCarta = new Unidad(tipo, seccion, puntajeCartas);
+        Unida cartaModificada = new Unida(primeraCarta, seccion, tipo);
 
         Mazo mazo = new Mazo();
         mazo.agregarCarta(cartaModificada);
         mazo.agregarCarta(segundaCarta);
-        List<Mazo> mazos = new ArrayList<>();
-        mazos.add(mazo);
 
         ContenedorSecciones contenedor = new ContenedorSecciones();
-        contenedor.agregar(seccionCuerpoACuerpo);
+        contenedor.agregar(seccion);
 
-        Jugador jugador = new Jugador("Agustin", mazos, contenedor);
+        Jugador jugador = new Jugador("Agustin", mazo, contenedor);
+        jugador.tomarCartasDelMazo(2);
 
-        cartaModificada.usar();
+        jugador.jugarCarta(cartaModificada);
 
         /* Act */
-        segundaCarta.usar();
+        jugador.jugarCarta(primeraCarta);
 
         /* Assert */
         assertEquals(puntajeEsperado, jugador.calcularPuntaje());
@@ -186,21 +168,44 @@ public class JuegoTest {
         /* Arrange */
         int puntosCarta = 10;
         int puntajeTotalEsperado = 2;
+
         CuerpoACuerpo seccionJugador1 = new CuerpoACuerpo();
         CuerpoACuerpo seccionJugador2 = new CuerpoACuerpo();
+
         ContenedorSecciones contenedor = new ContenedorSecciones();
         contenedor.agregar(seccionJugador1);
         contenedor.agregar(seccionJugador2);
 
-        Unidad cartaJugador1 = new Unidad(seccionJugador1, puntosCarta);
-        Unidad cartaJugador2 = new Unidad(seccionJugador2, puntosCarta);
-        Clima carta = new Clima(contenedor);
+        // Jugador 1
+        ContenedorSecciones contenedorJugador1 = new ContenedorSecciones();
+        contenedorJugador1.agregar(seccionJugador1);
 
-        cartaJugador1.usar();
-        cartaJugador2.usar();
+        Unidad cartaJugador1 = new Unidad(seccionJugador1, puntosCarta);
+        Mazo mazoJugador1 = new Mazo();
+        mazoJugador1.agregarCarta(cartaJugador1);
+
+        Jugador jugador1 = new Jugador("Santiago", mazoJugador1, contenedorJugador1);
+        jugador1.tomarCartasDelMazo(2);
+
+        // Jugador 2
+        ContenedorSecciones contenedorJugador2 = new ContenedorSecciones();
+        contenedorJugador2.agregar(seccionJugador2);
+
+        Unidad cartaJugador2 = new Unidad(seccionJugador2, puntosCarta);
+        Clima climaJugador2 = new Clima(contenedor);
+
+        Mazo mazoJugador2 = new Mazo();
+        mazoJugador2.agregarCarta(cartaJugador2);
+        mazoJugador2.agregarCarta(climaJugador2);
+
+        Jugador jugador2 = new Jugador("Agustin", mazoJugador2, contenedorJugador2);
+        jugador2.tomarCartasDelMazo(2);
+
+        jugador1.jugarCarta(cartaJugador1);
+        jugador2.jugarCarta(cartaJugador2);
 
         /* Act */
-        carta.usar();
+        jugador2.jugarCarta(climaJugador2);
 
         /* Assert */
         assertEquals(puntajeTotalEsperado, contenedor.calcularPuntaje());

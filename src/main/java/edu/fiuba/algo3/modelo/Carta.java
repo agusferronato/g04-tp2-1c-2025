@@ -1,5 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
 public interface Carta {
-    void usar();
+    void usar(Jugador jugador);
 }
