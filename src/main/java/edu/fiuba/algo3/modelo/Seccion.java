@@ -24,4 +24,10 @@ public abstract class Seccion {
     public abstract void setStrategy(EstrategiaCambioPuntos estrategia);
 
     public abstract void actualizarValores();
+
+    public abstract void reestablecerPuntajeCartas();
+
+    public abstract int puntajeMaximoCartas();
+
+    public abstract void quemarCartasDePuntaje (int puntaje);
 }

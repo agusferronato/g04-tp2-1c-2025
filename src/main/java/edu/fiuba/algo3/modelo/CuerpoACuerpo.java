@@ -27,6 +27,27 @@ public class CuerpoACuerpo extends Seccion {
     }
 
     @Override
+    public void reestablecerPuntajeCartas() {
+        for (Unidad unidad : this.cartas) {
+            unidad.reestablecerValor();
+        }
+    }
+
+    @Override
+    public int puntajeMaximoCartas() {
+        int puntajeMaximo = -1;
+        for (Unidad unidad : this.cartas) {
+            puntajeMaximo = unidad.devolverPuntajeSiSupera(puntajeMaximo);
+        }
+        return puntajeMaximo;
+    }
+
+    @Override
+    public void quemarCartasDePuntaje(int puntaje) {
+        this.cartas.removeIf(unidad -> unidad.superaPuntaje(puntaje));
+    }
+
+    @Override
     public int calcularPuntaje () {
         int acumulador = 0;
         for (Unidad unidad : this.cartas) {

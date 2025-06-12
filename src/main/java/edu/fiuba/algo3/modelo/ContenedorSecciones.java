@@ -39,6 +39,41 @@ public class ContenedorSecciones extends Seccion {
     }
 
     @Override
+    public void reestablecerPuntajeCartas() {
+        for (Seccion seccion : secciones) {
+            seccion.reestablecerPuntajeCartas();
+        }
+    }
+
+    @Override
+    public int puntajeMaximoCartas() {
+        int puntajeMaximo = -1;
+        for (Seccion seccion : secciones) {
+            int puntaje = seccion.puntajeMaximoCartas();
+            if (puntaje >= puntajeMaximo)
+                puntajeMaximo = puntaje;
+        }
+        return puntajeMaximo;
+    }
+
+    @Override
+    public void quemarCartasDePuntaje(int puntaje) {
+        for (Seccion seccion : secciones) {
+            seccion.quemarCartasDePuntaje(puntaje);
+        }
+    }
+
+    public void quemarCartasMasFuertes() {
+        int puntajeMaximo = -1;
+        for (Seccion seccion : secciones) {
+            puntajeMaximo = seccion.puntajeMaximoCartas();
+        }
+        for (Seccion seccion : secciones) {
+            seccion.quemarCartasDePuntaje(puntajeMaximo);
+        }
+    }
+
+    @Override
     public int calcularPuntaje () {
         int acumulador = 0;
         for (Seccion seccion : this.secciones) {

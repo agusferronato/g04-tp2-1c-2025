@@ -52,4 +52,16 @@ public class Unidad implements Carta {
             this.puntos = acumulador * puntosIniciales;
         }
     }
+
+    public void reestablecerValor() {
+        this.puntos = puntosIniciales;
+    }
+
+    public int devolverPuntajeSiSupera (int puntaje) {
+        return Math.max(this.puntos, puntaje);
+    }
+
+    public boolean superaPuntaje (int puntaje) {
+        return this.puntos >= puntaje;
+    }
 }
