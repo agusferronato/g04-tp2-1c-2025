@@ -205,4 +205,32 @@ public class Entrega2Test {
         /* Assert */
         assertEquals(cantidadDeCartasEsperada, cuerpoACuerpo1.cantidadDeCartas());
     }
+
+    @Test
+    public void test07SiSeJuegaUnaCartaMedicoPuedeAgarrarDeLaPilaDeDescarte(){
+        int cantidadCartasEsperada = 2;
+
+        ContenedorSecciones secciones = new ContenedorSecciones();
+        CuerpoACuerpo cuerpoACuerpo = new CuerpoACuerpo();
+        secciones.agregar(cuerpoACuerpo);
+
+        Mazo mazo = new Mazo();
+        Unidad cartaBase = new Unidad(cuerpoACuerpo);
+        Medico cartaMedica = new Medico(cartaBase);
+        Unidad carta = new Unidad(cuerpoACuerpo);
+
+        mazo.agregarCarta(cartaMedica);
+        Jugador jugador = new Jugador("Agustin", mazo, secciones);
+        jugador.tomarCartasDelMazo(1);
+
+        jugador.agregarADescarte(carta);
+
+
+        /* Act */
+        jugador.jugarCarta(cartaMedica);
+
+        /* Assert */
+
+        assertEquals(cantidadCartasEsperada, cuerpoACuerpo.cantidadDeCartas());
+    }
 }

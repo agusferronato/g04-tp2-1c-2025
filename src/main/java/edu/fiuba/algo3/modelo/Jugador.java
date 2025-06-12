@@ -69,4 +69,16 @@ public class Jugador {
     public int cantidadDeCartasEnMazo () {
         return this.mazo.cantidadDeCartas();
     }
+
+    /* Metodo para test */
+    public void agregarADescarte(Unidad carta) {
+        this.pilaDescarte.add(carta);
+    }
+
+    public Unidad tomarDePilaDescarte() {
+        Unidad carta = GeneradorAleatorioCartas.cartasAlAzar(this.pilaDescarte);
+        this.pilaDescarte.remove(carta);
+        this.mano.add(carta);
+        return carta;
+    }
 }

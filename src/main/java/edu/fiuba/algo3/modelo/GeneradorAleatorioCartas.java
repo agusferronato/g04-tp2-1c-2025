@@ -10,4 +10,10 @@ public class GeneradorAleatorioCartas {
         Collections.shuffle(copia);
         return new ArrayList<>(copia.subList(0, Math.min(cantidad, copia.size())));
     }
+
+    public static Unidad cartasAlAzar(List<Unidad> cartas) {
+        List<Unidad> copia = new ArrayList<>(cartas);
+        Collections.shuffle(copia);
+        return (copia.get(0));
+    }
 }
