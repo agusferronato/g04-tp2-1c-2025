@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class Entrega2Test {
     private final int CARTAS_MAZO = 21;
@@ -174,5 +176,33 @@ public class Entrega2Test {
 
         /* Assert */
         assertEquals(cantidadDeCartasEsperada, seccionJugador2.cantidadDeCartas());
+    }
+
+    @Test
+    public void test06CartaAgilPuedeUbicarseEnVariasSecciones () {
+        /* Arrange */
+        int cantidadDeCartasEsperada = 1;
+        ContenedorSecciones secciones = new ContenedorSecciones();
+        CuerpoACuerpo cuerpoACuerpo1 = new CuerpoACuerpo();
+        CuerpoACuerpo cuerpoACuerpo2 = new CuerpoACuerpo();
+        secciones.agregar(cuerpoACuerpo1);
+        secciones.agregar(cuerpoACuerpo2);
+
+        SeccionAleatoria seleccionador = mock(SeccionAleatoria.class);
+        when(seleccionador.obtenerSeccionAleatoria()).thenReturn(cuerpoACuerpo1);
+
+        Unidad cartaBase = new Unidad();
+        Agil carta = new Agil(cartaBase, seleccionador);
+        Mazo mazo = new Mazo();
+        mazo.agregarCarta(carta);
+
+        Jugador jugador = new Jugador("Agustin", mazo, secciones);
+        jugador.tomarCartasDelMazo(1);
+
+        /* Act */
+        jugador.jugarCarta(carta);
+
+        /* Assert */
+        assertEquals(cantidadDeCartasEsperada, cuerpoACuerpo1.cantidadDeCartas());
     }
 }
