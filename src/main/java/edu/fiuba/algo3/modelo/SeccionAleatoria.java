@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class SeccionAleatoria {
-    private List<Seccion> secciones;
+    private List<CuerpoACuerpo> secciones;
     public SeccionAleatoria() {
         this.secciones = new ArrayList<>();
     }
-    public Seccion obtenerSeccionAleatoria () {
+    public CuerpoACuerpo obtenerSeccionAleatoria () {
         Collections.shuffle(secciones);
         return secciones.get(0);
     }

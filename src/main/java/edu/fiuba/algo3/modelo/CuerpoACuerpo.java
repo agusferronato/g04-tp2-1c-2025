@@ -5,9 +5,11 @@ import java.util.List;
 
 public class CuerpoACuerpo extends Seccion {
     private EstrategiaCambioPuntos estrategia;
+    private List<Unidad> cartas;
 
     public CuerpoACuerpo () {
         estrategia = new Comun();
+        this.cartas = new ArrayList<>();
     }
 
     @Override
@@ -15,14 +17,8 @@ public class CuerpoACuerpo extends Seccion {
         return this.cartas.size();
     }
 
-    @Override
-    public void setStrategy(EstrategiaCambioPuntos estrategia) {
-        this.estrategia = estrategia;
-    }
-
-    @Override
-    public void actualizarValores() {
-        this.estrategia.modificarPuntosCartas(this.cartas);
+    public void ubicar (Unidad unidad) {
+        cartas.add(unidad);
     }
 
     @Override
@@ -31,6 +27,16 @@ public class CuerpoACuerpo extends Seccion {
             unidad.reestablecerValor();
         }
     }
+
+    public void setStrategy(EstrategiaCambioPuntos estrategia) {
+        this.estrategia = estrategia;
+    }
+
+
+    public void actualizarValores(){
+        this.estrategia.modificarPuntosCartas(cartas);
+    }
+
 
     @Override
     public int puntajeMaximoCartas() {
@@ -55,12 +61,17 @@ public class CuerpoACuerpo extends Seccion {
         return acumulador;
     }
 
-
-
     @Override
     public void limpiarSeccion(List<Unidad> pilaDescarte) {
         List<Unidad> cartas = List.copyOf(this.cartas);
         pilaDescarte.addAll(cartas);
         this.cartas.clear();
+    }
+
+    @Override
+    public void aplicarClima() {
+        for (Unidad unidad : this.cartas) {
+            unidad.aplicarClima();
+        }
     }
 }

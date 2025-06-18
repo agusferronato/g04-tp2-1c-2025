@@ -8,8 +8,7 @@ public class Agil extends Unidad {
         this.seccionAleatoria = seccionAleatoria;
     }
     public void usar (Jugador jugador) {
-        Seccion seccion = seccionAleatoria.obtenerSeccionAleatoria();
+        CuerpoACuerpo seccion = seccionAleatoria.obtenerSeccionAleatoria();
         cartaBase.ubicarEn(seccion);
-        seccion.actualizarValores();
     }
 }

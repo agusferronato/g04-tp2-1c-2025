@@ -2,36 +2,34 @@ package edu.fiuba.algo3.modelo;
 
 public class Unidad implements Carta {
     protected String tipo;
-    protected Seccion seccion;
-    private int puntos, puntosIniciales;
+    protected CuerpoACuerpo seccion;
+    private Puntaje puntaje;
 
-    public Unidad (Seccion seccion) {
+    public Unidad (CuerpoACuerpo seccion) {
         this.seccion = seccion;
     }
 
-    public Unidad (Seccion seccion, String tipo) {
+    public Unidad (CuerpoACuerpo seccion, String tipo) {
         this.seccion = seccion;
         this.tipo = tipo;
     }
 
-    public Unidad (Seccion seccion, int puntos) {
+    public Unidad (CuerpoACuerpo seccion, Puntaje puntaje) {
         this.seccion = seccion;
-        this.puntos = puntos;
-        this.puntosIniciales = puntos;
+        this.puntaje = puntaje;
     }
 
-    public Unidad (String tipo, Seccion seccion, int puntos) {
+    public Unidad (String tipo, CuerpoACuerpo seccion, Puntaje puntaje) {
         this.seccion = seccion;
         this.tipo = tipo;
-        this.puntos = puntos;
-        this.puntosIniciales = puntos;
+        this.puntaje = puntaje;
     }
 
     public Unidad() {
     }
 
     public int calcularPuntaje(int acumulador){
-        return acumulador + puntos;
+        return puntaje.calcularPuntaje(acumulador);
     }
 
     public void usar (Jugador jugador) {
@@ -43,30 +41,31 @@ public class Unidad implements Carta {
         return tipo.equals(this.tipo) ? 1 : 0;
     }
 
-    public void congelarPuntaje() {
-        this.puntos = 1;
-    }
 
     public void modificarPuntaje(String tipo, int acumulador) {
         if (this.tipo.equals(tipo)) {
-            this.puntos = acumulador * puntosIniciales;
+            //this.puntos = acumulador * puntosIniciales;
+            puntaje.modificarPuntaje(acumulador);
         }
     }
 
     public void reestablecerValor() {
-        this.puntos = puntosIniciales;
+        puntaje.restablecerAValorModificadores();
     }
 
     public int devolverPuntajeSiSupera (int puntaje) {
-        return Math.max(this.puntos, puntaje);
+        return this.puntaje.devolverPuntajeSiSupera(puntaje);
     }
 
     public boolean superaPuntaje (int puntaje) {
-        return this.puntos >= puntaje;
+        return this.puntaje.superaPuntaje(puntaje);
     }
 
-    public void ubicarEn(Seccion seccion) {
+    public void ubicarEn(CuerpoACuerpo seccion) {
         seccion.ubicar(this);
-        seccion.actualizarValores();
+    }
+
+    public void aplicarClima() {
+        this.puntaje.aplicarClima();
     }
 }

@@ -21,8 +21,8 @@ public class Entrega2Test {
         CuerpoACuerpo seccion = new CuerpoACuerpo();
         ContenedorSecciones contenedorSecciones = new ContenedorSecciones();
         contenedorSecciones.agregar(seccion);
-
-        Unidad unidad = new Unidad(seccion, puntajeCarta);
+        Puntaje puntaje = new Puntaje(puntajeCarta);
+        Unidad unidad = new Unidad(seccion, puntaje);
         Clima clima = new Clima(contenedorSecciones);
         NeutralizarClima neutralizador = new NeutralizarClima(contenedorSecciones);
 
@@ -60,8 +60,10 @@ public class Entrega2Test {
         contenedor.agregar(seccionJugador1);
         contenedor.agregar(seccionJugador2);
 
-        Unidad cartaJugador1 = new Unidad(seccionJugador1, puntajeMaximoCartas);
-        Unidad cartaJugador2 = new Unidad(seccionJugador2, puntajeMinimoCartas);
+        Puntaje puntajeMaximo = new Puntaje(puntajeMaximoCartas);
+        Unidad cartaJugador1 = new Unidad(seccionJugador1, puntajeMaximo);
+        Puntaje puntajeMinimo = new Puntaje(puntajeMinimoCartas);
+        Unidad cartaJugador2 = new Unidad(seccionJugador2, puntajeMinimo);
         TierraArrasada tierraArrasada = new TierraArrasada(contenedor);
 
         Mazo mazoJugador1 = new Mazo();
@@ -101,8 +103,10 @@ public class Entrega2Test {
         ContenedorSecciones contenedorSecciones = new ContenedorSecciones();
         CuerpoACuerpo cuerpoACuerpo = new CuerpoACuerpo();
         CuerpoACuerpo cuerpoACuerpo2 = new CuerpoACuerpo();
-        Unidad unidad = new Unidad(cuerpoACuerpo, puntajeMaximoCartas);
-        Unidad unidad2 = new Unidad(cuerpoACuerpo2, puntajeMinimoCartas);
+        Puntaje puntajeMaximo = new Puntaje(puntajeMaximoCartas);
+        Unidad unidad = new Unidad(cuerpoACuerpo, puntajeMaximo);
+        Puntaje puntajeMinimo = new Puntaje(puntajeMinimoCartas);
+        Unidad unidad2 = new Unidad(cuerpoACuerpo2, puntajeMinimo);
         contenedorSecciones.agregar(cuerpoACuerpo);
         contenedorSecciones.agregar(cuerpoACuerpo2);
         cuerpoACuerpo2.ubicar(unidad);

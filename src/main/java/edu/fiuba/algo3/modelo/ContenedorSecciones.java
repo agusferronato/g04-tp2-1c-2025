@@ -25,20 +25,6 @@ public class ContenedorSecciones extends Seccion {
     }
 
     @Override
-    public void setStrategy(EstrategiaCambioPuntos estrategia) {
-        for (Seccion seccion : secciones) {
-            seccion.setStrategy(estrategia);
-        }
-    }
-
-    @Override
-    public void actualizarValores() {
-        for (Seccion seccion : secciones) {
-            seccion.actualizarValores();
-        }
-    }
-
-    @Override
     public void reestablecerPuntajeCartas() {
         for (Seccion seccion : secciones) {
             seccion.reestablecerPuntajeCartas();
@@ -88,6 +74,13 @@ public class ContenedorSecciones extends Seccion {
     public void limpiarSeccion (List<Unidad> pilaDescarte) {
         for (Seccion seccion : this.secciones) {
             seccion.limpiarSeccion(pilaDescarte);
+        }
+    }
+
+    @Override
+    public void aplicarClima() {
+        for (Seccion seccion : this.secciones) {
+            seccion.aplicarClima();
         }
     }
 }

@@ -90,8 +90,8 @@ public class JuegoTest {
 
         ContenedorSecciones contenedor = new ContenedorSecciones();
         contenedor.agregar(seccion);
-
-        Unidad unidad = new Unidad(seccion, puntajeEsperado);
+        Puntaje puntaje = new Puntaje(puntajeEsperado);
+        Unidad unidad = new Unidad(seccion, puntaje);
         mazo.agregarCarta(unidad);
 
         Jugador jugador = new Jugador("Faustino", mazo, contenedor);
@@ -140,9 +140,11 @@ public class JuegoTest {
         int puntajeCartas = 5;
         String tipo = "Catapulta";
 
+        Puntaje puntajeCarta1 = new Puntaje(puntajeCartas);
+        Puntaje puntajeCarta2 = new Puntaje(puntajeCartas);
         CuerpoACuerpo seccion = new CuerpoACuerpo();
-        Unidad primeraCarta = new Unidad(tipo, seccion, puntajeCartas);
-        Unidad segundaCarta = new Unidad(tipo, seccion, puntajeCartas);
+        Unidad primeraCarta = new Unidad(tipo, seccion, puntajeCarta1);
+        Unidad segundaCarta = new Unidad(tipo, seccion, puntajeCarta2);
         Unida cartaModificada = new Unida(primeraCarta, seccion, tipo);
 
         Mazo mazo = new Mazo();
@@ -154,7 +156,6 @@ public class JuegoTest {
 
         Jugador jugador = new Jugador("Agustin", mazo, contenedor);
         jugador.tomarCartasDelMazo(2);
-
         jugador.jugarCarta(cartaModificada);
 
         /* Act */
@@ -179,8 +180,8 @@ public class JuegoTest {
         // Jugador 1
         ContenedorSecciones contenedorJugador1 = new ContenedorSecciones();
         contenedorJugador1.agregar(seccionJugador1);
-
-        Unidad cartaJugador1 = new Unidad(seccionJugador1, puntosCarta);
+        Puntaje puntaje1 = new Puntaje(puntosCarta);
+        Unidad cartaJugador1 = new Unidad(seccionJugador1, puntaje1);
         Mazo mazoJugador1 = new Mazo();
         mazoJugador1.agregarCarta(cartaJugador1);
 
@@ -190,8 +191,8 @@ public class JuegoTest {
         // Jugador 2
         ContenedorSecciones contenedorJugador2 = new ContenedorSecciones();
         contenedorJugador2.agregar(seccionJugador2);
-
-        Unidad cartaJugador2 = new Unidad(seccionJugador2, puntosCarta);
+        Puntaje puntaje2 = new Puntaje(puntosCarta);
+        Unidad cartaJugador2 = new Unidad(seccionJugador2, puntaje2);
         Clima climaJugador2 = new Clima(contenedor);
 
         Mazo mazoJugador2 = new Mazo();
