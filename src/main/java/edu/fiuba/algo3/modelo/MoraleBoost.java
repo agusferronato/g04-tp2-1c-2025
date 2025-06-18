@@ -1,13 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
-public class Clima extends ModificadorPuntos {
+public class MoraleBoost extends ModificadorPuntos{
 
-    public Clima(Seccion seccion) {
+    public MoraleBoost(Seccion seccion) {
         super(seccion);
     }
-
     @Override
     public int aplicar(int puntaje){
-        return 1;
+        return puntaje * 2;
     }
 }

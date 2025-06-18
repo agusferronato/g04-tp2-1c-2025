@@ -65,7 +65,15 @@ public class Unidad implements Carta {
         seccion.ubicar(this);
     }
 
-    public void aplicarClima() {
-        this.puntaje.aplicarClima();
+    public void aplicarModificadorPuntos(ModificadorPuntos modificadorPuntos) {
+        this.puntaje.aplicarModificadorPuntos(modificadorPuntos);
+    }
+
+    public void aumentarUnoEnElPuntaje() {
+        puntaje.aumentarEnUnoElPuntaje();
+    }
+
+    protected int devolverPuntajeBase() {
+        return puntaje.devolverPuntajeBase();
     }
 }

@@ -78,9 +78,10 @@ public class ContenedorSecciones extends Seccion {
     }
 
     @Override
-    public void aplicarClima() {
+    public void aplicarModificadorPuntos(ModificadorPuntos modificadorPuntos) {
         for (Seccion seccion : this.secciones) {
-            seccion.aplicarClima();
+            seccion.aplicarModificadorPuntos(modificadorPuntos);
         }
     }
+
 }

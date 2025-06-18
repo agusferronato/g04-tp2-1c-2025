@@ -9,7 +9,7 @@ public abstract class Seccion {
 
     public abstract void limpiarSeccion(List<Unidad> pilaDescarte);
 
-    public abstract void aplicarClima();
+    public abstract void aplicarModificadorPuntos(ModificadorPuntos modificadorPuntos);
 
     /* Metodo para test */
     public abstract int cantidadDeCartas();

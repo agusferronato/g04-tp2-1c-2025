@@ -11,8 +11,8 @@ public class Puntaje {
         this.puntajeModificadores = puntajeBase;
     }
 
-    public void aplicarClima() {
-        puntajeActual = 1;
+    public void aplicarModificadorPuntos(ModificadorPuntos modificadorPuntos){
+        puntajeActual = modificadorPuntos.aplicar(puntajeActual);
     }
 
 
@@ -35,5 +35,14 @@ public class Puntaje {
 
     public int devolverPuntajeSiSupera(int puntaje) {
         return Math.max(this.puntajeActual, puntaje);
+    }
+
+    public void aumentarEnUnoElPuntaje() {
+        puntajeActual++;
+        puntajeModificadores++;
+    }
+
+    public int devolverPuntajeBase() {
+        return puntajeBase;
     }
 }
