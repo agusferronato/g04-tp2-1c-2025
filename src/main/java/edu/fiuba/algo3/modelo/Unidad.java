@@ -44,13 +44,8 @@ public class Unidad implements Carta {
 
     public void modificarPuntaje(String tipo, int acumulador) {
         if (this.tipo.equals(tipo)) {
-            //this.puntos = acumulador * puntosIniciales;
             puntaje.modificarPuntaje(acumulador);
         }
-    }
-
-    public void reestablecerValor() {
-        puntaje.restablecerAValorModificadores();
     }
 
     public int devolverPuntajeSiSupera (int puntaje) {
@@ -65,15 +60,20 @@ public class Unidad implements Carta {
         seccion.ubicar(this);
     }
 
-    public void aplicarModificadorPuntos(ModificadorPuntos modificadorPuntos) {
-        this.puntaje.aplicarModificadorPuntos(modificadorPuntos);
-    }
-
-    public void aumentarUnoEnElPuntaje() {
-        puntaje.aumentarEnUnoElPuntaje();
-    }
 
     protected int devolverPuntajeBase() {
         return puntaje.devolverPuntajeBase();
+    }
+
+    public void congelarPuntaje() {
+        puntaje.congelarPuntaje();
+    }
+
+    public void duplicarPuntaje() {
+        puntaje.duplicarPuntaje();
+    }
+
+    public void aumentarPuntaje() {
+        puntaje.aumentarPuntaje();
     }
 }

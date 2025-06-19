@@ -9,7 +9,10 @@ public class SumaValoresBase extends Unidad{
     }
 
     public void usar(Jugador jugador){
+        CreadorComandoSumaValorBase creador = new CreadorComandoSumaValorBase();
+        seccion.agregarCartasA(creador);
+        seccion.agregarComando(creador);
         jugador.jugarCarta(cartaBase);
-        seccion.sumarUnoATodasLasCartas();
+        seccion.actualizarValores();
     }
 }

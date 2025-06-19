@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public class TierraArrasada extends Especial {
+public class TierraArrasada implements Especial {
     private ContenedorSecciones secciones;
 
     public TierraArrasada(ContenedorSecciones secciones) {

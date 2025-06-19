@@ -1,12 +1,17 @@
 package edu.fiuba.algo3.modelo;
 
-public class MoraleBoost extends ModificadorPuntos{
+public class MoraleBoost implements Especial {
+    private Seccion seccion;
 
     public MoraleBoost(Seccion seccion) {
-        super(seccion);
+        this.seccion = seccion;
     }
-    @Override
-    public int aplicar(int puntaje){
-        return puntaje * 2;
+
+    public void usar (Jugador jugador) {
+        CreadorComandoMoraleBoost creador = new CreadorComandoMoraleBoost();
+        seccion.agregarCartasA(creador);
+        seccion.agregarComando(creador);
+        seccion.actualizarValores();
     }
+
 }

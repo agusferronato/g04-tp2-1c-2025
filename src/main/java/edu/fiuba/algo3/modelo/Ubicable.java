@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Ubicable extends Seccion {
-    private EstrategiaCambioPuntos estrategia;
+    private HistorialComandos historialComandos;
     private List<Unidad> cartas;
 
     public Ubicable () {
-        estrategia = new Comun();
+        historialComandos = new HistorialComandos();
         this.cartas = new ArrayList<>();
     }
 
@@ -21,20 +21,37 @@ public abstract class Ubicable extends Seccion {
         cartas.add(unidad);
     }
 
-    @Override
-    public void reestablecerPuntajeCartas() {
-        for (Unidad unidad : this.cartas) {
-            unidad.reestablecerValor();
-        }
+
+    public void agregarCartasA(CreadorConCartas creador) {
+        creador.agregarCartas(cartas);
     }
 
-    public void setStrategy(EstrategiaCambioPuntos estrategia) {
-        this.estrategia = estrategia;
+    public void agregarComando(CreadorComando creador) {
+        Comando comando = creador.crearComando();
+        historialComandos.agregarComando(comando);
+    }
+
+    public void actualizarValores() {
+        this.historialComandos.ejecutar();
+    }
+
+    public void quitarComandoClima() {
+        this.historialComandos.quitarComandoClima();
     }
 
 
-    public void actualizarValores(){
-        this.estrategia.modificarPuntosCartas(cartas);
+    private int cantidadDeCartasDeTipo (String tipo) {
+        int acumulador = 0;
+        for (Unidad carta : cartas)
+            acumulador += carta.esDeTipo(tipo);
+        return acumulador;
+    }
+
+
+    public void duplicarCartasDeTipo(String tipo) {
+        int cantidadDeCartas = cantidadDeCartasDeTipo(tipo);
+        for (Unidad carta : cartas)
+            carta.modificarPuntaje(tipo, cantidadDeCartas);
     }
 
 
@@ -68,16 +85,4 @@ public abstract class Ubicable extends Seccion {
         this.cartas.clear();
     }
 
-    @Override
-    public void aplicarModificadorPuntos(ModificadorPuntos modificadorPuntos) {
-        for (Unidad unidad : this.cartas) {
-            unidad.aplicarModificadorPuntos(modificadorPuntos);
-        }
-    }
-
-    public void sumarUnoATodasLasCartas() {
-        for (Unidad unidad : this.cartas) {
-            unidad.aumentarUnoEnElPuntaje();
-        }
-    }
 }

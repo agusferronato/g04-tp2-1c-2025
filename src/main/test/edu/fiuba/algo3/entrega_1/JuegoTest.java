@@ -21,7 +21,7 @@ public class JuegoTest {
         /* Arrange */
         Mazo mazo = new Mazo();
         for (int i = 0; i < CARTAS_MAZO; i++) {
-            Carta carta = (i < CARTAS_UNIDAD) ? new Unidad() : new Especial();
+            Carta carta = (i < CARTAS_UNIDAD) ? new Unidad() : new MoraleBoost(new Asedio());
             mazo.agregarCarta(carta);
         }
 
@@ -38,7 +38,7 @@ public class JuegoTest {
         /* Arrange */
         Mazo mazo = new Mazo();
         for (int i = 0; i < CARTAS_MAZO; i++) {
-            Carta carta = (i < CARTAS_UNIDAD) ? new Unidad() : new Especial();
+            Carta carta = (i < CARTAS_UNIDAD) ? new Unidad() : new MoraleBoost(new CuerpoACuerpo());
             mazo.agregarCarta(carta);
         }
 
@@ -186,13 +186,14 @@ public class JuegoTest {
         mazoJugador1.agregarCarta(cartaJugador1);
 
         Jugador jugador1 = new Jugador("Santiago", mazoJugador1, contenedorJugador1);
-        jugador1.tomarCartasDelMazo(2);
+        jugador1.tomarCartasDelMazo(1);
 
         // Jugador 2
         ContenedorSecciones contenedorJugador2 = new ContenedorSecciones();
         contenedorJugador2.agregar(seccionJugador2);
         Puntaje puntaje2 = new Puntaje(puntosCarta);
         Unidad cartaJugador2 = new Unidad(seccionJugador2, puntaje2);
+
         Clima climaJugador2 = new Clima(contenedor);
 
         Mazo mazoJugador2 = new Mazo();

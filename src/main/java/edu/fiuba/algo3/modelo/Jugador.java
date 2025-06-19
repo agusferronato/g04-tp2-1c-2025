@@ -27,13 +27,6 @@ public class Jugador {
         this.mano = new ArrayList<>();
     }
 
-
-    public Mazo seleccionarMazo () {
-        // this.mano = mazo.seleccionarCartasAlAzar(CARTAS_MANO);
-        // this.mazos.get(0).quitarCartas(this.mano);
-        return this.mazo;
-    }
-
     public int calcularPuntaje() {
         return seccion.calcularPuntaje();
     }

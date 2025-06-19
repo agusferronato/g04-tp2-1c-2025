@@ -12,8 +12,9 @@ public class Unida extends Unidad {
     }
 
     public void usar (Jugador jugador) {
-        Duplicador duplicador = new Duplicador(tipo);
-        seccion.setStrategy(duplicador);
-        this.carta.usar(jugador);
+        CreadorComandoUnida creador = new CreadorComandoUnida(seccion, tipo);
+        seccion.agregarComando(creador);
+        jugador.jugarCarta(carta);
+        seccion.actualizarValores();
     }
 }

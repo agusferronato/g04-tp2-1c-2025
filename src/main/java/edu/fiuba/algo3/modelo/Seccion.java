@@ -9,14 +9,19 @@ public abstract class Seccion {
 
     public abstract void limpiarSeccion(List<Unidad> pilaDescarte);
 
-    public abstract void aplicarModificadorPuntos(ModificadorPuntos modificadorPuntos);
-
     /* Metodo para test */
     public abstract int cantidadDeCartas();
-
-    public abstract void reestablecerPuntajeCartas();
 
     public abstract int puntajeMaximoCartas();
 
     public abstract void quemarCartasDePuntaje (int puntaje);
+
+    public abstract void agregarCartasA(CreadorConCartas creador);
+
+    public abstract void agregarComando(CreadorComando creador);
+
+    public abstract void actualizarValores();
+
+    public abstract void quitarComandoClima();
+
 }

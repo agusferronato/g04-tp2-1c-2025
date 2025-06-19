@@ -59,10 +59,10 @@ public class VariosTest {
         Puntaje puntaje2 = new Puntaje(puntajeCartas);
         Unidad carta2 = new Unidad(seccionJugador, puntaje2);
 
-        Clima clima = new Clima(seccionJugador);
+        Clima clima = new Clima(contenedor);
 
         SumaValoresBase sumaValoresBase = new SumaValoresBase(carta2, seccionJugador);
-        Legendaria legendaria = new Legendaria(carta1, seccionJugador);
+        Legendaria legendaria = new Legendaria(carta1);
 
         Mazo mazoJugador = new Mazo();
         mazoJugador.agregarCarta(legendaria);

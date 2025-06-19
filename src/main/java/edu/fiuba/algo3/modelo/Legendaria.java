@@ -2,20 +2,36 @@ package edu.fiuba.algo3.modelo;
 
 public class Legendaria extends Unidad{
     private Unidad cartaBase;
-    private CuerpoACuerpo seccion;
 
-    public Legendaria (Unidad carta, CuerpoACuerpo seccion) {
+    public Legendaria (Unidad carta) {
         this.cartaBase = carta;
-        this.seccion = seccion;
     }
 
     public void usar (Jugador jugador) {
         jugador.jugarCarta(cartaBase);
     }
-    public int calcularPuntaje(int acumulador){
+
+    public int calcularPuntaje(int acumulador) {
         return cartaBase.devolverPuntajeBase();
     }
 
-    public void aumentarUnoEnElPuntaje(){}
-    public void aplicarClima(){}
+
+    public void aumentarPuntaje() {}
+    public void congelarPuntaje () {}
+    public void duplicarPuntaje() {}
+
+
+    public int esDeTipo (String tipo) {
+        return 0;
+    }
+
+    public int devolverPuntajeSiSupera (int puntaje) {
+        return puntaje;
+    }
+
+    public boolean superaPuntaje(int puntaje){
+        return false;
+    }
+
+
 }

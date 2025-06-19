@@ -25,13 +25,6 @@ public class ContenedorSecciones extends Seccion {
     }
 
     @Override
-    public void reestablecerPuntajeCartas() {
-        for (Seccion seccion : secciones) {
-            seccion.reestablecerPuntajeCartas();
-        }
-    }
-
-    @Override
     public int puntajeMaximoCartas() {
         int puntajeMaximo = -1;
         for (Seccion seccion : secciones) {
@@ -48,6 +41,36 @@ public class ContenedorSecciones extends Seccion {
             seccion.quemarCartasDePuntaje(puntaje);
         }
     }
+
+
+    @Override
+    public void agregarCartasA(CreadorConCartas creador) {
+        for (Seccion seccion : secciones) {
+            seccion.agregarCartasA(creador);
+        }
+    }
+
+    @Override
+    public void agregarComando(CreadorComando creador) {
+        for (Seccion seccion : secciones) {
+            seccion.agregarComando(creador);
+        }
+    }
+
+    @Override
+    public void actualizarValores() {
+        for (Seccion seccion : secciones) {
+            seccion.actualizarValores();
+        }
+    }
+
+    @Override
+    public void quitarComandoClima() {
+        for (Seccion seccion : secciones) {
+            seccion.quitarComandoClima();
+        }
+    }
+
 
     public void quemarCartasMasFuertes() {
         int puntajeMaximo = -1;
@@ -77,11 +100,5 @@ public class ContenedorSecciones extends Seccion {
         }
     }
 
-    @Override
-    public void aplicarModificadorPuntos(ModificadorPuntos modificadorPuntos) {
-        for (Seccion seccion : this.secciones) {
-            seccion.aplicarModificadorPuntos(modificadorPuntos);
-        }
-    }
 
 }
