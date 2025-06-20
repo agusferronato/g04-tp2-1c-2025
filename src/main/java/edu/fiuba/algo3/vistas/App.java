@@ -6,6 +6,7 @@ import edu.fiuba.algo3.vistas.components.PlayButton;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.FontPosture;
 import javafx.stage.Stage;
@@ -39,7 +40,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        PlayButton playButton = new PlayButton(e -> tablero(stage));
+        PlayButton playButton = new PlayButton(e -> elegirMazo(stage));
         LayoutStart mainLayout = new LayoutStart(stage, playButton);
         Scene scene = new Scene(mainLayout.getRoot(), 800, 600);
         stage.setScene(scene);
@@ -48,8 +49,7 @@ public class App extends Application {
     }
 
 
-    public void tablero(Stage stage){
-        StackPane tableroRoot = new StackPane();
+    public void elegirMazo(Stage stage){
 
         Image fondo = new Image(getClass().getResourceAsStream("/imagenes/tryfondo1.jpg"));
         ImageView imageView = new ImageView(fondo);
@@ -57,40 +57,53 @@ public class App extends Application {
         imageView.fitHeightProperty().bind(stage.heightProperty());
         imageView.setPreserveRatio(false);
 
-        Button backBtn = new Button();
-        backBtn.setPrefHeight(75);
-        backBtn.setPrefWidth(200);
-        backBtn.setText("BACK");
-        backBtn.setStyle("-fx-font-size: 24px; -fx-background-color: #ffcc00; -fx-padding: 10 50;");
-        backBtn.setCursor(Cursor.HAND);
-        backBtn.setOnAction(e -> {
-            start(stage);
-        });
+
+        Button btn = new Button();
+        btn.setPrefHeight(100);
+        btn.setPrefWidth(250);
+        btn.setText("SUBMIT");
+        btn.setStyle("-fx-font-size: 35px; -fx-background-color: #ffcc00; -fx-padding: 10 50; -fx-border-radius: 25px");
+        btn.setCursor(Cursor.HAND);
+        //btn.setOnAction(e -> tablero(stage));
 
         HBox buttonBox = new HBox(10);
-        buttonBox.setAlignment(Pos.TOP_LEFT);
-        buttonBox.setPadding(new Insets(30, 20, 20, 50));
-        buttonBox.getChildren().addAll(backBtn);
+        buttonBox.setAlignment(Pos.BOTTOM_CENTER);
+        buttonBox.setPadding(new Insets(20, 20, 50, 20));
+        buttonBox.getChildren().add(btn);
+
+        Text title = new Text("Creacion Jugador");
+        title.setFill(Color.GOLD);
+        title.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
+
+        TextField nombre = new TextField();
+        nombre.setPromptText("Nombre");
+
+        StackPane frame = new StackPane();
+        frame.setStyle(
+                "-fx-background-color: rgba(35,13,6,0.93);" +
+                        "-fx-border-color: gold;" +
+                        "-fx-border-width: 8;" +
+                        "-fx-border-radius: 15;" +
+                        "-fx-background-radius: 15;"
+        );
+        frame.setPadding(new Insets(40));
+        frame.getChildren().addAll(title, nombre);
+        frame.setMaxWidth(600);
 
 
-        Text titulo = new Text("Board");
-        titulo.setFont(Font.font("Comic Sans MS",FontWeight.BOLD, FontPosture.ITALIC, 100));
-        titulo.setFill(Color.WHITE);
-        titulo.setEffect(new javafx.scene.effect.DropShadow(10, Color.BLACK));
-        titulo.setEffect(new DropShadow(10, Color.BLACK));
+        StackPane root = new StackPane();
+        root.getChildren().addAll(imageView, frame, buttonBox);
 
+        StackPane.setAlignment(title, Pos.TOP_CENTER);
+        StackPane.setAlignment(nombre, Pos.CENTER);
+        StackPane.setAlignment(frame, Pos.TOP_CENTER);
+        StackPane.setAlignment(buttonBox, Pos.BOTTOM_CENTER);
+        StackPane.setMargin(frame, new Insets(75, 0, 90, 0)); // Margen superior
 
-        VBox tittleBox = new VBox(30);
-        tittleBox.setAlignment(Pos.TOP_CENTER);
-        tittleBox.setPadding(new Insets(20, 20, 20, 20));
-        tittleBox.getChildren().addAll(titulo);
-
-
-        tableroRoot.getChildren().addAll(imageView, tittleBox, buttonBox);
-
-        Scene scene = new Scene(tableroRoot, 800, 600);
+        Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.setFullScreen(true);
+        stage.setTitle("Creacion Jugador");
         stage.show();
     }
 
