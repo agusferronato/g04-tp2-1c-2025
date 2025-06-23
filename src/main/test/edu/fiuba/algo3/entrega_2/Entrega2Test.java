@@ -1,9 +1,19 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Carta.*;
+import edu.fiuba.algo3.modelo.Carta.Especial.Clima;
+import edu.fiuba.algo3.modelo.Carta.Especial.NeutralizarClima;
+import edu.fiuba.algo3.modelo.Carta.Especial.TierraArrasada;
+import edu.fiuba.algo3.modelo.Carta.Modificador.Agil;
+import edu.fiuba.algo3.modelo.Carta.Modificador.Espia;
+import edu.fiuba.algo3.modelo.Carta.Modificador.Medico;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Tablero;
+import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
+import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
+import edu.fiuba.algo3.modelo.Seccion.SeccionAleatoria;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
-import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

@@ -1,0 +1,21 @@
+package edu.fiuba.algo3.modelo.Carta.Especial;
+
+import edu.fiuba.algo3.modelo.Comando.ComandoCongelar;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
+import edu.fiuba.algo3.modelo.Seccion.Seccion;
+
+public class Clima implements Especial {
+    private Seccion seccion;
+
+    public Clima(Seccion seccion) {
+        this.seccion = seccion;
+    }
+
+    public void usar (Jugador jugador) {
+        ComandoCongelar comando = new ComandoCongelar();
+        this.seccion.agregarCartasA(comando);
+        this.seccion.agregarComando(comando);
+        this.seccion.actualizarValores();
+    }
+
+}

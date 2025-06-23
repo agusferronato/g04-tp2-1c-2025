@@ -1,5 +1,12 @@
 package edu.fiuba.algo3.varios_test;
-import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Carta.*;
+import edu.fiuba.algo3.modelo.Carta.Especial.Clima;
+import edu.fiuba.algo3.modelo.Carta.Especial.MoraleBoost;
+import edu.fiuba.algo3.modelo.Carta.Modificador.Legendaria;
+import edu.fiuba.algo3.modelo.Carta.Modificador.SumaValoresBase;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
+import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
+import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -62,7 +69,7 @@ public class VariosTest {
         Clima clima = new Clima(contenedor);
 
         SumaValoresBase sumaValoresBase = new SumaValoresBase(carta2, seccionJugador);
-        Legendaria legendaria = new Legendaria(carta1);
+        Legendaria legendaria = new Legendaria(carta1, seccionJugador);
 
         Mazo mazoJugador = new Mazo();
         mazoJugador.agregarCarta(legendaria);
