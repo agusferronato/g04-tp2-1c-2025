@@ -22,6 +22,15 @@ public class InstanciasSecciones {
         secciones.add(new Asedio());
     }
 
+    public Ubicable obtenerUbicableDe(int numeroJugador, Ubicable ubicable) {
+        int i = (numeroJugador == 1) ? 0 : 3;
+        for (int j = i; j < i + 3; j++) {
+            if (secciones.get(i).esIgualQue(ubicable))
+                return secciones.get(j);
+        }
+        return null;
+    }
+
     public Ubicable obtenerSeccion (TipoSeccion seccion) {
         return secciones.get(seccion.ordinal());
     }

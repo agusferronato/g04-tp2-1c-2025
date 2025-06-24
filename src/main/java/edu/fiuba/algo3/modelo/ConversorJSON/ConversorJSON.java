@@ -4,11 +4,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.modelo.Carta.*;
 import edu.fiuba.algo3.modelo.Carta.Especial.Especial;
-import edu.fiuba.algo3.modelo.Carta.Mazo;
-import edu.fiuba.algo3.modelo.Carta.Puntaje;
-import edu.fiuba.algo3.modelo.Carta.Unidad;
+import edu.fiuba.algo3.modelo.Carta.Modificador.Medico;
+import edu.fiuba.algo3.modelo.Seccion.Asedio;
+import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
+import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +27,8 @@ public class ConversorJSON {
     private JsonObject jsonObject;
     private final String RUTA_ARCHIVO = "src/main/resources/json/gwent.json";
 
+
+
     public ConversorJSON() {
         Path path = Paths.get(RUTA_ARCHIVO);
         try {
@@ -36,28 +39,14 @@ public class ConversorJSON {
         }
     }
 
-    Unidad parsearUnidad (JsonElement unidad) {
-        JsonObject carta = unidad.getAsJsonObject();
-        String nombre = carta.get("nombre").getAsString();
-        int puntos = carta.get("puntos").getAsInt();
-        Puntaje puntaje = new Puntaje(puntos);
 
-        return new Unidad(nombre /* Tipo */, puntaje);
+    public List<UnidadGeneral> obtenerUnidades (ConversorJugador conversor) {
+        return conversor.obtenerUnidades(jsonObject);
     }
 
 
-    public List<Unidad> obtenerCartasDe (String jugador) {
-        JsonObject mazo = jsonObject.getAsJsonObject(jugador);
-        JsonArray unidadesArray = mazo.getAsJsonArray("unidades");
-
-        List<Unidad> cartas = new ArrayList<>();
-
-        JsonElement primeraCarta = unidadesArray.get(0);
-        Unidad carta = parsearUnidad(primeraCarta);
-        cartas.add(carta);
-
-
-        return cartas;
+    public Mazo obtenerMazo (ConversorJugador conversor) {
+        return conversor.obtenerMazo(jsonObject);
     }
 
 }

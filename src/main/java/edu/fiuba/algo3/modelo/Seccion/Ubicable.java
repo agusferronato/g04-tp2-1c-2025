@@ -18,6 +18,14 @@ public abstract class Ubicable extends Seccion {
         this.cartas = new ArrayList<>();
     }
 
+    private boolean mismaClaseQue (Class<?> clase) {
+        return this.getClass() == clase;
+    }
+
+    public boolean esIgualQue(Ubicable ubicable) {
+        return ubicable.mismaClaseQue(this.getClass());
+    }
+
     @Override
     public int cantidadDeCartas() {
         return this.cartas.size();

@@ -29,6 +29,10 @@ public class Jugador {
         this.mano = new ArrayList<>();
     }
 
+    public Jugador() {
+
+    }
+
     public int calcularPuntaje() {
         return seccion.calcularPuntaje();
     }

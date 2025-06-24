@@ -10,6 +10,10 @@ public class Mazo {
         this.cartas = new ArrayList<Carta>();
     }
 
+    public void agregarCartas (List<? extends Carta> cartas) {
+        this.cartas.addAll(cartas);
+    }
+
     public void agregarCarta (Carta carta) {
         this.cartas.add(carta);
     }
@@ -19,16 +23,17 @@ public class Mazo {
         return cartas;
     }
 
-    public Carta seleccionarCartaAlAzar () {
-        return seleccionarCartasAlAzar(1).get(0);
+    public void quitarCartas(List<Carta> mano) {
+        this.cartas.removeAll(mano);
+    }
+
+    /* Metodo para test */
+    public Carta getCarta (int indice) {
+        return this.cartas.get(indice);
     }
 
     /* Metodo para test */
     public int cantidadDeCartas() {
         return this.cartas.size();
-    }
-
-    public void quitarCartas(List<Carta> mano) {
-        this.cartas.removeAll(mano);
     }
 }

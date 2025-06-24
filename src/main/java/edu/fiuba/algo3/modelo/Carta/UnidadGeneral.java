@@ -76,4 +76,10 @@ public abstract class UnidadGeneral extends Carta {
     public void reiniciarPuntaje() {
         puntaje.reiniciarPuntaje();
     }
+
+
+    /* Metodo para test */
+    public Ubicable getSeccion() {
+        return seccion;
+    }
 }
