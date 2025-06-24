@@ -2,11 +2,14 @@ package edu.fiuba.algo3.varios_test;
 import edu.fiuba.algo3.modelo.Carta.*;
 import edu.fiuba.algo3.modelo.Carta.Especial.Clima;
 import edu.fiuba.algo3.modelo.Carta.Especial.MoraleBoost;
+import edu.fiuba.algo3.modelo.Carta.Especial.TierraArrasada;
 import edu.fiuba.algo3.modelo.Carta.Modificador.Legendaria;
 import edu.fiuba.algo3.modelo.Carta.Modificador.SumaValoresBase;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Tablero;
 import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
 import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
+import edu.fiuba.algo3.modelo.Seccion.Rango;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -125,4 +128,48 @@ public class VariosTest {
 
         assertEquals(puntajeEsperado, puntajeObtenido);
     }
+
+    @Test
+    public void test04CartaLegendariaNoEsQuemadaPorTierraArrasada () {
+        /* Arrange */
+        int cantidadEsperada = 1;
+
+        Rango rango = new Rango();
+        CuerpoACuerpo cuerpoACuerpo = new CuerpoACuerpo();
+
+        ContenedorSecciones contenedor = new ContenedorSecciones();
+        contenedor.agregar(cuerpoACuerpo);
+        contenedor.agregar(rango);
+
+        TierraArrasada tierraArrasada = new TierraArrasada(contenedor);
+
+        Puntaje puntajeOtraCarta = new Puntaje(10);
+        Unidad otraCarta = new Unidad(rango, puntajeOtraCarta);
+
+        Puntaje puntajeCartaBase = new Puntaje(100);
+        Unidad cartaBase = new Unidad(cuerpoACuerpo, puntajeCartaBase);
+        Legendaria legendaria = new Legendaria(cartaBase, cuerpoACuerpo);
+
+        Mazo mazo = new Mazo();
+        mazo.agregarCarta(legendaria);
+        mazo.agregarCarta(otraCarta);
+        mazo.agregarCarta(tierraArrasada);
+
+        Jugador jugador = new Jugador("Matias", mazo, contenedor);
+        Tablero tablero = new Tablero();
+        tablero.agregarSeccion(contenedor);
+
+
+        jugador.tomarCartasDelMazo(3);
+
+        jugador.jugarCarta(otraCarta);
+        jugador.jugarCarta(legendaria);
+
+        /* Act */
+        jugador.jugarCarta(tierraArrasada);
+
+        /* Assert */
+        assertEquals(cantidadEsperada, tablero.cantidadDeCartasEnTotal());
+    }
+
 }

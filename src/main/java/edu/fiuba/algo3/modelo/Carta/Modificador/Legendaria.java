@@ -24,6 +24,17 @@ public class Legendaria extends Unidad {
     }
 
     @Override
+    public int devolverPuntajeSiSupera (int puntaje) {
+        return puntaje;
+    }
+
+    @Override
+    public boolean superaPuntaje (int puntaje) {
+        return false;
+    }
+
+
+    @Override
     public int calcularPuntaje(int acumulador){
         return cartaBase.calcularPuntaje(acumulador);
     }
