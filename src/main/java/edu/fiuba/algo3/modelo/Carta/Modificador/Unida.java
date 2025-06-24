@@ -20,6 +20,7 @@ public class Unida extends Unidad {
     public void usar (Jugador jugador) {
         ComandoUnida comando = new ComandoUnida(seccion, tipo);
         seccion.agregarComando(comando);
-        jugador.jugarCarta(carta);
+        carta.ubicarEn(seccion);
+        seccion.actualizarValores();
     }
 }

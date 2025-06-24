@@ -13,6 +13,6 @@ public class Medico extends Unidad {
     public void usar (Jugador jugador) {
         Unidad cartaRescatada = jugador.tomarDePilaDescarte();
         jugador.jugarCarta(cartaRescatada);
-        jugador.jugarCarta(this.cartaBase);
+        cartaBase.ubicar();
     }
 }

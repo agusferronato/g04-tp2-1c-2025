@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo.LogicaGeneral;
 
-import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Carta.GeneradorAleatorioCartas;
-import edu.fiuba.algo3.modelo.Carta.Mazo;
-import edu.fiuba.algo3.modelo.Carta.Unidad;
+import edu.fiuba.algo3.modelo.Carta.*;
 import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
 
 import java.util.ArrayList;
@@ -37,7 +34,11 @@ public class Jugador {
     }
 
     public void jugarCarta(Carta carta) {
+        if (!mano.contains(carta)) {
+            throw new CartaYaJugadaError("La carta no se encuentra en la mano");
+        }
         carta.usar(this);
+        mano.remove(carta);
     }
 
     public void descartarCartas() {

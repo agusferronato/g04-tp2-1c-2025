@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Comando.ComandoCongelar;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import edu.fiuba.algo3.modelo.Seccion.Seccion;
 
-public class Clima implements Especial {
+public class Clima extends Especial {
     private Seccion seccion;
 
     public Clima(Seccion seccion) {

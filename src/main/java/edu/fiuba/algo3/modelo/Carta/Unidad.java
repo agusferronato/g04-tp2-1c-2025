@@ -29,6 +29,10 @@ public class Unidad implements Carta {
         this.seccion = seccion;
     }
 
+    public Unidad(String nombre) {
+        this.tipo = nombre;
+    }
+
     public int calcularPuntaje(int acumulador){
         return puntaje.calcularPuntaje(acumulador);
     }
@@ -36,6 +40,11 @@ public class Unidad implements Carta {
     public void usar (Jugador jugador) {
         this.seccion.ubicar(this);
         this.seccion.actualizarValores();
+    }
+
+    @Override
+    public String getNombre() {
+        return tipo;
     }
 
     public int esDeTipo (String tipo) {
@@ -55,6 +64,10 @@ public class Unidad implements Carta {
 
     public boolean superaPuntaje (int puntaje) {
         return this.puntaje.superaPuntaje(puntaje);
+    }
+
+    public void ubicar () {
+        this.seccion.ubicar(this);
     }
 
     public void ubicarEn(Ubicable seccion) {

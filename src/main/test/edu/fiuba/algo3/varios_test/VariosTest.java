@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
 import edu.fiuba.algo3.modelo.Seccion.Rango;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 
 public class VariosTest {
@@ -23,8 +24,6 @@ public class VariosTest {
         CuerpoACuerpo seccionJugador = new CuerpoACuerpo();
         ContenedorSecciones contenedorJugador = new ContenedorSecciones();
         contenedorJugador.agregar(seccionJugador);
-        ContenedorSecciones contenedor = new ContenedorSecciones();
-        contenedor.agregar(seccionJugador);
 
         Puntaje puntaje1 = new Puntaje(puntajeCartas);
         Unidad carta1 = new Unidad(seccionJugador, puntaje1);
@@ -40,7 +39,7 @@ public class VariosTest {
         mazoJugador.agregarCarta(carta2);
         mazoJugador.agregarCarta(sumaValoresBase);
 
-        Jugador jugador = new Jugador("Jose", mazoJugador, contenedorJugador);
+        Jugador jugador = new Jugador("Faustino", mazoJugador, contenedorJugador);
 
         jugador.tomarCartasDelMazo(3);
 
@@ -171,5 +170,25 @@ public class VariosTest {
         /* Assert */
         assertEquals(cantidadEsperada, tablero.cantidadDeCartasEnTotal());
     }
+
+    @Test
+    public void test05JugadorJuegaUnaCartaYNoPuedeVolverAUsarla () {
+        Rango rango = new Rango();
+
+        Unidad carta = new Unidad(rango);
+        Mazo mazo = new Mazo();
+        mazo.agregarCarta(carta);
+
+        Jugador jugador = new Jugador("Agustin", mazo);
+
+        jugador.tomarCartasDelMazo(1);
+
+        jugador.jugarCarta(carta);
+
+        assertThrows(CartaYaJugadaError.class, () -> {
+            jugador.jugarCarta(carta);
+        });
+    }
+
 
 }

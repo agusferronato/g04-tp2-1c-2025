@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Comando.ComandoMoraleBoost;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import edu.fiuba.algo3.modelo.Seccion.Seccion;
 
-public class MoraleBoost implements Especial {
+public class MoraleBoost extends Especial {
     private Seccion seccion;
 
     public MoraleBoost(Seccion seccion) {

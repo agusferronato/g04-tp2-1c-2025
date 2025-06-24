@@ -163,7 +163,7 @@ public class JuegoTest {
         jugador.jugarCarta(cartaModificada);
 
         /* Act */
-        jugador.jugarCarta(primeraCarta);
+        jugador.jugarCarta(segundaCarta);
 
         /* Assert */
         assertEquals(puntajeEsperado, jugador.calcularPuntaje());

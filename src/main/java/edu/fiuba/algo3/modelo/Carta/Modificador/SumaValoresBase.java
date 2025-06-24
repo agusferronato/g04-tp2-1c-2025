@@ -15,7 +15,8 @@ public class SumaValoresBase extends Unidad {
 
     public void usar(Jugador jugador){
         ComandoSumaValorBase comando  = new ComandoSumaValorBase();
-        jugador.jugarCarta(cartaBase);
+        cartaBase.ubicar();
+        seccion.actualizarValores();
         seccion.agregarCartasA(comando);
         seccion.agregarComando(comando);
         seccion.actualizarValores();
