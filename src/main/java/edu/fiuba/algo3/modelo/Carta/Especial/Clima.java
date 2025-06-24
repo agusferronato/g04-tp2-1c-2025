@@ -8,6 +8,7 @@ public class Clima extends Especial {
     private Seccion seccion;
 
     public Clima(Seccion seccion) {
+        super(null);
         this.seccion = seccion;
     }
 

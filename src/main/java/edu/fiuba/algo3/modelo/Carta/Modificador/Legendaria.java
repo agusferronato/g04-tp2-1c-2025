@@ -5,17 +5,18 @@ import edu.fiuba.algo3.modelo.Comando.ComandoPorCarta;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 
-public class Legendaria extends Unidad {
-    private Unidad cartaBase;
+public class Legendaria extends Modificador {
     private Ubicable seccion;
 
     public Legendaria (Unidad carta, Ubicable seccion) {
-        this.cartaBase = carta;
+        super(carta);
         this.seccion = seccion;
     }
 
+    @Override
     public void usar (Jugador jugador) {
         seccion.ubicar(this);
+        seccion.actualizarValores();
     }
 
     @Override
@@ -35,12 +36,12 @@ public class Legendaria extends Unidad {
 
 
     @Override
-    public int calcularPuntaje(int acumulador){
+    public int calcularPuntaje(int acumulador) {
         return cartaBase.calcularPuntaje(acumulador);
     }
 
     @Override
-    public void reiniciarPuntaje(){
+    public void reiniciarPuntaje() {
         cartaBase.reiniciarPuntaje();
     }
 }

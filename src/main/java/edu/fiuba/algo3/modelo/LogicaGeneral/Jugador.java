@@ -12,7 +12,7 @@ public class Jugador {
     private String nombre;
     private Mazo mazo;
     private ContenedorSecciones seccion;
-    private List<Unidad> pilaDescarte;
+    private List<UnidadGeneral> pilaDescarte;
 
     public Jugador(String nombre, Mazo mazo, ContenedorSecciones secciones) {
         this.nombre = nombre;
@@ -70,12 +70,12 @@ public class Jugador {
     }
 
     /* Metodo para test */
-    public void agregarADescarte(Unidad carta) {
+    public void agregarADescarte(UnidadGeneral carta) {
         this.pilaDescarte.add(carta);
     }
 
-    public Unidad tomarDePilaDescarte() {
-        Unidad carta = GeneradorAleatorioCartas.cartasAlAzar(this.pilaDescarte);
+    public UnidadGeneral tomarDePilaDescarte() {
+        UnidadGeneral carta = GeneradorAleatorioCartas.cartasAlAzar(this.pilaDescarte);
         this.pilaDescarte.remove(carta);
         this.mano.add(carta);
         return carta;

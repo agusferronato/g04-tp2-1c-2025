@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Seccion;
 
 import edu.fiuba.algo3.modelo.Carta.Unidad;
+import edu.fiuba.algo3.modelo.Carta.UnidadGeneral;
 import edu.fiuba.algo3.modelo.Comando.Comando;
 import edu.fiuba.algo3.modelo.Comando.ComandoPorCarta;
 
@@ -107,7 +108,7 @@ public class ContenedorSecciones extends Seccion {
     }
 
     @Override
-    public void limpiarSeccion (List<Unidad> pilaDescarte) {
+    public void limpiarSeccion (List<UnidadGeneral> pilaDescarte) {
         for (Seccion seccion : this.secciones) {
             seccion.limpiarSeccion(pilaDescarte);
         }

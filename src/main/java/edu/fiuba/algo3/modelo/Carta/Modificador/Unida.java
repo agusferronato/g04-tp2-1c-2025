@@ -6,13 +6,12 @@ import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 
-public class Unida extends Unidad {
-    private Unidad carta;
+public class Unida extends Modificador {
     private String tipo;
     private Ubicable seccion;
 
     public Unida (Unidad carta, Ubicable seccion, String tipo) {
-        this.carta = carta;
+        super(carta);
         this.seccion = seccion;
         this.tipo = tipo;
     }
@@ -20,7 +19,7 @@ public class Unida extends Unidad {
     public void usar (Jugador jugador) {
         ComandoUnida comando = new ComandoUnida(seccion, tipo);
         seccion.agregarComando(comando);
-        carta.ubicarEn(seccion);
+        cartaBase.ubicarEn(seccion);
         seccion.actualizarValores();
     }
 }

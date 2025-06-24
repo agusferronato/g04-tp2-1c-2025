@@ -11,8 +11,8 @@ public class GeneradorAleatorioCartas {
         return new ArrayList<>(copia.subList(0, Math.min(cantidad, copia.size())));
     }
 
-    public static Unidad cartasAlAzar(List<Unidad> cartas) {
-        List<Unidad> copia = new ArrayList<>(cartas);
+    public static UnidadGeneral cartasAlAzar(List<UnidadGeneral> cartas) {
+        List<UnidadGeneral> copia = new ArrayList<>(cartas);
         Collections.shuffle(copia);
         return (copia.get(0));
     }

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Seccion;
 
 import edu.fiuba.algo3.modelo.Carta.Unidad;
+import edu.fiuba.algo3.modelo.Carta.UnidadGeneral;
 import edu.fiuba.algo3.modelo.Comando.Comando;
 import edu.fiuba.algo3.modelo.Comando.ComandoPorCarta;
 import edu.fiuba.algo3.modelo.Comando.ComandoUnida;
@@ -11,7 +12,7 @@ public abstract class Seccion {
 
     public abstract int calcularPuntaje();
 
-    public abstract void limpiarSeccion(List<Unidad> pilaDescarte);
+    public abstract void limpiarSeccion(List<UnidadGeneral> pilaDescarte);
 
     /* Metodo para test */
     public abstract int cantidadDeCartas();
@@ -29,4 +30,5 @@ public abstract class Seccion {
     public abstract void actualizarValores();
 
     public abstract void quitarComando(Comando comando);
+
 }

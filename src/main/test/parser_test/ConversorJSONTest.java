@@ -20,18 +20,30 @@ public class ConversorJSONTest {
         String nombreEsperado = "Birna Bran";
         ConversorJSON conversor = new ConversorJSON();
         /* Act */
-        List<Carta> cartas = conversor.obtenerCartasDe(JUGADOR_UNO);
+        List<Unidad> cartas = conversor.obtenerCartasDe(JUGADOR_UNO);
         /* Assert */
         assertEquals(nombreEsperado, cartas.get(0).getNombre());
     }
 
+    @Test
+    public void test02PrimeraCartaJugadorUnoDevuelveSuPuntajeCorrectamente () {
+        /* Arrange */
+        int puntajeEsperado = 2;
+        ConversorJSON conversor = new ConversorJSON();
+
+        /* Act */
+        List<Unidad> cartas = conversor.obtenerCartasDe(JUGADOR_UNO);
+
+        /* Assert */
+        assertEquals(puntajeEsperado, cartas.get(0).calcularPuntaje(0));
+    }
 
     @Test
     public void test03PrimeraCartaJugadorUnoDevuelveSuTipoCorrectamente () {
         /* Arrange */
         ConversorJSON conversor = new ConversorJSON();
         /* Act */
-        List<Carta> cartas = conversor.obtenerCartasDe(JUGADOR_UNO);
+        List<Unidad> cartas = conversor.obtenerCartasDe(JUGADOR_UNO);
         /* Assert */
         assertEquals(Medico.class, cartas.get(0).getClass());
     }
@@ -41,7 +53,7 @@ public class ConversorJSONTest {
         /* Arrange */
         ConversorJSON conversor = new ConversorJSON();
         /* Act */
-        List<Carta> cartas = conversor.obtenerCartasDe(JUGADOR_UNO);
+        List<Unidad> cartas = conversor.obtenerCartasDe(JUGADOR_UNO);
         /* Assert */
         assertEquals(Medico.class, cartas.get(0).getClass());
     }

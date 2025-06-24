@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Seccion;
 
 import edu.fiuba.algo3.modelo.Carta.Unidad;
+import edu.fiuba.algo3.modelo.Carta.UnidadGeneral;
 import edu.fiuba.algo3.modelo.Comando.Comando;
 import edu.fiuba.algo3.modelo.Comando.ComandoPorCarta;
 import edu.fiuba.algo3.modelo.Comando.HistorialComandos;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public abstract class Ubicable extends Seccion {
     private HistorialComandos historialComandos;
-    private List<Unidad> cartas;
+    private List<UnidadGeneral> cartas;
 
     public Ubicable () {
         historialComandos = new HistorialComandos();
@@ -22,7 +23,7 @@ public abstract class Ubicable extends Seccion {
         return this.cartas.size();
     }
 
-    public void ubicar (Unidad unidad) {
+    public void ubicar (UnidadGeneral unidad) {
         cartas.add(unidad);
     }
 
@@ -46,20 +47,20 @@ public abstract class Ubicable extends Seccion {
 
     private int cantidadDeCartasDeTipo (String tipo) {
         int acumulador = 0;
-        for (Unidad carta : cartas)
+        for (UnidadGeneral carta : cartas)
             acumulador += carta.esDeTipo(tipo);
         return acumulador;
     }
 
     public void reiniciarValoresCartas() {
-        for (Unidad carta : cartas) {
+        for (UnidadGeneral carta : cartas) {
             carta.reiniciarPuntaje();
         }
     }
 
     public void duplicarCartasDeTipo(String tipo) {
         int cantidadDeCartas = cantidadDeCartasDeTipo(tipo);
-        for (Unidad carta : cartas)
+        for (UnidadGeneral carta : cartas)
             carta.modificarPuntaje(tipo, cantidadDeCartas);
     }
 
@@ -67,7 +68,7 @@ public abstract class Ubicable extends Seccion {
     @Override
     public int puntajeMaximoCartas() {
         int puntajeMaximo = -1;
-        for (Unidad unidad : this.cartas) {
+        for (UnidadGeneral unidad : this.cartas) {
             puntajeMaximo = unidad.devolverPuntajeSiSupera(puntajeMaximo);
         }
         return puntajeMaximo;
@@ -81,15 +82,15 @@ public abstract class Ubicable extends Seccion {
     @Override
     public int calcularPuntaje () {
         int acumulador = 0;
-        for (Unidad unidad : this.cartas) {
+        for (UnidadGeneral unidad : this.cartas) {
             acumulador = unidad.calcularPuntaje(acumulador);
         }
         return acumulador;
     }
 
     @Override
-    public void limpiarSeccion(List<Unidad> pilaDescarte) {
-        List<Unidad> cartas = List.copyOf(this.cartas);
+    public void limpiarSeccion(List<UnidadGeneral> pilaDescarte) {
+        List<UnidadGeneral> cartas = List.copyOf(this.cartas);
         pilaDescarte.addAll(cartas);
         this.cartas.clear();
     }

@@ -7,6 +7,7 @@ public class TierraArrasada extends Especial {
     private ContenedorSecciones secciones;
 
     public TierraArrasada(ContenedorSecciones secciones) {
+        super(null);
         this.secciones = secciones;
     }
 

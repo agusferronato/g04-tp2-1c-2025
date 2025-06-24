@@ -8,6 +8,7 @@ public class MoraleBoost extends Especial {
     private Seccion seccion;
 
     public MoraleBoost(Seccion seccion) {
+        super(null);
         this.seccion = seccion;
     }
 

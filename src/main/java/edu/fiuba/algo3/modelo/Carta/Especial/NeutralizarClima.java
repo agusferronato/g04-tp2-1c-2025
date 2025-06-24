@@ -8,6 +8,7 @@ public class NeutralizarClima extends Especial {
     private Seccion seccion;
 
     public NeutralizarClima(Seccion seccion) {
+        super(null);
         this.seccion = seccion;
     }
 
