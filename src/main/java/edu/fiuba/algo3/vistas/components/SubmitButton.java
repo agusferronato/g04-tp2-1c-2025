@@ -1,23 +1,21 @@
 package edu.fiuba.algo3.vistas.components;
 
-import edu.fiuba.algo3.modelo.Juego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
 import javafx.scene.Cursor;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
-
-public class PlayButton {
+public class SubmitButton {
     private final Button button;
-    private Juego juego;
 
-    public PlayButton(EventHandler<ActionEvent> action) {
-        button = new Button("Play");
+    public SubmitButton(EventHandler<ActionEvent> action) {
+        button = new Button("Submit");
+        button.setPrefHeight(100);
+        button.setPrefWidth(250);
         Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 50);
         button.setFont(cardinalFont);
         button.setPrefSize(250, 100);
@@ -28,8 +26,7 @@ public class PlayButton {
                         "-fx-background-insets: 0;"
         );
         button.setCursor(Cursor.HAND);
-
-
+        button.setOnAction(action);
         DropShadow outerGlow = new DropShadow();
         outerGlow.setColor(Color.web("#ffffaa"));
         outerGlow.setRadius(30);
@@ -44,11 +41,13 @@ public class PlayButton {
         button.setOnMouseEntered(e -> button.setEffect(innerGlow));
         button.setOnMouseExited(e -> button.setEffect(null));
 
-        button.setOnAction(action);
     }
 
     public Button getButton() {
         return button;
     }
-}
 
+    public void setOnAction(Runnable action) {
+        button.setOnAction(e -> action.run());
+    }
+}

@@ -3,11 +3,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class BackgroundImageStart {
+public class BackgroundImage {
     private final ImageView imageView;
 
-    public BackgroundImageStart(Stage stage) {
-        Image background = new Image(getClass().getResourceAsStream("/imagenes/tryfondo2.png"));
+    public BackgroundImage(Stage stage, String rutaImagen) {
+        Image background = new Image(getClass().getResourceAsStream(rutaImagen));
         imageView = new ImageView(background);
         imageView.fitWidthProperty().bind(stage.widthProperty());
         imageView.fitHeightProperty().bind(stage.heightProperty());

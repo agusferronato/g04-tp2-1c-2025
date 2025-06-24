@@ -15,7 +15,8 @@ public class TitleBox {
     public TitleBox() {
         Text title = new Text("Gwent card game");
         title.setFill(Color.GOLD);
-        title.setFont(Font.font("Verdana", FontWeight.BOLD, 70));
+        Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 100);
+        title.setFont(cardinalFont);
 
         VBox titleBox = new VBox(30);
         titleBox.setAlignment(Pos.TOP_CENTER);

@@ -3,7 +3,6 @@ package edu.fiuba.algo3.vistas.components;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -13,7 +12,7 @@ public class LayoutStart {
     private final StackPane root;
 
     public LayoutStart(Stage stage, PlayButton playButton) {
-        BackgroundImageStart background = new BackgroundImageStart(stage);
+        BackgroundImage background = new BackgroundImage(stage, "/imagenes/tryfondo2.png");
         TitleBox titleBox = new TitleBox();
         HBox buttonBox = new HBox(10);
         buttonBox.setAlignment(Pos.BOTTOM_CENTER);
