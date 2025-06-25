@@ -21,7 +21,7 @@ public class CreadorLegendaria implements CreadorModificador {
     @Override
     public Modificador crearModificador() {
         Ubicable seccionParseada = ParserSeccion.obtenerSeccion(nombreSeccion);
-        Ubicable seccion = conversor.obtenerSeccionContraria(seccionParseada);
+        Ubicable seccion = conversor.obtenerSeccion(seccionParseada);
         return new Legendaria(cartaBase, seccion);
     }
 }

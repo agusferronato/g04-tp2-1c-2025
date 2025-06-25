@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Carta.Unidad;
 import edu.fiuba.algo3.modelo.Carta.UnidadGeneral;
 import edu.fiuba.algo3.modelo.Comando.Comando;
 import edu.fiuba.algo3.modelo.Comando.ComandoPorCarta;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +88,19 @@ public class ContenedorSecciones extends Seccion {
         }
     }
 
+    @Override
+    public void levantarCartasPara(Jugador jugador) {
+        for (Seccion seccion : secciones) {
+            seccion.levantarCartasPara(jugador);
+        }
+    }
+
+    @Override
+    public void quitarComandos() {
+        for (Seccion seccion : secciones) {
+            seccion.quitarComandos();
+        }
+    }
 
 
     public void quemarCartasMasFuertes() {

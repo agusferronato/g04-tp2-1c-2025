@@ -2,22 +2,27 @@ package edu.fiuba.algo3.modelo.LogicaGeneral;
 
 import edu.fiuba.algo3.modelo.Carta.*;
 import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
+import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Jugador {
     private final int CARTAS_MANO = 10;
+    private boolean pasoDeRonda;
     private List<Carta> mano;
     private String nombre;
     private Mazo mazo;
     private ContenedorSecciones seccion;
     private List<UnidadGeneral> pilaDescarte;
+    private int rondasGanadas;
 
     public Jugador(String nombre, Mazo mazo, ContenedorSecciones secciones) {
         this.nombre = nombre;
         this.seccion = secciones;
         this.mazo = mazo;
+        pasoDeRonda = false;
+        rondasGanadas = 0;
         this.pilaDescarte = new ArrayList<>();
         this.mano = new ArrayList<>();
     }
@@ -25,12 +30,15 @@ public class Jugador {
     public Jugador(String nombre, Mazo mazo) {
         this.nombre = nombre;
         this.mazo = mazo;
+        pasoDeRonda = false;
+        rondasGanadas = 0;
         this.pilaDescarte = new ArrayList<>();
         this.mano = new ArrayList<>();
     }
 
     public Jugador() {
-
+        pasoDeRonda = false;
+        rondasGanadas = 0;
     }
 
     public int calcularPuntaje() {
@@ -79,9 +87,66 @@ public class Jugador {
     }
 
     public UnidadGeneral tomarDePilaDescarte() {
-        UnidadGeneral carta = GeneradorAleatorioCartas.cartasAlAzar(this.pilaDescarte);
-        this.pilaDescarte.remove(carta);
-        this.mano.add(carta);
-        return carta;
+        if (!pilaDescarte.isEmpty()) {
+            UnidadGeneral carta = GeneradorAleatorioCartas.cartasAlAzar(this.pilaDescarte);
+            this.pilaDescarte.remove(carta);
+            this.mano.add(carta);
+            return carta;
+        }
+        return null;
     }
+
+    public void descartarCartasDe(Ubicable ubicable) {
+        pasoDeRonda = false;
+        ubicable.limpiarSeccion(this.pilaDescarte);
+    }
+
+    public boolean pasoDeRonda() {
+        return pasoDeRonda;
+    }
+
+    public void pasarDeRonda() {
+        pasoDeRonda = true;
+    }
+
+    public boolean tieneDiferenciaDeDosCon(Jugador otroJugador) {
+        return (otroJugador.tieneMasDeDosRondas(rondasGanadas));
+    }
+
+    private boolean tieneMasDeDosRondas(int rondas) {
+        return rondasGanadas >= 2 || rondas >= 2;
+    }
+
+    public void ganaRondaSiTieneMasPuntosQue(Jugador jugador) {
+        int puntos = seccion.calcularPuntaje();
+        if (jugador.tieneMenosPuntosQue(puntos))
+            rondasGanadas++;
+    }
+
+    private boolean tieneMenosPuntosQue(int puntos) {
+        return seccion.calcularPuntaje() < puntos;
+    }
+
+    public Jugador siTieneMasRondasGanadasQue(Jugador jugador) {
+        if (jugador.tieneMasRondasGanadasQue(this))
+            return jugador;
+        else if (tieneMasRondasGanadasQue(jugador))
+            return this;
+        return null;
+    }
+
+    private boolean tieneMasRondasGanadasQue(Jugador jugador) {
+        return jugador.tieneMenosRondasGanadasQue(rondasGanadas);
+    }
+
+    private boolean tieneMenosRondasGanadasQue(int rondas) {
+        return rondasGanadas < rondas;
+    }
+
+
+
+
+
+
+
 }

@@ -20,6 +20,7 @@ import static org.mockito.Mockito.when;
 public class AppTest {
     @Test
     public void test01JugadorUnoGanaSiPoneUnaCartaYElContrarioSeRinde () {
+        int cantidadDeCartasATomar = 21;
 
         InstanciasSecciones instanciasSecciones = new InstanciasSecciones();
         ConversorJSON conversorJson = new ConversorJSON();
@@ -57,8 +58,14 @@ public class AppTest {
         );
 
         Tablero tablero = new Tablero();
-        tablero.agregarSeccion(instanciasSecciones.obtenerContenedorDe(NUMERO_JUGADOR_UNO));
-        tablero.agregarSeccion(instanciasSecciones.obtenerContenedorDe(NUMERO_JUGADOR_DOS));
+        tablero.agregarSeccion(
+                jugadorUno,
+                instanciasSecciones.obtenerContenedorDe(NUMERO_JUGADOR_UNO)
+        );
+        tablero.agregarSeccion(
+                jugadorDos,
+                instanciasSecciones.obtenerContenedorDe(NUMERO_JUGADOR_DOS)
+        );
 
         Moneda monedaMock = mock(Moneda.class);
         when(monedaMock.jugadorInicial()).thenReturn(jugadorUno);
@@ -68,18 +75,20 @@ public class AppTest {
         juego.agregarJugador(jugadorDos);
 
 
-        juego.iniciar(); /* Se reparten cartas y se elige el jugador que comienza */
+        juego.repartirCartas(cantidadDeCartasATomar);
+
+        juego.iniciar(); /* Se elige el jugador que comienza */
 
         juego.jugar(primeraCarta); /* JUGADOR 1 comienza */
 
         juego.pasar(); /* JUGADOR 2 pasa */
         juego.pasar(); /* JUGADOR 1 pasa y gana la primer ronda */
 
-        juego.pasar();
-        juego.jugar(segundaCarta);
-        juego.pasar(); /* Pasa jugador 1 y gana la partida */
+        juego.pasar(); /* JUGADOR 2 pasa */
 
+        juego.jugar(segundaCarta); /* JUGADOR 1 juega la carta */
+        juego.pasar(); /* JUGADOR 1 pasa */
 
-        assertEquals(jugadorUno, juego.ganador());
+        assertEquals(jugadorUno, juego.obtenerGanador());
     }
 }

@@ -62,10 +62,12 @@ public abstract class UnidadGeneral extends Carta {
 
     public void ubicar () {
         this.seccion.ubicar(this);
+        this.seccion.actualizarValores();
     }
 
     public void ubicarEn(Ubicable seccion) {
         seccion.ubicar(this);
+        seccion.actualizarValores();
     }
 
 

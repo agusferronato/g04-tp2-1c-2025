@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Carta.UnidadGeneral;
 import edu.fiuba.algo3.modelo.Comando.Comando;
 import edu.fiuba.algo3.modelo.Comando.ComandoPorCarta;
 import edu.fiuba.algo3.modelo.Comando.ComandoUnida;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 
 import java.util.List;
 
@@ -31,4 +32,7 @@ public abstract class Seccion {
 
     public abstract void quitarComando(Comando comando);
 
+    public abstract void levantarCartasPara(Jugador jugador);
+
+    public abstract void quitarComandos();
 }

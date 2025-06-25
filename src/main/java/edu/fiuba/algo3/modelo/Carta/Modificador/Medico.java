@@ -12,7 +12,9 @@ public class Medico extends Modificador {
 
     public void usar (Jugador jugador) {
         UnidadGeneral cartaRescatada = jugador.tomarDePilaDescarte();
-        jugador.jugarCarta(cartaRescatada);
+        if (cartaRescatada != null) {
+            jugador.jugarCarta(cartaRescatada);
+        }
         cartaBase.ubicar();
     }
 }

@@ -50,8 +50,8 @@ public class ConversorJSON {
         List<Especial> especiales = obtenerEspeciales(conversor);
         List<UnidadGeneral> unidades = obtenerUnidades(conversor);
         List<Carta> cartasJugador = new ArrayList<>();
-        cartasJugador.addAll(especiales);
         cartasJugador.addAll(unidades);
+        cartasJugador.addAll(especiales);
         return cartasJugador;
     }
 

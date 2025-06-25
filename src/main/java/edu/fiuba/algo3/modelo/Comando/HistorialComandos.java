@@ -25,4 +25,8 @@ public class HistorialComandos {
     public void quitarComando(Comando comando) {
         comandos.removeIf(comandoActual -> comandoActual.esIgualQue(comando));
     }
+
+    public void quitarComandos() {
+        comandos.clear();
+    }
 }

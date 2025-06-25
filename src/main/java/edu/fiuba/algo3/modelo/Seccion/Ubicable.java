@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Carta.UnidadGeneral;
 import edu.fiuba.algo3.modelo.Comando.Comando;
 import edu.fiuba.algo3.modelo.Comando.ComandoPorCarta;
 import edu.fiuba.algo3.modelo.Comando.HistorialComandos;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +102,14 @@ public abstract class Ubicable extends Seccion {
         List<UnidadGeneral> cartas = List.copyOf(this.cartas);
         pilaDescarte.addAll(cartas);
         this.cartas.clear();
+    }
+
+    public void levantarCartasPara(Jugador jugador) {
+        jugador.descartarCartasDe(this);
+    }
+
+    public void quitarComandos () {
+        historialComandos.quitarComandos();
     }
 
 }
