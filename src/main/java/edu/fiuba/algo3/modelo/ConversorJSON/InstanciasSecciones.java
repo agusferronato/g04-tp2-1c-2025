@@ -31,4 +31,13 @@ public class InstanciasSecciones {
     public ContenedorSecciones obtenerInstancias() {
         return new ContenedorSecciones(secciones);
     }
+
+    public ContenedorSecciones obtenerContenedorDe(int numeroJugador) {
+        List<Ubicable> seccionesResultado = new ArrayList<>();
+        int i = (numeroJugador == 1) ? 0 : 3;
+        for (int j = i; j < i + 3; j++) {
+            seccionesResultado.add(secciones.get(j));
+        }
+        return new ContenedorSecciones(seccionesResultado);
+    }
 }

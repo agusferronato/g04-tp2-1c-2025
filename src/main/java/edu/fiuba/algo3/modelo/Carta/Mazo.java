@@ -10,6 +10,10 @@ public class Mazo {
         this.cartas = new ArrayList<Carta>();
     }
 
+    public Mazo(List<Carta> cartas) {
+        this.cartas = cartas;
+    }
+
     public void agregarCartas (List<? extends Carta> cartas) {
         this.cartas.addAll(cartas);
     }

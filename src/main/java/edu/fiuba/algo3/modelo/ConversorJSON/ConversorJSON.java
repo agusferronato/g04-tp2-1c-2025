@@ -55,4 +55,7 @@ public class ConversorJSON {
         return cartasJugador;
     }
 
+    public Mazo obtenerMazo(ConversorJugador conversor) {
+        return new Mazo(obtenerCartasJugador(conversor));
+    }
 }
