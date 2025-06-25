@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.modelo.ConversorJSON;
 
 import edu.fiuba.algo3.modelo.Carta.Especial.*;
+import edu.fiuba.algo3.modelo.ConversorJSON.Creadores.Especiales.CreadorClima;
+import edu.fiuba.algo3.modelo.ConversorJSON.Creadores.Especiales.CreadorEspecial;
+import edu.fiuba.algo3.modelo.ConversorJSON.Creadores.Especiales.CreadorMoraleBoost;
+import edu.fiuba.algo3.modelo.ConversorJSON.Creadores.Especiales.CreadorTierraArrasada;
 import edu.fiuba.algo3.modelo.Seccion.*;
 
 import java.util.ArrayList;
@@ -13,26 +17,14 @@ public class ParserEspecial {
                                          String descripcion,
                                          String [] nombresSecciones
     ) {
+        CreadorEspecial creador = null;
         if (tipo.equals("Clima")) {
-            List<Ubicable> secciones = ParserSeccion.obtenerSeccionesPara(nombresSecciones);
-            ContenedorSecciones contenedor = conversor.obtenerSeccionesDeAmbos(secciones);
-            if (descripcion.contains("Elimina")) {
-                return new NeutralizarClima(nombre, descripcion, contenedor);
-            }
-            return new Clima(nombre, descripcion, contenedor);
+            creador = new CreadorClima(nombre, descripcion, conversor, nombresSecciones);
         } else if (tipo.equals("Morale boost")) {
-            ContenedorSecciones contenedor = conversor.obtenerSecciones(List.of(
-                    new CuerpoACuerpo(),
-                    new Asedio(),
-                    new Rango()
-            ));
-            SeccionAleatoria seccionAleatoria = new SeccionAleatoria(contenedor);
-            Ubicable seccion = seccionAleatoria.obtenerSeccionAleatoria();
-            return new MoraleBoost(nombre, descripcion, seccion);
+            creador = new CreadorMoraleBoost(conversor, nombre, descripcion);
         } else if (tipo.equals("Tierra Arrasada")) {
-            ContenedorSecciones tablero = conversor.obtenerTablero();
-            return new TierraArrasada(nombre, descripcion, tablero);
+            creador = new CreadorTierraArrasada(conversor, nombre, descripcion);
         }
-        return null;
+        return (creador == null) ? null : creador.crearEspecial();
     }
 }

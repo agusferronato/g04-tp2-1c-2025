@@ -1,4 +1,4 @@
-package parser_test;
+package edu.fiuba.algo3.parser_test;
 
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Carta.Especial.Clima;
@@ -16,18 +16,22 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static edu.fiuba.algo3.modelo.ConversorJSON.Constantes.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConversorJSONTest {
-    private final String JUGADOR_UNO = "mazo_jugador_uno";
-    private final String JUGADOR_DOS = "mazo_jugador_dos";
 
     @Test
     public void test01PrimeraCartaJugadorUnoDevuelveSuNombreCorrectamente () {
         /* Arrange */
         String nombreEsperado = "Birna Bran";
         InstanciasSecciones instanciasSecciones = new InstanciasSecciones();
-        ConversorJugador conversor = new ConversorPrimerJugador(instanciasSecciones);
+        ConversorJugador conversor = new ConversorJugador(
+                JUGADOR_UNO,
+                NUMERO_JUGADOR_UNO,
+                NUMERO_JUGADOR_DOS,
+                instanciasSecciones
+        );
 
         ConversorJSON conversorJson = new ConversorJSON();
         /* Act */
@@ -41,7 +45,12 @@ public class ConversorJSONTest {
         /* Arrange */
         int puntajeEsperado = 2;
         InstanciasSecciones instanciasSecciones = new InstanciasSecciones();
-        ConversorJugador conversor = new ConversorPrimerJugador(instanciasSecciones);
+        ConversorJugador conversor = new ConversorJugador(
+                JUGADOR_UNO,
+                NUMERO_JUGADOR_UNO,
+                NUMERO_JUGADOR_DOS,
+                instanciasSecciones
+        );;
         ConversorJSON conversorJson = new ConversorJSON();
 
         /* Act */
@@ -55,7 +64,12 @@ public class ConversorJSONTest {
     public void test03PrimeraCartaJugadorUnoDevuelveSuTipoCorrectamente () {
         /* Arrange */
         InstanciasSecciones instanciasSecciones = new InstanciasSecciones();
-        ConversorJugador conversor = new ConversorPrimerJugador(instanciasSecciones);
+        ConversorJugador conversor = new ConversorJugador(
+                JUGADOR_UNO,
+                NUMERO_JUGADOR_UNO,
+                NUMERO_JUGADOR_DOS,
+                instanciasSecciones
+        );
         ConversorJSON conversorJson = new ConversorJSON();
         /* Act */
         List<UnidadGeneral> cartas = conversorJson.obtenerUnidades(conversor);
@@ -67,7 +81,12 @@ public class ConversorJSONTest {
     public void test04PrimeraCartaJugadorUnoDevuelveSuSeccionCorrectamente () {
         /* Arrange */
         InstanciasSecciones instanciasSecciones = new InstanciasSecciones();
-        ConversorJugador conversor = new ConversorPrimerJugador(instanciasSecciones);
+        ConversorJugador conversor = new ConversorJugador(
+                JUGADOR_UNO,
+                NUMERO_JUGADOR_UNO,
+                NUMERO_JUGADOR_DOS,
+                instanciasSecciones
+        );;
         ConversorJSON conversorJson = new ConversorJSON();
         /* Act */
         List<UnidadGeneral> cartas = conversorJson.obtenerUnidades(conversor);
@@ -84,7 +103,12 @@ public class ConversorJSONTest {
         /* Arrange */
 
         String nombreEsperado = "Cuerno del comandante";
-        ConversorPrimerJugador conversor = new ConversorPrimerJugador(new InstanciasSecciones());
+        ConversorJugador conversor = new ConversorJugador(
+                JUGADOR_UNO,
+                NUMERO_JUGADOR_UNO,
+                NUMERO_JUGADOR_DOS,
+                new InstanciasSecciones()
+        );
         ConversorJSON conversorJson = new ConversorJSON();
 
         /* Act */
@@ -99,7 +123,12 @@ public class ConversorJSONTest {
     public void test06PrimeraCartaEspecialDevuelveDescripcionCorrectamente () {
         /* Arrange */
         String descripcionEsperada = "Duplica la fuerza de todas las cartas de una sección específica.";
-        ConversorPrimerJugador conversor = new ConversorPrimerJugador(new InstanciasSecciones());
+        ConversorJugador conversor = new ConversorJugador(
+                JUGADOR_UNO,
+                NUMERO_JUGADOR_UNO,
+                NUMERO_JUGADOR_DOS,
+                new InstanciasSecciones()
+        );
         ConversorJSON conversorJson = new ConversorJSON();
 
         /* Act */
@@ -112,7 +141,12 @@ public class ConversorJSONTest {
     @Test
     public void test07PrimeraCartaEspecialDevuelveSuTipoCorrectamente () {
         /* Arrange */
-        ConversorPrimerJugador conversor = new ConversorPrimerJugador(new InstanciasSecciones());
+        ConversorJugador conversor = new ConversorJugador(
+                JUGADOR_UNO,
+                NUMERO_JUGADOR_UNO,
+                NUMERO_JUGADOR_DOS,
+                new InstanciasSecciones()
+        );
         ConversorJSON conversorJson = new ConversorJSON();
 
         /* Act */
@@ -120,5 +154,24 @@ public class ConversorJSONTest {
 
         /* Assert */
         assertEquals(MoraleBoost.class, cartas.get(0).getClass());
+    }
+
+    @Test
+    public void test08JugadorDosRecibe21Cartas () {
+        /* Arrange */
+        int cantidadEsperada = 21;
+        ConversorJugador conversor = new ConversorJugador(
+                JUGADOR_DOS,
+                NUMERO_JUGADOR_DOS,
+                NUMERO_JUGADOR_UNO,
+                new InstanciasSecciones()
+        );
+        ConversorJSON conversorJson = new ConversorJSON();
+
+        /* Act */
+        List <Carta> cartas = conversorJson.obtenerCartasJugador(conversor);
+
+        /* Assert */
+        assertEquals(cantidadEsperada, cartas.size());
     }
 }

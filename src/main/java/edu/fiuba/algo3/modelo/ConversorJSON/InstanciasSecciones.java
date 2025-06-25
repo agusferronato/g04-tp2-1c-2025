@@ -28,10 +28,6 @@ public class InstanciasSecciones {
         return null;
     }
 
-    public Ubicable obtenerSeccion (TipoSeccion seccion) {
-        return secciones.get(seccion.ordinal());
-    }
-
     public ContenedorSecciones obtenerInstancias() {
         return new ContenedorSecciones(secciones);
     }

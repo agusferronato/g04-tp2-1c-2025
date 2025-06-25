@@ -27,8 +27,6 @@ public class ConversorJSON {
     private JsonObject jsonObject;
     private final String RUTA_ARCHIVO = "src/main/resources/json/gwent.json";
 
-
-
     public ConversorJSON() {
         Path path = Paths.get(RUTA_ARCHIVO);
         try {
@@ -47,4 +45,14 @@ public class ConversorJSON {
     public List<Especial> obtenerEspeciales(ConversorJugador conversor) {
         return conversor.obtenerEspeciales(jsonObject);
     }
+
+    public List<Carta> obtenerCartasJugador (ConversorJugador conversor) {
+        List<Especial> especiales = obtenerEspeciales(conversor);
+        List<UnidadGeneral> unidades = obtenerUnidades(conversor);
+        List<Carta> cartasJugador = new ArrayList<>();
+        cartasJugador.addAll(especiales);
+        cartasJugador.addAll(unidades);
+        return cartasJugador;
+    }
+
 }
