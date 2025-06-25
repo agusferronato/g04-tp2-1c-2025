@@ -1,6 +1,9 @@
 package parser_test;
 
 import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.modelo.Carta.Especial.Clima;
+import edu.fiuba.algo3.modelo.Carta.Especial.Especial;
+import edu.fiuba.algo3.modelo.Carta.Especial.MoraleBoost;
 import edu.fiuba.algo3.modelo.Carta.Mazo;
 import edu.fiuba.algo3.modelo.Carta.Modificador.Medico;
 import edu.fiuba.algo3.modelo.Carta.Unidad;
@@ -69,6 +72,53 @@ public class ConversorJSONTest {
         /* Act */
         List<UnidadGeneral> cartas = conversorJson.obtenerUnidades(conversor);
         /* Assert */
-        assertEquals(CuerpoACuerpo.class, cartas.get(0).getSeccion().getClass());
+        assertEquals(
+                instanciasSecciones.obtenerUbicableDe(1, new CuerpoACuerpo()),
+                cartas.get(0).getSeccion()
+        );
+    }
+
+
+    @Test
+    public void test05PrimeraCartaEspecialDevuelveNombreCorrectamente () {
+        /* Arrange */
+
+        String nombreEsperado = "Cuerno del comandante";
+        ConversorPrimerJugador conversor = new ConversorPrimerJugador(new InstanciasSecciones());
+        ConversorJSON conversorJson = new ConversorJSON();
+
+        /* Act */
+        List<Especial> cartas = conversorJson.obtenerEspeciales(conversor);
+
+        /* Assert */
+        assertEquals(nombreEsperado, cartas.get(0).getNombre());
+    }
+
+
+    @Test
+    public void test06PrimeraCartaEspecialDevuelveDescripcionCorrectamente () {
+        /* Arrange */
+        String descripcionEsperada = "Duplica la fuerza de todas las cartas de una sección específica.";
+        ConversorPrimerJugador conversor = new ConversorPrimerJugador(new InstanciasSecciones());
+        ConversorJSON conversorJson = new ConversorJSON();
+
+        /* Act */
+        List<Especial> cartas = conversorJson.obtenerEspeciales(conversor);
+
+        /* Assert */
+        assertEquals(descripcionEsperada, cartas.get(0).getDescripcion());
+    }
+
+    @Test
+    public void test07PrimeraCartaEspecialDevuelveSuTipoCorrectamente () {
+        /* Arrange */
+        ConversorPrimerJugador conversor = new ConversorPrimerJugador(new InstanciasSecciones());
+        ConversorJSON conversorJson = new ConversorJSON();
+
+        /* Act */
+        List<Especial> cartas = conversorJson.obtenerEspeciales(conversor);
+
+        /* Assert */
+        assertEquals(MoraleBoost.class, cartas.get(0).getClass());
     }
 }

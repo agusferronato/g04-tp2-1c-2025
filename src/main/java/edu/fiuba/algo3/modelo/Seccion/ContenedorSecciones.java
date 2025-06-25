@@ -9,14 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContenedorSecciones extends Seccion {
-
-    private List<Seccion> secciones;
+    private List<Ubicable> secciones;
 
     public ContenedorSecciones () {
         secciones = new ArrayList<>();
     }
 
-    public void agregar(Seccion seccion) {
+    public ContenedorSecciones(List<Ubicable> secciones) {
+        this.secciones = secciones;
+    }
+
+    public void agregar(Ubicable seccion) {
         secciones.add(seccion);
     }
 
@@ -115,4 +118,7 @@ public class ContenedorSecciones extends Seccion {
     }
 
 
+    public Ubicable obtenerSeccionAlAzar (SeccionAleatoria seccionAleatoria) {
+        return seccionAleatoria.obtenerSeccionAleatoria(this.secciones);
+    }
 }

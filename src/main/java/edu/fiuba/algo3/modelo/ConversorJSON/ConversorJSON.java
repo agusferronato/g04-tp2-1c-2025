@@ -44,9 +44,7 @@ public class ConversorJSON {
         return conversor.obtenerUnidades(jsonObject);
     }
 
-
-    public Mazo obtenerMazo (ConversorJugador conversor) {
-        return conversor.obtenerMazo(jsonObject);
+    public List<Especial> obtenerEspeciales(ConversorJugador conversor) {
+        return conversor.obtenerEspeciales(jsonObject);
     }
-
 }

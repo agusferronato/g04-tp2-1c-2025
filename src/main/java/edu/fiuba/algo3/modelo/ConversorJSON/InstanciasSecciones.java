@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo.ConversorJSON;
 
-import edu.fiuba.algo3.modelo.Seccion.Asedio;
-import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
-import edu.fiuba.algo3.modelo.Seccion.Rango;
-import edu.fiuba.algo3.modelo.Seccion.Ubicable;
+import edu.fiuba.algo3.modelo.Seccion.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,5 +30,9 @@ public class InstanciasSecciones {
 
     public Ubicable obtenerSeccion (TipoSeccion seccion) {
         return secciones.get(seccion.ordinal());
+    }
+
+    public ContenedorSecciones obtenerInstancias() {
+        return new ContenedorSecciones(secciones);
     }
 }

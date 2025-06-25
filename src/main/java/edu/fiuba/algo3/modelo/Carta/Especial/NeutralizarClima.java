@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Carta.Especial;
 
 import edu.fiuba.algo3.modelo.Comando.ComandoCongelar;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
+import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
 import edu.fiuba.algo3.modelo.Seccion.Seccion;
 
 public class NeutralizarClima extends Especial {
@@ -9,6 +10,11 @@ public class NeutralizarClima extends Especial {
 
     public NeutralizarClima(Seccion seccion) {
         super(null);
+        this.seccion = seccion;
+    }
+
+    public NeutralizarClima(String nombre, String descripcion, Seccion seccion) {
+        super(nombre, descripcion);
         this.seccion = seccion;
     }
 

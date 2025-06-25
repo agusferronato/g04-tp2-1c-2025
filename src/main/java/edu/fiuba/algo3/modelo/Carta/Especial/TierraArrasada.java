@@ -11,6 +11,11 @@ public class TierraArrasada extends Especial {
         this.secciones = secciones;
     }
 
+    public TierraArrasada(String nombre, String descripcion, ContenedorSecciones secciones) {
+        super(nombre, descripcion);
+        this.secciones = secciones;
+    }
+
     public void usar (Jugador jugador) {
         secciones.quemarCartasMasFuertes();
     }

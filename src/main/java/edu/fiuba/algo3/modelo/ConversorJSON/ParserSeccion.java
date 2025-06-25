@@ -5,18 +5,32 @@ import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
 import edu.fiuba.algo3.modelo.Seccion.Rango;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParserSeccion {
 
-    public static Ubicable obtenerSeccion(ConversorJugador conversor, String nombreSeccion) {
+    public static Ubicable obtenerSeccion(String nombreSeccion) {
         switch (nombreSeccion) {
+            case "CuerpoaCuerpo":
             case "Cuerpo a Cuerpo":
-                return conversor.obtenerSeccion(new CuerpoACuerpo());
+            case "Combate Cuerpo a Cuerpo":
+                return new CuerpoACuerpo();
+            case "Combate a Distancia":
             case "Rango":
-                return conversor.obtenerSeccion(new Rango());
+                return new Rango();
             case "Asedio":
-                return conversor.obtenerSeccion(new Asedio());
+                return new Asedio();
             default:
                 return null;
         }
+    }
+
+    public static List<Ubicable> obtenerSeccionesPara(String[] nombresSecciones) {
+        List<Ubicable> seccionesParseadas = new ArrayList<>();
+        for (String nombreSeccion : nombresSecciones) {
+            seccionesParseadas.add(obtenerSeccion(nombreSeccion));
+        }
+        return seccionesParseadas;
     }
 }
