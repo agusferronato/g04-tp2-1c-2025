@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.vistas.components;
 
-import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

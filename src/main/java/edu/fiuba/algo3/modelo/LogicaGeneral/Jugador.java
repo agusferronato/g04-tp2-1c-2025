@@ -41,6 +41,10 @@ public class Jugador {
         rondasGanadas = 0;
     }
 
+    public Jugador(String nombre) {
+        this.nombre =  nombre;
+    }
+
     public int calcularPuntaje() {
         return seccion.calcularPuntaje();
     }
