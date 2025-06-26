@@ -24,4 +24,6 @@ public abstract class Especial extends Carta {
     public String getFormato() {
         return "Carta especial\nTipo: " + getNombre() + "\nDescripcion: " + descripcion;
     }
+
+    public String getFormatoCarta() {return "Carta especial\nTipo: " + getNombre();}
 }

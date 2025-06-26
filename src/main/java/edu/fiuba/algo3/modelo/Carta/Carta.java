@@ -28,5 +28,7 @@ public abstract class Carta {
 
     public void setImage(String image) {this.image = image;}
 
+    public abstract String getFormatoCarta();
+    public abstract String getDescripcion();
     public abstract String getFormato();
 }

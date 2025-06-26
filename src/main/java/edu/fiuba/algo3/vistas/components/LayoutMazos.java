@@ -11,10 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.text.Font;
@@ -22,28 +19,31 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.List;
-
+import javafx.scene.control.Tooltip;
 public class LayoutMazos {
-    private final StackPane root;
-    private HBox cartasJugadorBox;
+    private StackPane root;
 
     public LayoutMazos(Stage stage, SubmitButton button, ControladorJuego controlador) {
-        cartasJugadorBox = new HBox(10);
         controlador.repartirCartas();
-        inicializarSeccionCartas(controlador);
 
+        // Fondo
         BackgroundImage background = new BackgroundImage(stage, "/imagenes/backgroundElegirMazo.jpg");
+
+        // Título
         Text title = new Text("Choose your deck");
         title.setFill(Color.GOLD);
-        Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 100);
+        Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 80);
         title.setFont(cardinalFont);
-
-        VBox titleBox = new VBox(30);
+        VBox titleBox = new VBox(title);
         titleBox.setAlignment(Pos.TOP_CENTER);
         titleBox.setPadding(new Insets(30, 20, 20, 20));
-        titleBox.getChildren().add(title);
 
+        // Grid con cartas
+        GridPane gridCartas = inicializarGridCartas(controlador);
+        gridCartas.setMaxHeight(Double.MAX_VALUE);
+        VBox.setVgrow(gridCartas, Priority.ALWAYS);
 
+        // Botones
         Button botonComenzarPartida = button.getButton();
         botonComenzarPartida.setVisible(false);
         botonComenzarPartida.setText("Comenzar");
@@ -56,9 +56,8 @@ public class LayoutMazos {
             botonDejarElMazoIgual.getButton().setVisible(false);
             botonSumarCartas.getButton().setVisible(false);
             controlador.tomarNuevasCartas();
-            actualizarSeccionCartas(controlador);
+            actualizarGridCartas(gridCartas, controlador);
         });
-
 
         botonDejarElMazoIgual.setOnAction(() -> {
             botonComenzarPartida.setVisible(true);
@@ -66,68 +65,53 @@ public class LayoutMazos {
             botonSumarCartas.getButton().setVisible(false);
         });
 
-        HBox botonesDecision = new HBox(20);
-        botonesDecision.setAlignment(Pos.CENTER);
-        botonesDecision.getChildren().addAll(
+        HBox botonesDecision = new HBox(20,
                 botonSumarCartas.getButton(),
                 botonDejarElMazoIgual.getButton()
         );
+        botonesDecision.setAlignment(Pos.CENTER);
 
-        VBox contenedorBotones = new VBox(20);
+        VBox contenedorBotones = new VBox(20, botonesDecision, botonComenzarPartida);
         contenedorBotones.setAlignment(Pos.CENTER);
-        contenedorBotones.getChildren().addAll(
-                botonesDecision,
-                botonComenzarPartida
-        );
+        contenedorBotones.setPadding(new Insets(10));
+        contenedorBotones.setSpacing(10);
 
-        VBox layoutCentral = new VBox(30);
+        VBox layoutCentral = new VBox(40, titleBox, gridCartas, contenedorBotones);
         layoutCentral.setAlignment(Pos.CENTER);
-        layoutCentral.getChildren().addAll(
-                titleBox,
-                cartasJugadorBox,
-                contenedorBotones
-        );
+        layoutCentral.setPadding(new Insets(20));
 
 
-        root = new StackPane();
-        root.getChildren().addAll(
-                background.getImageView(),
-                layoutCentral
-        );
+        root = new StackPane(background.getImageView(), layoutCentral);
     }
 
-    private void actualizarSeccionCartas (ControladorJuego controlador) {
-        cartasJugadorBox.getChildren().clear();
-        inicializarSeccionCartas(controlador);
-    }
-
-
-    private void inicializarSeccionCartas(ControladorJuego controlador) {
-        cartasJugadorBox.setAlignment(Pos.CENTER);
-        cartasJugadorBox.setPadding(new Insets(20, 10, 20, 10));
+    private GridPane inicializarGridCartas(ControladorJuego controlador) {
+        GridPane grid = new GridPane();
+        grid.setHgap(20);
+        grid.setVgap(20);
+        grid.setAlignment(Pos.CENTER);
 
         List<Carta> cartasJugador = controlador.obtenerCartasJugador();
-        for (Carta carta : cartasJugador) {
+        int columnas = 5;
+
+        for (int i = 0; i < cartasJugador.size(); i++) {
+            Carta carta = cartasJugador.get(i);
 
             Image imagen = new Image(getClass().getResourceAsStream("/" + carta.getImage()));
             ImageView fondoCarta = new ImageView(imagen);
-            fondoCarta.setFitWidth(150);
-            fondoCarta.setFitHeight(150);
+            fondoCarta.setFitWidth(200);
+            fondoCarta.setFitHeight(160);
             fondoCarta.setPreserveRatio(false);
 
+            Label nombre = new Label(carta.getFormatoCarta());
+            nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: red;");
+            nombre.setWrapText(true);
+            nombre.setMaxWidth(90);
+            nombre.setAlignment(Pos.CENTER);
 
-            Label textoCarta = new Label(carta.getFormato());
-            textoCarta.setWrapText(true);
-            textoCarta.setPrefWidth(140);
-            textoCarta.setPrefHeight(130);
-            textoCarta.setAlignment(Pos.TOP_CENTER);
-            textoCarta.setStyle("-fx-font-size: 12px; -fx-text-fill: black;");
-
-
-            VBox cartaVisual = new VBox(fondoCarta, textoCarta);
-            cartaVisual.setPrefSize(150, 300);
+            VBox cartaVisual = new VBox(fondoCarta, nombre);
             cartaVisual.setAlignment(Pos.TOP_CENTER);
             cartaVisual.setSpacing(5);
+            cartaVisual.setPrefSize(200, 600);
             cartaVisual.setStyle(
                     "-fx-border-color: black;" +
                             "-fx-background-color: white;" +
@@ -135,13 +119,97 @@ public class LayoutMazos {
                             "-fx-background-radius: 5px;"
             );
 
-            cartasJugadorBox.getChildren().add(cartaVisual);
+
+            Tooltip tooltip = new Tooltip();
+            tooltip.setText(carta.getDescripcion());
+            tooltip.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
+            tooltip.setMaxWidth(300);
+            tooltip.setWrapText(true);
+
+            Tooltip.install(fondoCarta, tooltip);
+
+
+            final boolean[] tooltipVisible = {false};
+
+            cartaVisual.setOnMouseClicked(e -> {
+                if (tooltipVisible[0]) {
+                    tooltip.hide();
+                    tooltipVisible[0] = false;
+                } else {
+                    tooltip.show(cartaVisual, e.getScreenX(), e.getScreenY());
+                    tooltipVisible[0] = true;
+                }
+            });
+
+            int col = i % columnas;
+            int row = i / columnas;
+            grid.add(cartaVisual, col, row);
         }
+
+        return grid;
     }
 
+    private void actualizarGridCartas(GridPane grid, ControladorJuego controlador) {
+        grid.getChildren().clear();
+        List<Carta> cartasJugador = controlador.obtenerCartasJugador();
+        int columnas = 5;
+
+        for (int i = 0; i < cartasJugador.size(); i++) {
+            Carta carta = cartasJugador.get(i);
+
+            Image imagen = new Image(getClass().getResourceAsStream("/" + carta.getImage()));
+            ImageView fondoCarta = new ImageView(imagen);
+            fondoCarta.setFitWidth(200);
+            fondoCarta.setFitHeight(160);
+            fondoCarta.setPreserveRatio(false);
+
+            Label nombre = new Label(carta.getFormatoCarta());
+            nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: red;");
+            nombre.setWrapText(true);
+            nombre.setMaxWidth(90);
+            nombre.setAlignment(Pos.CENTER);
+
+            VBox cartaVisual = new VBox(fondoCarta, nombre);
+
+            cartaVisual.setAlignment(Pos.TOP_CENTER);
+            cartaVisual.setSpacing(5);
+            cartaVisual.setPrefSize(200, 600);
+            cartaVisual.setStyle(
+                    "-fx-border-color: black;" +
+                            "-fx-background-color: white;" +
+                            "-fx-border-radius: 5px;" +
+                            "-fx-background-radius: 5px;"
+            );
+
+            Tooltip tooltip = new Tooltip();
+            tooltip.setText(carta.getDescripcion());
+            tooltip.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
+            tooltip.setMaxWidth(300);
+            tooltip.setWrapText(true);
+            Tooltip.install(fondoCarta, tooltip);
+
+
+            final boolean[] tooltipVisible = {false};
+
+            cartaVisual.setOnMouseClicked(e -> {
+                if (tooltipVisible[0]) {
+                    tooltip.hide();
+                    tooltipVisible[0] = false;
+                } else {
+                    tooltip.show(cartaVisual, e.getScreenX(), e.getScreenY());
+                    tooltipVisible[0] = true;
+                }
+            });
+            int col = i % columnas;
+            int row = i / columnas;
+            grid.add(cartaVisual, col, row);
+            grid.setHgap(30);
+            grid.setVgap(30);
+        }
+    }
 
     public StackPane getRoot() {
         return root;
     }
-
 }
+
