@@ -28,9 +28,7 @@
             {
                 "nombre": "Jaskier",
                 "puntos": 2,
-                "modificador": [
-                    "Morale Boost"
-                ],
+                "modificador": [],
                 "seccion": "Cuerpo a Cuerpo"
             },
             {
@@ -64,9 +62,7 @@
             {
                 "nombre": "Pirata del Clan Dimun",
                 "puntos": 6,
-                "modificador": [
-                    "Quemar"
-                ],
+                "modificador": [],
                 "seccion": "Rango"
             },
             {

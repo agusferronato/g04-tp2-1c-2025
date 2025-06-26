@@ -45,6 +45,18 @@ public class Jugador {
         this.nombre =  nombre;
     }
 
+    public Jugador(Mazo mazo, ContenedorSecciones contenedorSecciones) {
+        this.mazo = mazo;
+        pasoDeRonda = false;
+        rondasGanadas = 0;
+        this.pilaDescarte = new ArrayList<>();
+        this.mano = new ArrayList<>();
+    }
+
+    public void setNombre (String nombre) {
+        this.nombre = nombre;
+    }
+
     public int calcularPuntaje() {
         return seccion.calcularPuntaje();
     }
@@ -148,9 +160,11 @@ public class Jugador {
     }
 
 
+    public List<Carta> obtenerMano() {
+        return mano;
+    }
 
-
-
-
-
+    public String getNombre() {
+        return this.nombre;
+    }
 }

@@ -112,4 +112,9 @@ public abstract class Ubicable extends Seccion {
         historialComandos.quitarComandos();
     }
 
+    public List<UnidadGeneral> obtenerCartas() {
+        return cartas;
+    }
+
+    public abstract String getNombre();
 }

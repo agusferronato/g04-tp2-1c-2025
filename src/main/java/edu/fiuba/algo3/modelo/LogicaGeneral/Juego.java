@@ -50,6 +50,7 @@ public class Juego {
 
     public void iniciar() {
         jugadorActual = moneda.jugadorInicial();
+        repartirCartas();
     }
 
 

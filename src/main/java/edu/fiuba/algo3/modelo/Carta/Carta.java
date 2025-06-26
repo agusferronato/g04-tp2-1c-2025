@@ -23,4 +23,6 @@ public abstract class Carta {
     public String getNombre() {
         return tipo;
     }
+
+    public abstract String getFormato();
 }

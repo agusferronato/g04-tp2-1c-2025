@@ -126,7 +126,7 @@ public class ConversorJugador {
             JsonArray arrayAfectados = afectado.getAsJsonArray();
             nombresSecciones = new String[arrayAfectados.size()];
             for (int i = 0; i < arrayAfectados.size(); i++) {
-                nombresSecciones[i] = arrayAfectados.get(0).getAsString();
+                nombresSecciones[i] = arrayAfectados.get(i).getAsString();
             }
         }
 

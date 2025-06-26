@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vistas.components;
 
+import edu.fiuba.algo3.controllers.ControladorJuego;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,7 +19,7 @@ import javafx.stage.Stage;
 public class LayoutPlayer {
     private final StackPane root;
 
-    public LayoutPlayer(Stage stage, SubmitButton button) {
+    public LayoutPlayer(Stage stage, SubmitButton button, ControladorJuego controlador) {
 
         BackgroundImage backgroundImage = new BackgroundImage(stage, "/imagenes/tryfondo1.jpg");
 
@@ -29,8 +30,7 @@ public class LayoutPlayer {
         button.getButton().setOnAction(e -> {
             String nombre = frame.getNombreJugador();
             if (!nombre.trim().isEmpty()) {
-                Jugador jugador = new Jugador(nombre);
-                System.out.println("Jugador creado: " + nombre);
+                controlador.nombreSeleccionado(nombre);
             }
             originalButton.handle(e);
         });
@@ -45,13 +45,13 @@ public class LayoutPlayer {
                 frame.getFrame(),
                 buttonBox
         );
-        System.out.println("asd");
+        /*
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setTitle("Creación Jugador");
         stage.show();
-
+        */
     }
     public StackPane getRoot() {
         return root;

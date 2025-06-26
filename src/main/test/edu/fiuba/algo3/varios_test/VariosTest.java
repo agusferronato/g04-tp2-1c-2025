@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Carta.Modificador.Legendaria;
 import edu.fiuba.algo3.modelo.Carta.Modificador.SumaValoresBase;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Tablero;
+import edu.fiuba.algo3.modelo.Seccion.Asedio;
 import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
 import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
 import edu.fiuba.algo3.modelo.Seccion.Rango;
@@ -189,6 +190,4 @@ public class VariosTest {
             jugador.jugarCarta(carta);
         });
     }
-
-
 }

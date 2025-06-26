@@ -32,6 +32,10 @@ public class InstanciasSecciones {
         return new ContenedorSecciones(secciones);
     }
 
+    public List<Ubicable> obtenerSecciones() {
+        return secciones;
+    }
+
     public ContenedorSecciones obtenerContenedorDe(int numeroJugador) {
         List<Ubicable> seccionesResultado = new ArrayList<>();
         int i = (numeroJugador == 1) ? 0 : 3;

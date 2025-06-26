@@ -84,4 +84,8 @@ public abstract class UnidadGeneral extends Carta {
     public Ubicable getSeccion() {
         return seccion;
     }
+
+    public String getFormato() {
+        return "Unidad\nCarta: " + getNombre() + "\nPuntos: " + calcularPuntaje(0);
+    }
 }
