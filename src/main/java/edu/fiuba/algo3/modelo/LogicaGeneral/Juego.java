@@ -1,12 +1,15 @@
 package edu.fiuba.algo3.modelo.LogicaGeneral;
 
 import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.vistas.components.LayoutJuego;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Juego {
-    private static int CARTAS_DEL_MAZO_A_TOMAR = 10;
+    private final int CARTAS_DEL_MAZO_A_TOMAR = 10;
     private int rondas;
     private boolean juegoFinalizado;
     private Jugador ganador, jugadorActual;
@@ -50,7 +53,6 @@ public class Juego {
 
     public void iniciar() {
         jugadorActual = moneda.jugadorInicial();
-        repartirCartas();
     }
 
 
@@ -105,4 +107,60 @@ public class Juego {
             jugador.tomarCartasDelMazo(cantidadDeCartasATomar);
         }
     }
+
+    public String nombreJugadorActual() {
+        return jugadorActual.getNombre();
+    }
+
+    public void mostrarCondicionPartida(LayoutJuego layout) {
+        if (juegoFinalizado)
+            layout.mostrarGanador(ganador);
+
+    }
+
+
+    public void simularJuegoDe(Jugador adversario, LayoutJuego layout) {
+        if (jugadorActual.equals(adversario)) {
+            int numero = (int) (Math.random() * 2) + 1;
+            switch (numero) {
+                case 1:
+                    jugadorActual.jugarCartaAlAzar(this);
+                    break;
+                case 2:
+                    pasar();
+                    break;
+            }
+            mostrarCondicionPartida(layout);
+            layout.crearCentroTablero();
+            layout.crearInfoIzquierda();
+            layout.actualizarZonaMano();
+        }
+    }
+
+    public int getRondas() {
+        return rondas;
+    }
+
+    public void simularJuegoUnaVezDe(Jugador adversario, LayoutJuego layout) {
+        if (jugadorActual.equals(adversario)) {
+            int numero = (int) (Math.random() * 2) + 1;
+            switch (numero) {
+                case 1:
+                    jugadorActual.jugarCartaAlAzar(this);
+                    pasar();
+                    break;
+                case 2:
+                    pasar();
+                    break;
+            }
+            mostrarCondicionPartida(layout);
+            layout.crearCentroTablero();
+            layout.crearInfoIzquierda();
+            layout.actualizarZonaMano();
+        }
+    }
 }
+
+
+
+

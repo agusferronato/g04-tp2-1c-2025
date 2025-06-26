@@ -11,6 +11,8 @@ import edu.fiuba.algo3.modelo.LogicaGeneral.Moneda;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Tablero;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 import edu.fiuba.algo3.vistas.components.LayoutJuego;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 import java.util.List;
 
@@ -97,7 +99,11 @@ public class ControladorJuego {
     }
 
     public void jugar(Carta carta) {
-        jugador.jugarCarta(carta);
+        juego.jugar(carta);
+        layout.crearCentroTablero();
+        layout.crearInfoIzquierda();
+        layout.actualizarZonaMano();
+        juego.simularJuegoDe(adversario, layout);
     }
 
     public void iniciarJuego() {
@@ -110,5 +116,47 @@ public class ControladorJuego {
 
     public void tomarNuevasCartas() {
         jugador.tomarDosCartasDelMazo();
+    }
+
+    public int obtenerPuntosJugador() {
+        return jugador.calcularPuntaje();
+    }
+
+    public int obtenerRondasJugador() {
+        return jugador.getRondasGanadas();
+    }
+
+    public int obtenerPuntosAdversario() {
+        return adversario.calcularPuntaje();
+    }
+
+    public int obtenerRondasAdversario() {
+        return adversario.getRondasGanadas();
+    }
+
+    public String turnoActual() {
+        return juego.nombreJugadorActual();
+    }
+
+    public void simularSiEsTurnoDeAdversario() {
+        juego.simularJuegoDe(adversario, layout);
+    }
+
+    public void pasar() {
+        juego.pasar();
+        juego.mostrarCondicionPartida(layout);
+        juego.simularJuegoUnaVezDe(adversario, layout);
+    }
+
+    public int obtenerNumeroDeRonda() {
+        return juego.getRondas();
+    }
+
+    public String enemigoPasoDeRonda() {
+        return adversario.pasoDeRonda() ? "Paso de ronda" : "";
+    }
+
+    public String jugadorPasoDeRonda() {
+        return jugador.pasoDeRonda() ? "Paso de ronda" : "";
     }
 }

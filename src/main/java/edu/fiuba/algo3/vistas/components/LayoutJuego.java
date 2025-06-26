@@ -3,14 +3,19 @@ package edu.fiuba.algo3.vistas.components;
 import edu.fiuba.algo3.controllers.ControladorJuego;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Carta.UnidadGeneral;
+import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
+import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +24,9 @@ import java.util.List;
 
 public class LayoutJuego {
 
+    private List<Button> botonesJugador;
+
+    private Label paseDeRondaJugador;
     private Label nombreJugadorLabel;
     private Label puntosJugadorLabel;
     private Label rondasJugadorLabel;
@@ -26,6 +34,10 @@ public class LayoutJuego {
     private Label nombreEnemigoLabel;
     private Label puntosEnemigoLabel;
     private Label rondasEnemigoLabel;
+    private Label paseDeRondaEnemigo;
+
+    private StackPane anuncioStack;
+    private Region overlay;
 
     private StackPane root;
     private BorderPane layoutPrincipal;
@@ -33,19 +45,74 @@ public class LayoutJuego {
     private ControladorJuego controlador;
 
     public LayoutJuego(Stage stage, ControladorJuego controlador) {
-        this.controlador = controlador;
-        stage.setTitle("Juego");
+        botonesJugador = new ArrayList<>();
+        anuncioStack = new StackPane();
+        overlay = new Region();
 
         root = new StackPane();
+
+        overlay = new Region();
+        overlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.4);");
+        overlay.prefWidthProperty().bind(root.widthProperty());
+        overlay.prefHeightProperty().bind(root.heightProperty());
+        overlay.setVisible(false);
+        overlay.setMouseTransparent(true);
+
+        anuncioStack = new StackPane();
+        anuncioStack.setPickOnBounds(false);
+        anuncioStack.setMouseTransparent(true);
+        anuncioStack.setVisible(false);
+
+
+        stage.setTitle("Juego");
+
         layoutPrincipal = new BorderPane();
-        root.getChildren().add(layoutPrincipal);
+        root.getChildren().addAll(layoutPrincipal, overlay, anuncioStack);
+
+        this.controlador = controlador;
+        controlador.setVista(this);
 
         crearCentroTablero();
         crearZonaMano();
         crearInfoIzquierda();
         crearBotonDerecha();
+
+        controlador.iniciarJuego();
+        mostrarAnuncio("Empieza: " + controlador.turnoActual());
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        pause.setOnFinished(e -> {
+            controlador.simularSiEsTurnoDeAdversario();
+        });
+
+        pause.play();
     }
 
+
+    public void mostrarAnuncio(String mensaje) {
+        Label anuncio = new Label(mensaje);
+        anuncio.setFont(Font.font(24));
+        anuncio.setTextFill(Color.WHITE);
+        anuncio.setStyle("-fx-background-color: rgba(0, 0, 0, 0.8); -fx-padding: 20px;");
+        StackPane.setAlignment(anuncio, Pos.CENTER);
+
+        anuncioStack.getChildren().setAll(anuncio);
+        anuncioStack.setVisible(true);
+        anuncioStack.setMouseTransparent(false);
+
+        overlay.setVisible(true);
+        overlay.setMouseTransparent(false);
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        pause.setOnFinished(e -> ocultarAnuncio());
+        pause.play();
+    }
+
+    private void ocultarAnuncio() {
+        anuncioStack.getChildren().clear();
+        overlay.setVisible(false);
+        overlay.setMouseTransparent(true);
+    }
 
 
     public void crearCentroTablero() {
@@ -125,13 +192,11 @@ public class LayoutJuego {
 
 
             botonCarta.setOnAction(e -> {
-                /* Logica de seleccion */
                 botonCarta.setDisable(true);
                 controlador.jugar(carta);
-                crearCentroTablero();
-                actualizarZonaMano();
             });
 
+            botonesJugador.add(botonCarta);
             zonaCartas.getChildren().add(botonCarta);
         }
         layoutPrincipal.setBottom(zonaCartas);
@@ -139,7 +204,7 @@ public class LayoutJuego {
 
 
     public void actualizarZonaMano () {
-        zonaCartas = new HBox(10);
+        zonaCartas.getChildren().clear();
         crearZonaMano();
     }
 
@@ -148,26 +213,32 @@ public class LayoutJuego {
         return root;
     }
 
-    private void crearInfoIzquierda() {
+    public void crearInfoIzquierda() {
         Font font = Font.font(14);
 
+        paseDeRondaJugador = new Label(controlador.jugadorPasoDeRonda());
         nombreJugadorLabel = new Label("Jugador: " + controlador.obtenerNombreJugador());
-        puntosJugadorLabel = new Label("Puntos: 0");
-        rondasJugadorLabel = new Label("Rondas: 0");
+        puntosJugadorLabel = new Label("Puntos: " + controlador.obtenerPuntosJugador());
+        rondasJugadorLabel = new Label("Rondas: " + controlador.obtenerRondasJugador());
 
+        paseDeRondaEnemigo = new Label(controlador.enemigoPasoDeRonda());
         nombreEnemigoLabel = new Label("Enemigo: " + controlador.obtenerNombreAdversario());
-        puntosEnemigoLabel = new Label("Puntos enemigo: 0");
-        rondasEnemigoLabel = new Label("Rondas enemigo: 0");
+        puntosEnemigoLabel = new Label("Puntos: " + controlador.obtenerPuntosAdversario());
+        rondasEnemigoLabel = new Label("Rondas: " + controlador.obtenerRondasAdversario());
 
-        for (Label label : new Label[]{nombreJugadorLabel, puntosJugadorLabel, rondasJugadorLabel,
-                nombreEnemigoLabel, puntosEnemigoLabel, rondasEnemigoLabel}) {
+        for (Label label : new Label[]{paseDeRondaJugador, nombreJugadorLabel, puntosJugadorLabel, rondasJugadorLabel,
+                paseDeRondaEnemigo, nombreEnemigoLabel, puntosEnemigoLabel, rondasEnemigoLabel}) {
             label.setFont(font);
         }
 
-        VBox jugadorBox = new VBox(5, nombreJugadorLabel, puntosJugadorLabel, rondasJugadorLabel);
-        VBox enemigoBox = new VBox(5, nombreEnemigoLabel, puntosEnemigoLabel, rondasEnemigoLabel);
+        VBox jugadorBox = new VBox(5, paseDeRondaJugador, nombreJugadorLabel, puntosJugadorLabel, rondasJugadorLabel);
+        VBox enemigoBox = new VBox(5, paseDeRondaEnemigo, nombreEnemigoLabel, puntosEnemigoLabel, rondasEnemigoLabel);
 
-        VBox izquierda = new VBox(20, jugadorBox, enemigoBox);
+        Label rondaActualLabel = new Label("Ronda actual: " + controlador.obtenerNumeroDeRonda());
+        rondaActualLabel.setFont(font);
+
+        VBox izquierda = new VBox(20, jugadorBox, enemigoBox, rondaActualLabel);
+
         izquierda.setPadding(new Insets(10));
         izquierda.setAlignment(Pos.TOP_LEFT);
 
@@ -176,144 +247,53 @@ public class LayoutJuego {
 
     private void crearBotonDerecha() {
         Button botonPasar = new Button("Pasar");
+
+        botonPasar.setOnAction(e -> {
+           controlador.pasar();
+        });
+
+        botonesJugador.add(botonPasar);
+
         VBox box = new VBox(botonPasar);
         box.setPadding(new Insets(10));
         box.setAlignment(Pos.CENTER);
         layoutPrincipal.setRight(box);
     }
 
-}
+    public void mostrarGanador(Jugador ganador) {
+        // Crear un nuevo layout para la pantalla final
+        VBox contenedorFinal = new VBox(20);
+        contenedorFinal.setAlignment(Pos.CENTER);
+        contenedorFinal.setPadding(new Insets(30));
+        contenedorFinal.setStyle("-fx-background-color: linear-gradient(to bottom, #1e3c72, #2a5298);");
+
+        Label titulo = new Label("Fin del juego");
+        titulo.setFont(Font.font("Arial", 36));
+        titulo.setTextFill(Color.WHITE);
 
 
-/*
-private BorderPane layoutPrincipal;
+        Label nombreGanador = new Label("Empate");
 
-private Pane tablero;
-private HBox zonaCartas;
-private Button botonPasar;
+        if (ganador != null) {
+            nombreGanador = new Label("Ganó: " + ganador.getNombre());
 
-private Label nombreJugadorLabel;
-private Label puntosJugadorLabel;
-private Label rondasJugadorLabel;
+        }
 
-private Label nombreEnemigoLabel;
-private Label puntosEnemigoLabel;
-private Label rondasEnemigoLabel;
+        nombreGanador.setFont(Font.font("Arial", 28));
+        nombreGanador.setTextFill(Color.GOLD);
 
-public LayoutJuego(Stage stage, ControladorJuego controlador) {
-    this.controlador = controlador;
-    stage.setTitle("Juego");
-    root = new StackPane();
+        Button salir = new Button("Salir");
+        salir.setOnAction(e -> {
+            Stage stage = (Stage) contenedorFinal.getScene().getWindow();
+            stage.close();
+        });
 
-    layoutPrincipal = new BorderPane();
-    root.getChildren().add(layoutPrincipal);
+        contenedorFinal.getChildren().addAll(titulo, nombreGanador, salir);
 
-    crearCentroTablero();
-    crearZonaCartas();
-    crearBotonDerecha();
-    crearInfoIzquierda();
-}
+        Scene escenaGanador = new Scene(contenedorFinal, 600, 400);
 
-private void crearCentroTablero() {
-    tablero = new Pane();
-    tablero.setPrefSize(500, 400);
-    tablero.setStyle("-fx-background-color: #2e8b57; -fx-border-color: black;");
-    layoutPrincipal.setCenter(tablero);
-}
-
-private void crearZonaCartas() {
-    zonaCartas = new HBox(10);
-    zonaCartas.setAlignment(Pos.CENTER);
-    zonaCartas.setPadding(new Insets(10));
-    zonaCartas.setStyle("-fx-background-color: #eeeeee;");
-
-    // Ejemplo de 5 cartas ficticias
-    for (int i = 1; i <= 5; i++) {
-        Label carta = new Label("Carta " + i);
-        carta.setStyle("-fx-border-color: black; -fx-padding: 10px;");
-        zonaCartas.getChildren().add(carta);
+        // Obtener el Stage actual
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setScene(escenaGanador);
     }
-
-    layoutPrincipal.setBottom(zonaCartas);
 }
-
-private void crearBotonDerecha() {
-    botonPasar = new Button("Pasar turno");
-    VBox box = new VBox(botonPasar);
-    box.setPadding(new Insets(10));
-    box.setAlignment(Pos.CENTER);
-    layoutPrincipal.setRight(box);
-}
-
-private void crearInfoIzquierda() {
-    Font font = Font.font(14);
-
-    nombreJugadorLabel = new Label("Jugador: Tú");
-    puntosJugadorLabel = new Label("Puntos: 0");
-    rondasJugadorLabel = new Label("Rondas: 0");
-
-    nombreEnemigoLabel = new Label("Enemigo: CPU");
-    puntosEnemigoLabel = new Label("Puntos enemigo: 0");
-    rondasEnemigoLabel = new Label("Rondas enemigo: 0");
-
-    for (Label label : new Label[]{nombreJugadorLabel, puntosJugadorLabel, rondasJugadorLabel,
-            nombreEnemigoLabel, puntosEnemigoLabel, rondasEnemigoLabel}) {
-        label.setFont(font);
-    }
-
-    VBox jugadorBox = new VBox(5, nombreJugadorLabel, puntosJugadorLabel, rondasJugadorLabel);
-    VBox enemigoBox = new VBox(5, nombreEnemigoLabel, puntosEnemigoLabel, rondasEnemigoLabel);
-
-    VBox izquierda = new VBox(20, jugadorBox, enemigoBox);
-    izquierda.setPadding(new Insets(10));
-    izquierda.setAlignment(Pos.TOP_LEFT);
-
-    layoutPrincipal.setLeft(izquierda);
-}
-
-// Getter principal
-public StackPane getRoot() {
-    return root;
-}
-
-// Getters para el controlador
-public Button getBotonPasar() {
-    return botonPasar;
-}
-
-public Pane getTablero() {
-    return tablero;
-}
-
-public HBox getZonaCartas() {
-    return zonaCartas;
-}
-
-// Métodos para actualizar info en pantalla
-public void actualizarNombreJugador(String nombre) {
-    nombreJugadorLabel.setText("Jugador: " + nombre);
-}
-
-public void actualizarPuntosJugador(int puntos) {
-    puntosJugadorLabel.setText("Puntos: " + puntos);
-}
-
-public void actualizarRondasJugador(int rondas) {
-    rondasJugadorLabel.setText("Rondas: " + rondas);
-}
-
-public void actualizarNombreEnemigo(String nombre) {
-    nombreEnemigoLabel.setText("Enemigo: " + nombre);
-}
-
-public void actualizarPuntosEnemigo(int puntos) {
-    puntosEnemigoLabel.setText("Puntos enemigo: " + puntos);
-}
-
-public void actualizarRondasEnemigo(int rondas) {
-    rondasEnemigoLabel.setText("Rondas enemigo: " + rondas);
-}
-}
-
-
- */

@@ -47,6 +47,7 @@ public class Jugador {
     }
 
     public Jugador(Mazo mazo, ContenedorSecciones contenedorSecciones) {
+        this.seccion = contenedorSecciones;
         this.mazo = mazo;
         pasoDeRonda = false;
         rondasGanadas = 0;
@@ -177,4 +178,18 @@ public class Jugador {
         mano.remove(0);
         mano.remove(0);
     }
+
+    public int getRondasGanadas() {
+        return rondasGanadas;
+    }
+
+    public void jugarCartaAlAzar(Juego juego) {
+        if (!mano.isEmpty()) {
+            Carta carta = mano.get(0);
+            juego.jugar(carta);
+        } else {
+            juego.pasar();
+        }
+    }
+
 }
