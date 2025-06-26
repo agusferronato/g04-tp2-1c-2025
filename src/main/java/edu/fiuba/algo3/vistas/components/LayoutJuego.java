@@ -118,8 +118,8 @@ public class LayoutJuego {
 
                 Image imagen = new Image(getClass().getResourceAsStream("/" + unidad.getImage()));
                 ImageView fondoCarta = new ImageView(imagen);
-                fondoCarta.setFitWidth(90);
-                fondoCarta.setFitHeight(150);
+                fondoCarta.setFitWidth(80);
+                fondoCarta.setFitHeight(100);
                 fondoCarta.setPreserveRatio(false);
 
 
@@ -131,14 +131,14 @@ public class LayoutJuego {
 
 
                 Label puntaje = new Label("Puntos: " + unidad.calcularPuntaje(0));
-                puntaje.setStyle("-fx-font-size: 9px; -fx-text-fill: black;");
+                puntaje.setStyle("-fx-font-size: 9px; -fx-text-fill: white;");
                 puntaje.setAlignment(Pos.CENTER);
 
 
                 VBox carta = new VBox(fondoCarta, nombre, puntaje);
-                carta.setStyle("-fx-background-image: url('" + getClass().getResource("/imagenes/fondosecciones.jpg").toString() + "');" +
-                        "-fx-background-size: cover; ");
-                carta.setPrefSize(100, 150); //
+                carta.setStyle("-fx-background-image: url('" + getClass().getResource("/imagenes/txmadera.jpg").toString() + "');" +
+                        "-fx-background-size: cover; " + "-fx-text-fill: white");
+                carta.setPrefSize(40, 60); //
                 carta.setAlignment(Pos.TOP_CENTER);
                 carta.setSpacing(3);
                 carta.setPadding(new Insets(3));
