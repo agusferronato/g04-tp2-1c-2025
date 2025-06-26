@@ -1,29 +1,29 @@
 {
     "mazo_jugador_uno": {
         "unidades": [
-            { "nombre": "Birna Bran", "puntos": 2, "modificador": ["Medico"], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Geralt de Rivia", "puntos": 15, "modificador": ["Legendaria"], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Guerrero del Clan an Craite", "puntos": 6, "modificador": ["Carta Unida"], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Jaskier", "puntos": 2, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Vampiro: Katakan", "puntos": 5, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Barclay Els", "puntos": 6, "modificador": ["Agil"], "seccion": "Cuerpo a Cuerpo, Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Celaeno Harpía", "puntos": 2, "modificador": ["Agil"], "seccion": "Cuerpo a Cuerpo, Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Arquero de Infantería Negro", "puntos": 10, "modificador": [], "seccion": "Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Pirata del Clan Dimun", "puntos": 6, "modificador": [], "seccion": "Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Cazadores de Dragones de Crinfrid", "puntos": 5, "modificador": ["Carta Unida"], "seccion": "Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Catapulta", "puntos": 8, "modificador": ["Carta Unida"], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Ballesta", "puntos": 6, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Medico del Estandarte de Dun", "puntos": 5, "modificador": ["Medico"], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Torre de Asedio", "puntos": 6, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Thaler", "puntos": 1, "modificador": ["Espia"], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" }
+            { "nombre": "Birna Bran", "puntos": 2, "modificador": ["Medico"], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/birnabran.jpg" },
+            { "nombre": "Geralt de Rivia", "puntos": 15, "modificador": ["Legendaria"], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/geralt.png" },
+            { "nombre": "Guerrero del Clan an Craite", "puntos": 6, "modificador": ["Carta Unida"], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/Guerrero_del_Clan_an_Craite.png" },
+            { "nombre": "Jaskier", "puntos": 2, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/Jaskier.png" },
+            { "nombre": "Vampiro: Katakan", "puntos": 5, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/vampiro.jpg" },
+            { "nombre": "Barclay Els", "puntos": 6, "modificador": ["Agil"], "seccion": "Cuerpo a Cuerpo, Rango", "imagen": "imagenes/FotosCartas/BarclayEls.png" },
+            { "nombre": "Celaeno Harpía", "puntos": 2, "modificador": ["Agil"], "seccion": "Cuerpo a Cuerpo, Rango", "imagen": "imagenes/FotosCartas/harpia_celaeno.png" },
+            { "nombre": "Arquero de Infantería Negro", "puntos": 10, "modificador": [], "seccion": "Rango", "imagen": "imagenes/FotosCartas/arquero.jpg" },
+            { "nombre": "Pirata del Clan Dimun", "puntos": 6, "modificador": [], "seccion": "Rango", "imagen": "imagenes/FotosCartas/piratadelclandimun.jpg." },
+            { "nombre": "Cazadores de Dragones de Crinfrid", "puntos": 5, "modificador": ["Carta Unida"], "seccion": "Rango", "imagen": "imagenes/FotosCartas/cazadordragon.jpg" },
+            { "nombre": "Catapulta", "puntos": 8, "modificador": ["Carta Unida"], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/asedio.png" },
+            { "nombre": "Ballesta", "puntos": 6, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/asedio.png" },
+            { "nombre": "Medico del Estandarte de Dun", "puntos": 5, "modificador": ["Medico"], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/asedio.png" },
+            { "nombre": "Torre de Asedio", "puntos": 6, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/asedio.png" },
+            { "nombre": "Thaler", "puntos": 1, "modificador": ["Espia"], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/asedio.png" }
         ],
         "especiales": [
-            { "nombre": "Cuerno del comandante", "descripcion": "Duplica la fuerza de todas las cartas de una sección específica.", "tipo": "Morale boost" , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Cuerno del comandante", "descripcion": "Duplica la fuerza de todas las cartas de una sección específica.", "tipo": "Morale boost" , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Cuerno del comandante", "descripcion": "Duplica la fuerza de todas las cartas de una sección específica.", "tipo": "Morale boost" , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Escarcha mordaz", "descripcion": "Establece la fuerza de todas las cartas de Combate Cuerpo a Cuerpo en 1 para ambos jugadores.", "tipo": "Clima", "afectado": ["Combate Cuerpo a Cuerpo"] , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Lluvia torrencial", "descripcion": "Establece la fuerza de todas las cartas de Asedio en 1 para ambos jugadores.", "tipo": "Clima", "afectado": ["Asedio"] , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Tormeta de Skellige", "descripcion": "Establece la fuerza de todas las cartas de Combate Cuerpo a Cuerpo y Combate a Distancia en 1 para ambos jugadores.", "tipo": "Clima", "afectado": ["Cuerpo a Cuerpo", "Combate a Distancia"] , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" }
+            { "nombre": "Cuerno del comandante", "descripcion": "Duplica la fuerza de todas las cartas de una sección específica.", "tipo": "Morale boost" , "imagen": "imagenes/FotosCartas/cuernocomandante.png" },
+            { "nombre": "Cuerno del comandante", "descripcion": "Duplica la fuerza de todas las cartas de una sección específica.", "tipo": "Morale boost" , "imagen": "imagenes/FotosCartas/cuernocomandante.png" },
+            { "nombre": "Cuerno del comandante", "descripcion": "Duplica la fuerza de todas las cartas de una sección específica.", "tipo": "Morale boost" , "imagen": "imagenes/FotosCartas/cuernocomandante.png" },
+            { "nombre": "Escarcha mordaz", "descripcion": "Establece la fuerza de todas las cartas de Combate Cuerpo a Cuerpo en 1 para ambos jugadores.", "tipo": "Clima", "afectado": ["Combate Cuerpo a Cuerpo"] , "imagen": "imagenes/FotosCartas/escarcha.png" },
+            { "nombre": "Lluvia torrencial", "descripcion": "Establece la fuerza de todas las cartas de Asedio en 1 para ambos jugadores.", "tipo": "Clima", "afectado": ["Asedio"] , "imagen": "imagenes/FotosCartas/lluvia.png" },
+            { "nombre": "Tormeta de Skellige", "descripcion": "Establece la fuerza de todas las cartas de Combate Cuerpo a Cuerpo y Combate a Distancia en 1 para ambos jugadores.", "tipo": "Clima", "afectado": ["Cuerpo a Cuerpo", "Combate a Distancia"] , "imagen": "imagenes/FotosCartas/tormenta.png" }
         ]
     },
     "mazo_jugador_dos": {

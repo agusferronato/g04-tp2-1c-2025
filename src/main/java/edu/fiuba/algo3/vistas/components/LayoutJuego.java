@@ -6,14 +6,18 @@ import edu.fiuba.algo3.modelo.Carta.UnidadGeneral;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
+import javafx.scene.paint.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,6 +46,10 @@ public class LayoutJuego {
         layoutPrincipal = new BorderPane();
         root.getChildren().add(layoutPrincipal);
 
+        root.setStyle("-fx-background-image: url('" + getClass().getResource("/imagenes/txmadera2.jpg").toString() + "');" +
+                "-fx-background-size: cover;");
+
+
         crearCentroTablero();
         crearZonaMano();
         crearInfoIzquierda();
@@ -53,7 +61,7 @@ public class LayoutJuego {
     public void crearCentroTablero() {
         int columnas = 3;
         int filas = 2;
-        double separacion = 40;
+        double separacion = 20;
         GridPane tablero = new GridPane();
         tablero.setGridLinesVisible(false);
         tablero.setPadding(new Insets(separacion));
@@ -79,9 +87,9 @@ public class LayoutJuego {
             row.setVgrow(Priority.ALWAYS);
             tablero.getRowConstraints().add(row);
         }
-        //List<Carta> cartas = new ArrayList<>(controlador.obtenerCartasJugador());
+
         List<Ubicable> secciones = new ArrayList<>(controlador.obtenerSecciones());
-        Collections.reverse(secciones); // si querés invertir el orden
+        Collections.reverse(secciones);
 
         for (int i = 0; i < secciones.size(); i++) {
             Ubicable seccion = secciones.get(i);
@@ -107,14 +115,14 @@ public class LayoutJuego {
             for (int j = 0; j < cartas.size(); j++) {
                 UnidadGeneral unidad = cartas.get(j);
 
-                // Imagen más grande
+
                 Image imagen = new Image(getClass().getResourceAsStream("/" + unidad.getImage()));
                 ImageView fondoCarta = new ImageView(imagen);
                 fondoCarta.setFitWidth(90);   // ajustado al ancho
                 fondoCarta.setFitHeight(120); // más altura
                 fondoCarta.setPreserveRatio(false);
 
-                // Nombre en fuente más chica
+
                 Label nombre = new Label(unidad.getNombre());
                 nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: red;");
                 nombre.setWrapText(true);
@@ -129,7 +137,7 @@ public class LayoutJuego {
 
                 VBox carta = new VBox(fondoCarta, nombre, puntaje);
                 carta.setStyle("-fx-background-color: white; -fx-border-color: black;");
-                carta.setPrefSize(100, 160); // suficiente para imagen + texto chico
+                carta.setPrefSize(100, 150); //
                 carta.setAlignment(Pos.TOP_CENTER);
                 carta.setSpacing(3);
                 carta.setPadding(new Insets(3));
@@ -153,31 +161,39 @@ public class LayoutJuego {
     }
 
 
-    public void crearZonaMano () {
+    public void crearZonaMano() {
         zonaCartas = new HBox(10);
         zonaCartas.setAlignment(Pos.CENTER);
         zonaCartas.setPadding(new Insets(10));
-        zonaCartas.setStyle("-fx-background-color: #2c0808;");
 
         List<Carta> cartas = controlador.obtenerCartasJugador();
 
         for (Carta carta : cartas) {
+            // Imagen
+            Image imagen = new Image(getClass().getResourceAsStream("/" + carta.getImage()));
+            ImageView fondoCarta = new ImageView(imagen);
+            fondoCarta.setFitWidth(80);
+            fondoCarta.setFitHeight(80);
 
+            fondoCarta.setPreserveRatio(true);
+
+            // Texto
             Label formato = new Label(carta.getFormato());
-            formato.setStyle("-fx-font-size: 12px; -fx-text-fill: red;");
+            formato.setStyle("-fx-font-size: 10px; -fx-text-fill: red;");
             formato.setWrapText(true);
+            formato.setMaxWidth(80);
+            formato.setAlignment(Pos.CENTER);
 
-            VBox contenido = new VBox(formato);
-            contenido.setAlignment(Pos.TOP_LEFT);
+            VBox contenido = new VBox(fondoCarta, formato);
+            contenido.setAlignment(Pos.TOP_CENTER);
+            contenido.setSpacing(5);
 
             Button botonCarta = new Button();
             botonCarta.setStyle("-fx-background-color: white; -fx-border-color: black;");
             botonCarta.setGraphic(contenido);
-            botonCarta.setPrefSize(140, 200);
-
+            botonCarta.setPrefSize(120, 150);
 
             botonCarta.setOnAction(e -> {
-                /* Logica de seleccion */
                 botonCarta.setDisable(true);
                 controlador.jugar(carta);
                 crearCentroTablero();
@@ -186,6 +202,7 @@ public class LayoutJuego {
 
             zonaCartas.getChildren().add(botonCarta);
         }
+
         layoutPrincipal.setBottom(zonaCartas);
     }
 
@@ -201,7 +218,7 @@ public class LayoutJuego {
     }
 
     private void crearInfoIzquierda() {
-        Font font = Font.font(14);
+        Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 30);
 
         nombreJugadorLabel = new Label("Jugador: " + controlador.obtenerNombreJugador());
         puntosJugadorLabel = new Label("Puntos: 0");
@@ -213,25 +230,58 @@ public class LayoutJuego {
 
         for (Label label : new Label[]{nombreJugadorLabel, puntosJugadorLabel, rondasJugadorLabel,
                 nombreEnemigoLabel, puntosEnemigoLabel, rondasEnemigoLabel}) {
-            label.setFont(font);
+            label.setFont(cardinalFont);
+            label.setTextFill(Color.GOLD);
         }
 
         VBox jugadorBox = new VBox(5, nombreJugadorLabel, puntosJugadorLabel, rondasJugadorLabel);
         VBox enemigoBox = new VBox(5, nombreEnemigoLabel, puntosEnemigoLabel, rondasEnemigoLabel);
 
-        VBox izquierda = new VBox(20, jugadorBox, enemigoBox);
-        izquierda.setStyle("-fx-background-color: #2c0808;");
-        izquierda.setPadding(new Insets(10));
-        izquierda.setPrefWidth(200);
-        izquierda.setAlignment(Pos.TOP_LEFT);
-        layoutPrincipal.setLeft(izquierda);
+        jugadorBox.setAlignment(Pos.BOTTOM_LEFT);
+        enemigoBox.setAlignment(Pos.TOP_LEFT);
+
+        BorderPane contenedor = new BorderPane();
+        contenedor.setPadding(new Insets(10));
+        contenedor.setPrefWidth(250);
+
+        BorderPane.setMargin(enemigoBox, new Insets(60, 0, 0, 0)); //
+        BorderPane.setMargin(jugadorBox, new Insets(0, 0, 60, 0)); //
+
+        contenedor.setTop(enemigoBox);
+        contenedor.setBottom(jugadorBox);
+
+        layoutPrincipal.setLeft(contenedor);
     }
 
     private void crearBotonDerecha() {
-        Button botonPasar = new Button("Pasar");
-        VBox box = new VBox(botonPasar);
+        Button button = new Button("Pasar");
+        Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 40);
+        button.setFont(cardinalFont);
+        button.setPrefSize(250, 100);
+        button.setStyle(
+                "-fx-background-color: #ffcc00; " +
+                        "-fx-background-radius: 25px; " +
+                        "-fx-padding: 10 10 10 10; " +
+                        "-fx-background-insets: 0;"
+        );
+        button.setCursor(Cursor.HAND);
+        DropShadow outerGlow = new DropShadow();
+        outerGlow.setColor(Color.web("#ffffaa"));
+        outerGlow.setRadius(30);
+        outerGlow.setSpread(0.6);
+
+        InnerShadow innerGlow = new InnerShadow();
+        innerGlow.setColor(Color.web("#ffffaa"));
+        innerGlow.setRadius(20);
+        innerGlow.setChoke(0.3);
+        innerGlow.setInput(outerGlow);
+
+        button.setOnMouseEntered(e -> button.setEffect(innerGlow));
+        button.setOnMouseExited(e -> button.setEffect(null));
+        VBox box = new VBox(button);
         box.setPadding(new Insets(10));
         box.setAlignment(Pos.CENTER);
+        box.setPrefWidth(250);
         layoutPrincipal.setRight(box);
     }
 
