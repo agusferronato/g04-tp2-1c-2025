@@ -13,9 +13,7 @@ public class Puntaje {
         puntajeActual = puntajeBase * acumulador;
     }
 
-    public int calcularPuntaje(int acumulador) {
-        return puntajeActual + acumulador;
-    }
+    public int calcularPuntaje(int acumulador) {return puntajeActual + acumulador;}
 
     public boolean superaPuntaje(int puntaje) {
         return puntajeActual >= puntaje;

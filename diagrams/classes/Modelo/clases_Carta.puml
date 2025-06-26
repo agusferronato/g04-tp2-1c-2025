@@ -1,0 +1,64 @@
+@startuml
+skinparam class {
+    BackgroundColor White
+    ArrowColor #003366
+    BorderColor #003366
+    InterfaceBackgroundColor #F5F5FF
+    InterfaceBorderColor #6666FF
+    InterfaceBorderStyle dashed
+}
+
+abstract class Carta {
+    - tipo : string
+    # Carta(tipo:string)
+    + usar(jugador:Jugador)
+    + esDeTipo(tipo:string): int
+    + tengoMismoTipoQue(tipo:string): boolean
+}
+
+abstract class UnidadGeneral {
+    # seccion : Ubicable
+    # UnidadGeneral(tipo:string, seccion:Ubicable, puntaje:Puntaje)
+    + ubicar()
+    + ubicarEn(seccion:Ubicable)
+    + calcularPuntaje(acumulador:int): int
+    + modificarPuntaje(tipo:string, acumulador:int)
+    + reiniciarPuntaje()
+    + enviarComando(comando: ComandoPorCarta)
+}
+
+class Puntaje {
+    - puntajeBase : int
+    - puntajeActual : int
+    + Puntaje(puntajeBase:int)
+    + modificarPuntaje(acumulador:int)
+    + calcularPuntaje(acumulador:int): int
+    + congelarPuntaje()
+    + duplicarPuntaje()
+    + aumentarPuntaje()
+    + reiniciarPuntaje()
+}
+
+class Unidad {
+    + Unidad(tipo:string, seccion:Ubicable, puntaje:Puntaje)
+    + usar(jugador:Jugador)
+}
+
+abstract class Modificador {
+    # Modificador(cartaBase:Unidad)
+    + usar(jugador:Jugador)
+}
+
+abstract class Especial {
+    - descripcion : string
+    # Especial(nombre:string, descripcion:string)
+    + usar(jugador:Jugador)
+}
+
+UnidadGeneral --|> Carta
+UnidadGeneral --> "1" Puntaje
+Unidad --|> UnidadGeneral
+Modificador --|> UnidadGeneral
+Modificador --> Unidad
+Especial --|> Carta
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+skinparam class {
+    BackgroundColor White
+    ArrowColor #003366
+    BorderColor #003366
+    InterfaceBackgroundColor #F5F5FF
+    InterfaceBorderColor #6666FF
+    InterfaceBorderStyle dashed
+}
+
+abstract class Especial {
+    - descripcion : string
+    # Especial(nombre:string, descripcion:string)
+    + usar(jugador:Jugador)
+}
+
+class Clima {
+    - seccion : Seccion
+    + Clima(nombre:string, descripcion:string, seccion:Seccion)
+    + usar(jugador:Jugador)
+}
+
+class NeutralizarClima {
+    - seccion : Seccion
+    + NeutralizarClima(nombre:string, descripcion:string, seccion:Seccion)
+    + usar(jugador:Jugador)
+}
+
+class MoraleBoost {
+    - seccion : Seccion
+    + MoraleBoost(nombre:string, descripcion:string, seccion:Seccion)
+    + usar(jugador:Jugador)
+}
+
+class TierraArrasada {
+    - secciones : ContenedorSecciones
+    + TierraArrasada(nombre:string, descripcion:string, secciones:ContenedorSecciones)
+    + usar(jugador:Jugador)
+}
+
+Clima --|> Especial
+NeutralizarClima --|> Especial
+MoraleBoost --|> Especial
+TierraArrasada --|> Especial
+
+@enduml

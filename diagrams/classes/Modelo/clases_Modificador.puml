@@ -1,0 +1,72 @@
+@startuml
+skinparam class {
+    BackgroundColor White
+    ArrowColor #003366
+    BorderColor #003366
+    InterfaceBackgroundColor #F5F5FF
+    InterfaceBorderColor #6666FF
+    InterfaceBorderStyle dashed
+}
+
+abstract class Modificador {
+    # Modificador(cartaBase:Unidad)
+    + usar(jugador:Jugador)
+}
+
+class Legendaria {
+    - seccion : Ubicable
+    + Legendaria(cartaBase:Unidad, seccion:Ubicable)
+    + usar(jugador:Jugador)
+    + enviarComando(comando:ComandoPorCarta)
+    + calcularPuntaje(acumulador:int): int
+    + reiniciarPuntaje()
+}
+
+class Legendaria {
+    - seccion : Ubicable
+    + Legendaria(cartaBase:Unidad, seccion:Ubicable)
+    + usar(jugador:Jugador)
+    + enviarComando(comando:ComandoPorCarta)
+    + calcularPuntaje(acumulador:int): int
+    + reiniciarPuntaje()
+}
+
+class Agil {
+    - seccionAleatoria : SeccionAleatoria
+    + Agil(cartaBase:Unidad, seccionAleatoria:SeccionAleatoria)
+    + usar(jugador:Jugador)
+}
+
+class Espia {
+    - cartasDelMazoATomar : int
+    - seccion : Ubicable
+    + Espia(cartaBase:Unidad, seccion:Ubicable)
+    + usar(jugador:Jugador)
+}
+
+class Medico {
+    + Medico(cartaBase:Unidad)
+    + usar(jugador:Jugador)
+}
+
+class SumaValoresBase {
+    - seccion : Ubicable
+    + SumaValoresBase(cartaBase:Unidad, seccion:Ubicable)
+    + usar(jugador:Jugador)
+}
+
+class Unida {
+    - tipo : string
+    - seccion : Ubicable
+    + Unida(cartaBase:Unidad, seccion:Ubicable, tipo:string)
+    + usar(jugador:Jugador)
+}
+
+Legendaria --|> Modificador
+Agil --|> Modificador
+Espia --|> Modificador
+Medico --|> Modificador
+SumaValoresBase --|> Modificador
+Unida --|> Modificador
+
+@enduml

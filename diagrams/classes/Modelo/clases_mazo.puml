@@ -1,0 +1,31 @@
+@startuml
+skinparam class {
+    BackgroundColor White
+    ArrowColor #003366
+    BorderColor #003366
+    InterfaceBackgroundColor #F5F5FF
+    InterfaceBorderColor #6666FF
+    InterfaceBorderStyle dashed
+}
+
+abstract class Carta {
+    - tipo : string
+    + Carta(tipo:string)
+    + usar(jugador:Jugador)
+    + esDeTipo(tipo:string): int
+    + tengoMismoTipoQue(tipo:string): boolean
+}
+
+class Mazo {
+    + Mazo(cartas:List<Carta>)
+    + seleccionarCartasAlAzar(cantidad:int): List<Carta>
+    + quitarCartas(cartas:List<Carta>)
+}
+
+class GeneradorAleatorioCartas {
+    + cartasAlAzar(cartas:List<Carta>, cantidad:int): List<Carta>
+}
+
+Mazo --> "*" Carta
+Mazo ..> GeneradorAleatorioCartas
+@enduml

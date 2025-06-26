@@ -1,0 +1,80 @@
+\documentclass[a4paper,12pt]{article}
+
+% Paquetes básicos
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+% Márgenes y espaciado
+\geometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\setstretch{1.3}
+
+% Configuración de títulos
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+% Documento
+\begin{document}
+
+% Portada
+\begin{titlepage}
+    \centering
+    \vspace*{5cm}
+
+    {\Huge \textbf{Informe del Trabajo Práctico Nº 2}\\[1.5cm]}
+
+    {\Large Paradigmas de Programación - FIUBA \\[1.5cm]}
+
+    \textbf{Integrantes:} \\[0.5cm]
+    - Agustin Ferronato\\
+    - Faustino Millares \\
+    - Matias Llorens \\
+    - Santiago Zottig \\[2cm]
+
+    \vfill
+    \textbf{Fecha:} \today
+
+\end{titlepage}
+
+% Índice (opcional)
+\tableofcontents
+\newpage
+
+% Contenido
+\section{Supuestos}
+Aquí se detallan todos los supuestos tomados a partir del enunciado.
+A continuación se detallan los supuestos que tomamos:
+
+\begin{enumerate}
+    \item Al repartir aleatoriamente las 10 cartas a cada jugador
+     de su mazo, se le ofrece la posibilidad de descartar 2
+     cartas por otras 2 del mazo, estas 2 cartas seran 
+     descartadas aleatoriamente.
+    \item Una carta con el modificador Agil al ser utilizada
+    se ubicara aleatoriamente en una de las secciones de las 
+    que se puede ubicar
+    \item Una carta con el modificador de Medico al ser utilizada
+    jugara automaticamente y de forma aleatoria una carta de la
+    pila de descarte en caso de que esta contenga alguna
+\end{enumerate}
+
+\section{Diagrama de Clases}
+Aquí se insertan o describen los diagramas de clases.
+
+\section{Diagrama de Secuencia}
+Aquí se inserta o explica el diagrama de secuencia.
+
+\section{Diagrama de Paquetes}
+Aquí se incluye el diagrama de paquetes.
+
+\section{Detalles de Implementación}
+Se describen detalles relevantes sobre la implementación, decisiones técnicas, patrones, etc.
+
+\section{Excepciones}
+Se enumeran las excepciones o casos especiales tratados en la implementación.
+
+\end{document}

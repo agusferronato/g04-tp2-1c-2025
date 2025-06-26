@@ -1,0 +1,51 @@
+@startuml
+skinparam class {
+    BackgroundColor White
+    ArrowColor #003366
+    BorderColor #003366
+    InterfaceBackgroundColor #F5F5FF
+    InterfaceBorderColor #6666FF
+    InterfaceBorderStyle dashed
+}
+
+class Juego {
+    - rondas : int
+    - jugadorActual : Jugador
+    - ganador : Jugador
+    + Juego(tablero:Tablero)
+    + iniciar()
+    + jugar(carta:Carta)
+    + pasarDeRonda()
+    + repartirCartas(cantidad:int)
+    + obtenerGanador():Jugador
+}
+
+class Tablero {
+    - secciones : Diccionario<Jugador, Seccion>
+    + agregarSeccion(jugador:Jugador, seccion:Seccion)
+    + cantidadDeCartasEnTotal(): int
+    + levantarCartasPara(jugador)
+    + limpiarComandos()
+}
+
+class Jugador {
+    - nombre : String
+    - mazo : Mazo
+    - mano : List<Carta>
+    - pilaDescarte : List<UnidadGeneral>
+    - rondasGanadas : int
+    - secciones : ContenedorSecciones
+    + Jugador(nombre:string, mazo:Mazo, secciones:ContenedorSecciones)
+    + calcularPuntaje(): int
+    + jugarCarta(carta:Carta)
+    + descartarCartas()
+    + tomarCartasDelMazo(cartarATomar:int)
+    + tomarDePilaDeDescarte(): UnidadGeneral
+    + pasarDeRonda()
+}
+
+
+Juego --> "1" Tablero
+Juego --> "2" Jugador
+
+@enduml
