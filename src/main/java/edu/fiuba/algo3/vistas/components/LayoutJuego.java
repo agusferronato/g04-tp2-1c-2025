@@ -8,6 +8,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -77,7 +79,7 @@ public class LayoutJuego {
             row.setVgrow(Priority.ALWAYS);
             tablero.getRowConstraints().add(row);
         }
-
+        //List<Carta> cartas = new ArrayList<>(controlador.obtenerCartasJugador());
         List<Ubicable> secciones = new ArrayList<>(controlador.obtenerSecciones());
         Collections.reverse(secciones); // si querés invertir el orden
 
@@ -96,18 +98,49 @@ public class LayoutJuego {
             titulo.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;");
             vistaSeccion.getChildren().add(titulo);
 
-            for (UnidadGeneral unidad : seccion.obtenerCartas()) {
-                Label formato = new Label(unidad.getFormato());
-                formato.setStyle("-fx-font-size: 12px; -fx-text-fill: red;");
-                formato.setWrapText(true);
+            GridPane grillaCartas = new GridPane();
+            grillaCartas.setHgap(10);
+            grillaCartas.setVgap(10);
 
-                VBox carta = new VBox(formato);
+            int cartasPorFila = 3;
+            List<UnidadGeneral> cartas = seccion.obtenerCartas();
+            for (int j = 0; j < cartas.size(); j++) {
+                UnidadGeneral unidad = cartas.get(j);
+
+                // Imagen más grande
+                Image imagen = new Image(getClass().getResourceAsStream("/" + unidad.getImage()));
+                ImageView fondoCarta = new ImageView(imagen);
+                fondoCarta.setFitWidth(90);   // ajustado al ancho
+                fondoCarta.setFitHeight(120); // más altura
+                fondoCarta.setPreserveRatio(false);
+
+                // Nombre en fuente más chica
+                Label nombre = new Label(unidad.getNombre());
+                nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: red;");
+                nombre.setWrapText(true);
+                nombre.setMaxWidth(90);
+                nombre.setAlignment(Pos.CENTER);
+
+
+                Label puntaje = new Label("Puntos: " + unidad.calcularPuntaje(0));
+                puntaje.setStyle("-fx-font-size: 9px; -fx-text-fill: black;");
+                puntaje.setAlignment(Pos.CENTER);
+
+
+                VBox carta = new VBox(fondoCarta, nombre, puntaje);
                 carta.setStyle("-fx-background-color: white; -fx-border-color: black;");
-                carta.setPrefSize(140, 200);
-                carta.setAlignment(Pos.TOP_LEFT);
+                carta.setPrefSize(100, 160); // suficiente para imagen + texto chico
+                carta.setAlignment(Pos.TOP_CENTER);
+                carta.setSpacing(3);
+                carta.setPadding(new Insets(3));
 
-                vistaSeccion.getChildren().add(carta);
+                int filaCarta = j / cartasPorFila;
+                int colCarta = j % cartasPorFila;
+
+                grillaCartas.add(carta, colCarta, filaCarta);
             }
+
+            vistaSeccion.getChildren().add(grillaCartas);
 
             int fila = i / columnas;
             int col = i % columnas;

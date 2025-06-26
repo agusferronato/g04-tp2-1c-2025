@@ -8,7 +8,6 @@ import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 
 public class Unidad extends UnidadGeneral {
-
     public Unidad () {}
 
     public Unidad (String tipo, Ubicable seccion, Puntaje puntaje) {

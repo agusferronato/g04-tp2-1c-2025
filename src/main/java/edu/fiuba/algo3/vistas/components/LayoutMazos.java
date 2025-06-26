@@ -8,6 +8,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -98,26 +102,43 @@ public class LayoutMazos {
     }
 
 
-    private void inicializarSeccionCartas (ControladorJuego controlador) {
+    private void inicializarSeccionCartas(ControladorJuego controlador) {
         cartasJugadorBox.setAlignment(Pos.CENTER);
         cartasJugadorBox.setPadding(new Insets(20, 10, 20, 10));
 
         List<Carta> cartasJugador = controlador.obtenerCartasJugador();
         for (Carta carta : cartasJugador) {
-            Label cartaLabel = new Label(carta.getFormato());
-            cartaLabel.setPrefSize(150, 250); // Tamaño tipo carta
-            cartaLabel.setAlignment(Pos.CENTER);
-            cartaLabel.setStyle(
+
+            Image imagen = new Image(getClass().getResourceAsStream("/" + carta.getImage()));
+            ImageView fondoCarta = new ImageView(imagen);
+            fondoCarta.setFitWidth(150);
+            fondoCarta.setFitHeight(150);
+            fondoCarta.setPreserveRatio(false);
+
+
+            Label textoCarta = new Label(carta.getFormato());
+            textoCarta.setWrapText(true);
+            textoCarta.setPrefWidth(140);
+            textoCarta.setPrefHeight(130);
+            textoCarta.setAlignment(Pos.TOP_CENTER);
+            textoCarta.setStyle("-fx-font-size: 12px; -fx-text-fill: black;");
+
+
+            VBox cartaVisual = new VBox(fondoCarta, textoCarta);
+            cartaVisual.setPrefSize(150, 300);
+            cartaVisual.setAlignment(Pos.TOP_CENTER);
+            cartaVisual.setSpacing(5);
+            cartaVisual.setStyle(
                     "-fx-border-color: black;" +
                             "-fx-background-color: white;" +
-                            "-fx-font-size: 12px;" +
                             "-fx-border-radius: 5px;" +
                             "-fx-background-radius: 5px;"
             );
-            cartaLabel.setWrapText(true);
-            cartasJugadorBox.getChildren().add(cartaLabel);
+
+            cartasJugadorBox.getChildren().add(cartaVisual);
         }
     }
+
 
     public StackPane getRoot() {
         return root;

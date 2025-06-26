@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 
 public abstract class Carta {
     private String tipo;
-
+    private String image;
     public Carta(String tipo) {
         this.tipo = tipo;
     }
@@ -23,6 +23,10 @@ public abstract class Carta {
     public String getNombre() {
         return tipo;
     }
+
+    public String getImage() {return image;}
+
+    public void setImage(String image) {this.image = image;}
 
     public abstract String getFormato();
 }

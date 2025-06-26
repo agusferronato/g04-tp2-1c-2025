@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Carta.*;
 import edu.fiuba.algo3.modelo.Carta.Especial.Especial;
+import edu.fiuba.algo3.modelo.Carta.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
 import edu.fiuba.algo3.modelo.Seccion.Rango;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
@@ -30,6 +31,8 @@ public class ConversorJugador {
 
         String nombre = carta.get("nombre").getAsString();
 
+        String imagen = carta.get("imagen").getAsString();
+
         int puntos = carta.get("puntos").getAsInt();
         Puntaje puntaje = new Puntaje(puntos);
 
@@ -41,6 +44,8 @@ public class ConversorJugador {
         Ubicable seccion = ParserSeccion.obtenerSeccion(nombresSecciones[0]);
         Unidad cartaBase = new Unidad(nombre, obtenerSeccion(seccion), puntaje);
 
+        cartaBase.setImage(imagen);
+
         String nombreModificador = "";
         JsonArray arrayModificadores =  carta.get("modificador").getAsJsonArray();
         if (!arrayModificadores.isEmpty()) {
@@ -48,8 +53,11 @@ public class ConversorJugador {
         }
 
         if (!nombreModificador.isEmpty()) {
-            return ParserModificador.
+
+            Modificador modificador =  ParserModificador.
                     obtenerModificador(this, nombresSecciones, nombreModificador, cartaBase, nombreSeccion);
+            modificador.setImage(imagen);
+            return modificador;
         }
         return cartaBase;
     }
@@ -116,6 +124,7 @@ public class ConversorJugador {
 
         String nombre = carta.get("nombre").getAsString();
         String descripcion = carta.get("descripcion").getAsString();
+        String imagen = carta.get("imagen").getAsString();
 
         JsonElement afectado = carta.get("afectado");
 
@@ -130,8 +139,10 @@ public class ConversorJugador {
             }
         }
 
-
         Especial cartaParseada = ParserEspecial.obtenerCarta(this, tipo, nombre, descripcion, nombresSecciones);
+        if (cartaParseada != null) {
+            cartaParseada.setImage(imagen);
+        }
         return cartaParseada;
     }
 }
