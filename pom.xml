@@ -33,6 +33,12 @@
       <artifactId>javafx-controls</artifactId>
       <version>${javafx-version}</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.13.1</version>
+    </dependency>
 
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -56,6 +62,11 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.30</version>
+    </dependency>
+    <dependency>
+      <groupId>edu.fiuba.algo3</groupId>
+      <artifactId>tp2</artifactId>
+      <version>0.0.1</version>
     </dependency>
   </dependencies>
   <profiles>
