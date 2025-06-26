@@ -118,13 +118,13 @@ public class LayoutJuego {
 
                 Image imagen = new Image(getClass().getResourceAsStream("/" + unidad.getImage()));
                 ImageView fondoCarta = new ImageView(imagen);
-                fondoCarta.setFitWidth(90);   // ajustado al ancho
-                fondoCarta.setFitHeight(120); // más altura
+                fondoCarta.setFitWidth(90);
+                fondoCarta.setFitHeight(150);
                 fondoCarta.setPreserveRatio(false);
 
 
                 Label nombre = new Label(unidad.getNombre());
-                nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: red;");
+                nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: #ffffff;");
                 nombre.setWrapText(true);
                 nombre.setMaxWidth(90);
                 nombre.setAlignment(Pos.CENTER);
@@ -136,7 +136,8 @@ public class LayoutJuego {
 
 
                 VBox carta = new VBox(fondoCarta, nombre, puntaje);
-                carta.setStyle("-fx-background-color: white; -fx-border-color: black;");
+                carta.setStyle("-fx-background-image: url('" + getClass().getResource("/imagenes/fondosecciones.jpg").toString() + "');" +
+                        "-fx-background-size: cover; ");
                 carta.setPrefSize(100, 150); //
                 carta.setAlignment(Pos.TOP_CENTER);
                 carta.setSpacing(3);
@@ -172,14 +173,15 @@ public class LayoutJuego {
             // Imagen
             Image imagen = new Image(getClass().getResourceAsStream("/" + carta.getImage()));
             ImageView fondoCarta = new ImageView(imagen);
-            fondoCarta.setFitWidth(80);
+            fondoCarta.setFitWidth(120);
             fondoCarta.setFitHeight(80);
+
 
             fondoCarta.setPreserveRatio(true);
 
             // Texto
             Label formato = new Label(carta.getFormato());
-            formato.setStyle("-fx-font-size: 10px; -fx-text-fill: red;");
+            formato.setStyle("-fx-font-size: 10px; -fx-text-fill: #000000;");
             formato.setWrapText(true);
             formato.setMaxWidth(80);
             formato.setAlignment(Pos.CENTER);

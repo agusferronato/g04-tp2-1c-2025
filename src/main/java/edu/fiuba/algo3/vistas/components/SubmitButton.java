@@ -18,11 +18,10 @@ public class SubmitButton {
 
     private void inicializarBoton (EventHandler<ActionEvent> action) {
         button = new Button("Submit");
-        button.setPrefHeight(100);
-        button.setPrefWidth(250);
-        Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 50);
+        button.setPrefHeight(40);
+        button.setPrefWidth(120);
+        Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 20);
         button.setFont(cardinalFont);
-        button.setPrefSize(250, 100);
         button.setStyle(
                 "-fx-background-color: #ffcc00; " +
                         "-fx-background-radius: 25px; " +

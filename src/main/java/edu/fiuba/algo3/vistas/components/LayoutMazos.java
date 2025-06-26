@@ -86,8 +86,8 @@ public class LayoutMazos {
 
     private GridPane inicializarGridCartas(ControladorJuego controlador) {
         GridPane grid = new GridPane();
-        grid.setHgap(20);
-        grid.setVgap(20);
+        grid.setHgap(30);
+        grid.setVgap(30);
         grid.setAlignment(Pos.CENTER);
 
         List<Carta> cartasJugador = controlador.obtenerCartasJugador();
@@ -98,23 +98,27 @@ public class LayoutMazos {
 
             Image imagen = new Image(getClass().getResourceAsStream("/" + carta.getImage()));
             ImageView fondoCarta = new ImageView(imagen);
-            fondoCarta.setFitWidth(200);
-            fondoCarta.setFitHeight(160);
+            fondoCarta.setFitWidth(100);
+            fondoCarta.setFitHeight(130);
             fondoCarta.setPreserveRatio(false);
 
             Label nombre = new Label(carta.getFormatoCarta());
-            nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: red;");
+            nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: #000000;");
             nombre.setWrapText(true);
             nombre.setMaxWidth(90);
             nombre.setAlignment(Pos.CENTER);
 
+
             VBox cartaVisual = new VBox(fondoCarta, nombre);
             cartaVisual.setAlignment(Pos.TOP_CENTER);
             cartaVisual.setSpacing(5);
-            cartaVisual.setPrefSize(200, 600);
+            cartaVisual.setPrefSize(100, 200);
             cartaVisual.setStyle(
-                    "-fx-border-color: black;" +
-                            "-fx-background-color: white;" +
+                    "-fx-background-color: white; " +
+                            "-fx-background-size: cover;" +
+                            "-fx-background-repeat: no-repeat;" +
+                            "-fx-background-position: center;" +
+                            "-fx-border-color: black;" +
                             "-fx-border-radius: 5px;" +
                             "-fx-background-radius: 5px;"
             );
@@ -159,12 +163,12 @@ public class LayoutMazos {
 
             Image imagen = new Image(getClass().getResourceAsStream("/" + carta.getImage()));
             ImageView fondoCarta = new ImageView(imagen);
-            fondoCarta.setFitWidth(200);
-            fondoCarta.setFitHeight(160);
+            fondoCarta.setFitWidth(100);
+            fondoCarta.setFitHeight(130);
             fondoCarta.setPreserveRatio(false);
 
             Label nombre = new Label(carta.getFormatoCarta());
-            nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: red;");
+            nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: #000000;");
             nombre.setWrapText(true);
             nombre.setMaxWidth(90);
             nombre.setAlignment(Pos.CENTER);
@@ -173,7 +177,7 @@ public class LayoutMazos {
 
             cartaVisual.setAlignment(Pos.TOP_CENTER);
             cartaVisual.setSpacing(5);
-            cartaVisual.setPrefSize(200, 600);
+            cartaVisual.setPrefSize(100, 200);
             cartaVisual.setStyle(
                     "-fx-border-color: black;" +
                             "-fx-background-color: white;" +
