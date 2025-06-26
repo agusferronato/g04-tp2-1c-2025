@@ -170,7 +170,10 @@ public class Jugador {
     }
 
     public void tomarDosCartasDelMazo() {
-        tomarCartasDelMazo(2);
+        List<Carta> cartasSeleccionadas = this.mazo.seleccionarCartasAlAzar(2);
+        Collections.shuffle(mano);
+        mano.addAll(cartasSeleccionadas);
+        mazo.quitarCartas(cartasSeleccionadas);
         mano.remove(0);
         mano.remove(0);
     }
