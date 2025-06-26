@@ -26,11 +26,11 @@ public class LayoutMazos {
     public LayoutMazos(Stage stage, SubmitButton button, ControladorJuego controlador) {
         controlador.repartirCartas();
 
-        // Fondo
+
         BackgroundImage background = new BackgroundImage(stage, "/imagenes/backgroundElegirMazo.jpg");
 
-        // Título
-        Text title = new Text("Choose your deck");
+
+        Text title = new Text("Cambiar dos cartas?");
         title.setFill(Color.GOLD);
         Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 80);
         title.setFont(cardinalFont);
@@ -38,12 +38,12 @@ public class LayoutMazos {
         titleBox.setAlignment(Pos.TOP_CENTER);
         titleBox.setPadding(new Insets(30, 20, 20, 20));
 
-        // Grid con cartas
+
         GridPane gridCartas = inicializarGridCartas(controlador);
         gridCartas.setMaxHeight(Double.MAX_VALUE);
         VBox.setVgrow(gridCartas, Priority.ALWAYS);
 
-        // Botones
+
         Button botonComenzarPartida = button.getButton();
         botonComenzarPartida.setVisible(false);
         botonComenzarPartida.setText("Comenzar");
@@ -108,13 +108,23 @@ public class LayoutMazos {
             nombre.setMaxWidth(90);
             nombre.setAlignment(Pos.CENTER);
 
+            Image imagenInferior = new Image(getClass().getResourceAsStream("/imagenes/fondosecciones.jpg"));
+            ImageView fondoInferior = new ImageView(imagenInferior);
+            fondoInferior.setFitWidth(100);
+            fondoInferior.setFitHeight(85);
+            fondoInferior.setPreserveRatio(false);
 
-            VBox cartaVisual = new VBox(fondoCarta, nombre);
+            StackPane textoConFondo = new StackPane(fondoInferior, nombre);
+            textoConFondo.setPrefSize(100, 60);
+            StackPane.setAlignment(nombre, Pos.CENTER);
+
+
+
+            VBox cartaVisual = new VBox(fondoCarta, textoConFondo);
             cartaVisual.setAlignment(Pos.TOP_CENTER);
-            cartaVisual.setSpacing(5);
             cartaVisual.setPrefSize(100, 200);
             cartaVisual.setStyle(
-                    "-fx-background-color: white; " +
+                    "-fx-background-color: transparent; " +
                             "-fx-background-size: cover;" +
                             "-fx-background-repeat: no-repeat;" +
                             "-fx-background-position: center;" +
@@ -122,6 +132,9 @@ public class LayoutMazos {
                             "-fx-border-radius: 5px;" +
                             "-fx-background-radius: 5px;"
             );
+            VBox.setMargin(textoConFondo, Insets.EMPTY);
+            VBox.setMargin(fondoCarta, Insets.EMPTY);
+
 
 
             Tooltip tooltip = new Tooltip();
@@ -172,18 +185,23 @@ public class LayoutMazos {
             nombre.setWrapText(true);
             nombre.setMaxWidth(90);
             nombre.setAlignment(Pos.CENTER);
+            Image imagenInferior = new Image(getClass().getResourceAsStream("/imagenes/fondosecciones.jpg"));
+            ImageView fondoInferior = new ImageView(imagenInferior);
+            fondoInferior.setFitWidth(100);
+            fondoInferior.setFitHeight(85);
+            fondoInferior.setPreserveRatio(false);
 
-            VBox cartaVisual = new VBox(fondoCarta, nombre);
+            StackPane textoConFondo = new StackPane(fondoInferior, nombre);
+            textoConFondo.setPrefSize(100, 60);
+            StackPane.setAlignment(nombre, Pos.CENTER);
+
+            VBox cartaVisual = new VBox(fondoCarta, textoConFondo);
 
             cartaVisual.setAlignment(Pos.TOP_CENTER);
-            cartaVisual.setSpacing(5);
+
             cartaVisual.setPrefSize(100, 200);
             cartaVisual.setStyle(
-                    "-fx-border-color: black;" +
-                            "-fx-background-color: white;" +
-                            "-fx-border-radius: 5px;" +
-                            "-fx-background-radius: 5px;"
-            );
+                    "-fx-border-color: black;" + "-fx-border-radius: 5px;" + "-fx-background-radius: 5px;");
 
             Tooltip tooltip = new Tooltip();
             tooltip.setText(carta.getDescripcion());

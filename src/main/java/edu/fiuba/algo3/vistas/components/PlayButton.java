@@ -17,7 +17,7 @@ public class PlayButton {
     private Juego juego;
 
     public PlayButton(EventHandler<ActionEvent> action) {
-        button = new Button("Play");
+        button = new Button("Jugar");
         Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 50);
         button.setFont(cardinalFont);
         button.setPrefSize(250, 100);

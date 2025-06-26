@@ -70,7 +70,7 @@ public class LayoutJuego {
 
         tablero.setStyle(
                 "-fx-border-color: #3a2718; -fx-border-width: 8px; " +
-                        "-fx-background-image: url('" + getClass().getResource("/imagenes/txmadera2.jpg").toString() + "');" +
+                        "-fx-background-image: url('" + getClass().getResource("/imagenes/txmadera2.jpg") + "');" +
                         "-fx-background-size: cover; " +
                         "-fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.6), 15, 0, 0, 0);"
         );
@@ -95,9 +95,9 @@ public class LayoutJuego {
             Ubicable seccion = secciones.get(i);
 
             VBox vistaSeccion = new VBox(5);
-            vistaSeccion.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-border-color: white;"+
-                    "-fx-background-image: url('" + getClass().getResource("/imagenes/fondosecciones.jpg").toString() + "');" +
-                    "-fx-background-size: cover; " );
+            vistaSeccion.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-border-color: white;" +
+                    "-fx-background-image: url('" + getClass().getResource("/imagenes/fondosecciones.jpg") + "');" +
+                    "-fx-background-size: cover;");
             vistaSeccion.setAlignment(Pos.TOP_CENTER);
             vistaSeccion.setPadding(new Insets(10));
             vistaSeccion.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -115,37 +115,38 @@ public class LayoutJuego {
             for (int j = 0; j < cartas.size(); j++) {
                 UnidadGeneral unidad = cartas.get(j);
 
-
+                // Fondo visual
                 Image imagen = new Image(getClass().getResourceAsStream("/" + unidad.getImage()));
                 ImageView fondoCarta = new ImageView(imagen);
-                fondoCarta.setFitWidth(80);
-                fondoCarta.setFitHeight(100);
+                fondoCarta.setFitWidth(90);
+                fondoCarta.setFitHeight(130);
                 fondoCarta.setPreserveRatio(false);
 
-
+                // Nombre
                 Label nombre = new Label(unidad.getNombre());
-                nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: #ffffff;");
+                nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: white;");
                 nombre.setWrapText(true);
-                nombre.setMaxWidth(90);
+                nombre.setMaxWidth(80);
                 nombre.setAlignment(Pos.CENTER);
 
-
+                // Puntaje
                 Label puntaje = new Label("Puntos: " + unidad.calcularPuntaje(0));
                 puntaje.setStyle("-fx-font-size: 9px; -fx-text-fill: white;");
                 puntaje.setAlignment(Pos.CENTER);
 
+                VBox textoCarta = new VBox(nombre, puntaje);
+                textoCarta.setAlignment(Pos.BOTTOM_CENTER);
+                textoCarta.setSpacing(2);
+                textoCarta.setPadding(new Insets(5));
+                textoCarta.setStyle("-fx-background-color: rgba(0,0,0,0.4);");
 
-                VBox carta = new VBox(fondoCarta, nombre, puntaje);
-                carta.setStyle("-fx-background-image: url('" + getClass().getResource("/imagenes/txmadera.jpg").toString() + "');" +
-                        "-fx-background-size: cover; " + "-fx-text-fill: white");
-                carta.setPrefSize(40, 60); //
-                carta.setAlignment(Pos.TOP_CENTER);
-                carta.setSpacing(3);
-                carta.setPadding(new Insets(3));
+                StackPane carta = new StackPane(fondoCarta, textoCarta);
+                carta.setPrefSize(90, 130);
+                carta.setStyle("-fx-border-color: black; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+                StackPane.setAlignment(textoCarta, Pos.BOTTOM_CENTER);
 
                 int filaCarta = j / cartasPorFila;
                 int colCarta = j % cartasPorFila;
-
                 grillaCartas.add(carta, colCarta, filaCarta);
             }
 
@@ -162,6 +163,7 @@ public class LayoutJuego {
     }
 
 
+
     public void crearZonaMano() {
         zonaCartas = new HBox(10);
         zonaCartas.setAlignment(Pos.CENTER);
@@ -170,30 +172,37 @@ public class LayoutJuego {
         List<Carta> cartas = controlador.obtenerCartasJugador();
 
         for (Carta carta : cartas) {
-            // Imagen
+            // Imagen de fondo
             Image imagen = new Image(getClass().getResourceAsStream("/" + carta.getImage()));
             ImageView fondoCarta = new ImageView(imagen);
-            fondoCarta.setFitWidth(120);
-            fondoCarta.setFitHeight(80);
+            fondoCarta.setFitWidth(90);
+            fondoCarta.setFitHeight(130);
+            fondoCarta.setPreserveRatio(false);
+
+            // Texto: nombre y puntaje
+            Label nombre = new Label(carta.getFormatoCarta());
+            nombre.setStyle("-fx-font-size: 10px; -fx-text-fill: white;");
+            nombre.setWrapText(true);
+            nombre.setMaxWidth(80);
+            nombre.setAlignment(Pos.CENTER);
 
 
-            fondoCarta.setPreserveRatio(true);
+            VBox textoCarta = new VBox(nombre);
+            textoCarta.setAlignment(Pos.BOTTOM_CENTER);
+            textoCarta.setSpacing(2);
+            textoCarta.setPadding(new Insets(5));
+            textoCarta.setStyle("-fx-background-color: rgba(0,0,0,0.4);");
 
-            // Texto
-            Label formato = new Label(carta.getFormato());
-            formato.setStyle("-fx-font-size: 10px; -fx-text-fill: #000000;");
-            formato.setWrapText(true);
-            formato.setMaxWidth(80);
-            formato.setAlignment(Pos.CENTER);
+            // Apilar imagen y texto
+            StackPane contenido = new StackPane(fondoCarta, textoCarta);
+            contenido.setPrefSize(90, 130);
+            StackPane.setAlignment(textoCarta, Pos.BOTTOM_CENTER);
 
-            VBox contenido = new VBox(fondoCarta, formato);
-            contenido.setAlignment(Pos.TOP_CENTER);
-            contenido.setSpacing(5);
-
+            // Botón
             Button botonCarta = new Button();
-            botonCarta.setStyle("-fx-background-color: white; -fx-border-color: black;");
             botonCarta.setGraphic(contenido);
-            botonCarta.setPrefSize(120, 150);
+            botonCarta.setPrefSize(90, 130);
+            botonCarta.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
 
             botonCarta.setOnAction(e -> {
                 botonCarta.setDisable(true);
@@ -207,6 +216,7 @@ public class LayoutJuego {
 
         layoutPrincipal.setBottom(zonaCartas);
     }
+
 
 
     public void actualizarZonaMano () {

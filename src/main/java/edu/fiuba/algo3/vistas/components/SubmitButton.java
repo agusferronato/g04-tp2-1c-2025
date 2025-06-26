@@ -17,7 +17,7 @@ public class SubmitButton {
     }
 
     private void inicializarBoton (EventHandler<ActionEvent> action) {
-        button = new Button("Submit");
+        button = new Button("Enviar");
         button.setPrefHeight(40);
         button.setPrefWidth(120);
         Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 20);
