@@ -24,6 +24,7 @@ public class LayoutMazos {
     private HBox cartasJugadorBox;
 
     public LayoutMazos(Stage stage, SubmitButton button, ControladorJuego controlador) {
+        cartasJugadorBox = new HBox(10);
         controlador.repartirCartas();
         inicializarSeccionCartas(controlador);
 
@@ -51,7 +52,7 @@ public class LayoutMazos {
             botonDejarElMazoIgual.getButton().setVisible(false);
             botonSumarCartas.getButton().setVisible(false);
             controlador.tomarNuevasCartas();
-            inicializarSeccionCartas(controlador);
+            actualizarSeccionCartas(controlador);
         });
 
 
@@ -91,9 +92,13 @@ public class LayoutMazos {
         );
     }
 
+    private void actualizarSeccionCartas (ControladorJuego controlador) {
+        cartasJugadorBox.getChildren().clear();
+        inicializarSeccionCartas(controlador);
+    }
+
 
     private void inicializarSeccionCartas (ControladorJuego controlador) {
-        cartasJugadorBox = new HBox(10);
         cartasJugadorBox.setAlignment(Pos.CENTER);
         cartasJugadorBox.setPadding(new Insets(20, 10, 20, 10));
 
