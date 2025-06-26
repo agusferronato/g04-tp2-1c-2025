@@ -49,35 +49,50 @@ public class LayoutJuego {
 
 
     public void crearCentroTablero() {
-        Pane tablero = new Pane();
-        tablero.setPrefSize(800, 600);
-        tablero.setStyle("-fx-background-color: #2e8b57; -fx-border-color: black;");
-
-        List<Ubicable> secciones = new ArrayList<>(controlador.obtenerSecciones());
-        Collections.reverse(secciones);
-
         int columnas = 3;
         int filas = 2;
-        double anchoSeccion = 400;
-        double altoSeccion = 320;
-        double separacion = 10;
+        double separacion = 40;
+        GridPane tablero = new GridPane();
+        tablero.setGridLinesVisible(false);
+        tablero.setPadding(new Insets(separacion));
+        tablero.setHgap(separacion);
+        tablero.setVgap(separacion);
+
+        tablero.setStyle(
+                "-fx-border-color: #3a2718; -fx-border-width: 8px; " +
+                        "-fx-background-image: url('" + getClass().getResource("/imagenes/txmadera2.jpg").toString() + "');" +
+                        "-fx-background-size: cover; " +
+                        "-fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.6), 15, 0, 0, 0);"
+        );
+
+        for (int i = 0; i < columnas; i++) {
+            ColumnConstraints col = new ColumnConstraints();
+            col.setPercentWidth(100.0 / columnas);
+            col.setHgrow(Priority.ALWAYS);
+            tablero.getColumnConstraints().add(col);
+        }
+        for (int i = 0; i < filas; i++) {
+            RowConstraints row = new RowConstraints();
+            row.setPercentHeight(100.0 / filas);
+            row.setVgrow(Priority.ALWAYS);
+            tablero.getRowConstraints().add(row);
+        }
+
+        List<Ubicable> secciones = new ArrayList<>(controlador.obtenerSecciones());
+        Collections.reverse(secciones); // si querés invertir el orden
 
         for (int i = 0; i < secciones.size(); i++) {
             Ubicable seccion = secciones.get(i);
 
-            String nombreSeccion = seccion.getNombre();
-
             VBox vistaSeccion = new VBox(5);
-            vistaSeccion.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-border-color: white;");
-            vistaSeccion.setPrefSize(anchoSeccion, altoSeccion);
+            vistaSeccion.setStyle("-fx-background-color: rgba(255,255,255,0.1); -fx-border-color: white;"+
+                    "-fx-background-image: url('" + getClass().getResource("/imagenes/fondosecciones.jpg").toString() + "');" +
+                    "-fx-background-size: cover; " );
             vistaSeccion.setAlignment(Pos.TOP_CENTER);
+            vistaSeccion.setPadding(new Insets(10));
+            vistaSeccion.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
-            int fila = i / columnas;
-            int col = i % columnas;
-            vistaSeccion.setLayoutX(col * (anchoSeccion + separacion));
-            vistaSeccion.setLayoutY(fila * (altoSeccion + separacion));
-
-            Label titulo = new Label(nombreSeccion);
+            Label titulo = new Label(seccion.getNombre());
             titulo.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;");
             vistaSeccion.getChildren().add(titulo);
 
@@ -86,26 +101,30 @@ public class LayoutJuego {
                 formato.setStyle("-fx-font-size: 12px; -fx-text-fill: red;");
                 formato.setWrapText(true);
 
-                VBox contenido = new VBox(formato);
-                contenido.setAlignment(Pos.TOP_LEFT);
-                contenido.setPrefSize(140, 200);
-                contenido.setStyle("-fx-background-color: white; -fx-border-color: black;");
+                VBox carta = new VBox(formato);
+                carta.setStyle("-fx-background-color: white; -fx-border-color: black;");
+                carta.setPrefSize(140, 200);
+                carta.setAlignment(Pos.TOP_LEFT);
 
-                vistaSeccion.getChildren().add(contenido);
+                vistaSeccion.getChildren().add(carta);
             }
 
-            tablero.getChildren().add(vistaSeccion);
+            int fila = i / columnas;
+            int col = i % columnas;
+            tablero.add(vistaSeccion, col, fila);
+            GridPane.setHgrow(vistaSeccion, Priority.ALWAYS);
+            GridPane.setVgrow(vistaSeccion, Priority.ALWAYS);
         }
-
 
         layoutPrincipal.setCenter(tablero);
     }
+
 
     public void crearZonaMano () {
         zonaCartas = new HBox(10);
         zonaCartas.setAlignment(Pos.CENTER);
         zonaCartas.setPadding(new Insets(10));
-        zonaCartas.setStyle("-fx-background-color: #eeeeee;");
+        zonaCartas.setStyle("-fx-background-color: #2c0808;");
 
         List<Carta> cartas = controlador.obtenerCartasJugador();
 
@@ -168,9 +187,10 @@ public class LayoutJuego {
         VBox enemigoBox = new VBox(5, nombreEnemigoLabel, puntosEnemigoLabel, rondasEnemigoLabel);
 
         VBox izquierda = new VBox(20, jugadorBox, enemigoBox);
+        izquierda.setStyle("-fx-background-color: #2c0808;");
         izquierda.setPadding(new Insets(10));
+        izquierda.setPrefWidth(200);
         izquierda.setAlignment(Pos.TOP_LEFT);
-
         layoutPrincipal.setLeft(izquierda);
     }
 
