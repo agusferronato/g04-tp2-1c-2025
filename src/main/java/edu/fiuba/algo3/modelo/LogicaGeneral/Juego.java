@@ -120,11 +120,12 @@ public class Juego {
 
 
     public void simularJuegoDe(Jugador adversario, LayoutJuego layout) {
-        if (jugadorActual.equals(adversario)) {
+        if (jugadorActual.equals(adversario) && !adversario.pasoDeRonda()) {
+            System.out.println("123123123");
             int numero = (int) (Math.random() * 2) + 1;
             switch (numero) {
                 case 1:
-                    jugadorActual.jugarCartaAlAzar(this);
+                    adversario.jugarCartaAlAzar(this);
                     break;
                 case 2:
                     pasar();
@@ -146,8 +147,7 @@ public class Juego {
             int numero = (int) (Math.random() * 2) + 1;
             switch (numero) {
                 case 1:
-                    jugadorActual.jugarCartaAlAzar(this);
-                    pasar();
+                    jugadorActual.jugarCartaAlAzarYPasar(this);
                     break;
                 case 2:
                     pasar();

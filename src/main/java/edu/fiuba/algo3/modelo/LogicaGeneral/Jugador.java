@@ -192,4 +192,12 @@ public class Jugador {
         }
     }
 
+    public void jugarCartaAlAzarYPasar(Juego juego) {
+        if (!mano.isEmpty()) {
+            Carta carta = mano.get(0);
+            jugarCarta(carta);
+        } else {
+            juego.pasar();
+        }
+    }
 }
