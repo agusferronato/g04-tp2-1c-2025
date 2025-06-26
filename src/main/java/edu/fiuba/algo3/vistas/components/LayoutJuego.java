@@ -35,11 +35,10 @@ public class LayoutJuego {
     public LayoutJuego(Stage stage, ControladorJuego controlador) {
         this.controlador = controlador;
         stage.setTitle("Juego");
+
         root = new StackPane();
         layoutPrincipal = new BorderPane();
         root.getChildren().add(layoutPrincipal);
-
-        controlador.iniciarJuego();
 
         crearCentroTablero();
         crearZonaMano();
@@ -51,7 +50,7 @@ public class LayoutJuego {
 
     public void crearCentroTablero() {
         Pane tablero = new Pane();
-        tablero.setPrefSize(500, 400);
+        tablero.setPrefSize(800, 600);
         tablero.setStyle("-fx-background-color: #2e8b57; -fx-border-color: black;");
 
         List<Ubicable> secciones = new ArrayList<>(controlador.obtenerSecciones());
@@ -59,8 +58,8 @@ public class LayoutJuego {
 
         int columnas = 3;
         int filas = 2;
-        double anchoSeccion = 150;
-        double altoSeccion = 180;
+        double anchoSeccion = 400;
+        double altoSeccion = 320;
         double separacion = 10;
 
         for (int i = 0; i < secciones.size(); i++) {

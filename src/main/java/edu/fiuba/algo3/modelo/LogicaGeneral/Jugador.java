@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Jugador {
@@ -166,5 +167,11 @@ public class Jugador {
 
     public String getNombre() {
         return this.nombre;
+    }
+
+    public void tomarDosCartasDelMazo() {
+        tomarCartasDelMazo(2);
+        mano.remove(0);
+        mano.remove(0);
     }
 }

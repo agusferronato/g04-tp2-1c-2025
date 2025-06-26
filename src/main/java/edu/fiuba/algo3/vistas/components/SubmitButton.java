@@ -10,9 +10,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class SubmitButton {
-    private final Button button;
+    private Button button;
 
     public SubmitButton(EventHandler<ActionEvent> action) {
+        inicializarBoton(action);
+    }
+
+    private void inicializarBoton (EventHandler<ActionEvent> action) {
         button = new Button("Submit");
         button.setPrefHeight(100);
         button.setPrefWidth(250);
@@ -40,7 +44,11 @@ public class SubmitButton {
 
         button.setOnMouseEntered(e -> button.setEffect(innerGlow));
         button.setOnMouseExited(e -> button.setEffect(null));
+    }
 
+    public SubmitButton(EventHandler<ActionEvent> action, String texto) {
+        inicializarBoton(action);
+        button.setText(texto);
     }
 
     public Button getButton() {

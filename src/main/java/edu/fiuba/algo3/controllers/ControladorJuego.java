@@ -103,4 +103,12 @@ public class ControladorJuego {
     public void iniciarJuego() {
         juego.iniciar();
     }
+
+    public void repartirCartas() {
+        juego.repartirCartas();
+    }
+
+    public void tomarNuevasCartas() {
+        jugador.tomarDosCartasDelMazo();
+    }
 }

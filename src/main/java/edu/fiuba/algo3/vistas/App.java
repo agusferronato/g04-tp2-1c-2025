@@ -26,7 +26,7 @@ public class App extends Application {
 
     public void crearJugador(Stage stage) {
         ControladorJuego controladorJuego = new ControladorJuego();
-        SubmitButton submitButton = new SubmitButton(e-> { comenzarJuego(stage, controladorJuego); });
+        SubmitButton submitButton = new SubmitButton(e-> { elegirMazo(stage, controladorJuego); });
         LayoutPlayer mainLayout = new LayoutPlayer(stage, submitButton, controladorJuego);
         Scene scene = new Scene(mainLayout.getRoot(), 800, 600);
         stage.setScene(scene);
@@ -34,14 +34,15 @@ public class App extends Application {
         stage.show();
     }
 
-    /*
-    public void elegirMazo(Stage stage){
-        LayoutMazos mainLayout = new LayoutMazos(stage);
+
+    public void elegirMazo(Stage stage, ControladorJuego controladorJuego) {
+        SubmitButton submitButton = new SubmitButton(e->{ comenzarJuego(stage, controladorJuego); });
+        LayoutMazos mainLayout = new LayoutMazos(stage, submitButton, controladorJuego);
         Scene scene = new Scene(mainLayout.getRoot(), 800, 600);
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();
-    } */
+    }
 
 
     public void comenzarJuego (Stage stage, ControladorJuego controlador) {
