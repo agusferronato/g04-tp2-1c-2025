@@ -32,6 +32,7 @@ public class LayoutJuego {
 
     private StackPane anuncioStack;
     private Region overlay;
+    private List<Button> botonesJugador;
 
     private Label pasoJugadorLabel;
     private Label nombreJugadorLabel;
@@ -51,6 +52,7 @@ public class LayoutJuego {
     public LayoutJuego(Stage stage, ControladorJuego controlador) {
         anuncioStack = new StackPane();
         overlay = new Region();
+        botonesJugador = new ArrayList<>();
 
         root = new StackPane();
 
@@ -247,6 +249,7 @@ public class LayoutJuego {
                 controlador.jugar(carta);
             });
 
+            botonesJugador.add(botonCarta);
             zonaCartas.getChildren().add(botonCarta);
         }
 
@@ -326,6 +329,8 @@ public class LayoutJuego {
         button.setOnAction(e -> {
             controlador.pasar();
         });
+
+        botonesJugador.add(button);
 
         InnerShadow innerGlow = new InnerShadow();
         innerGlow.setColor(Color.web("#ffffaa"));

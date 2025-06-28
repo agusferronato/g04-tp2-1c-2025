@@ -139,7 +139,7 @@ public class Juego {
     }
 
     public void simularJuegoUnaVezDe(Jugador adversario, LayoutJuego layout) {
-        if (jugadorActual.equals(adversario) && !adversario.pasoDeRonda()) {
+        if (jugadorActual.equals(adversario) && jugadorContrarioA(adversario).pasoDeRonda()) {
             double random = Math.random();
             if (random < 0.75) {
                 jugadorActual.jugarCartaAlAzarYPasar(this);
@@ -151,6 +151,8 @@ public class Juego {
             layout.crearCentroTablero();
             layout.crearInfoIzquierda();
             layout.actualizarZonaMano();
+        } else {
+            simularJuegoDe(adversario, layout);
         }
     }
 }
