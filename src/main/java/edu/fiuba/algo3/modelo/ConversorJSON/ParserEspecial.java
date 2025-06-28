@@ -22,7 +22,7 @@ public class ParserEspecial {
             creador = new CreadorClima(nombre, descripcion, conversor, nombresSecciones);
         } else if (tipo.equals("Morale boost")) {
             creador = new CreadorMoraleBoost(conversor, nombre, descripcion);
-        } else if (tipo.equals("Tierra Arrasada")) {
+        } else if (tipo.equals("Tierra arrasada")) {
             creador = new CreadorTierraArrasada(conversor, nombre, descripcion);
         }
         return (creador == null) ? null : creador.crearEspecial();
