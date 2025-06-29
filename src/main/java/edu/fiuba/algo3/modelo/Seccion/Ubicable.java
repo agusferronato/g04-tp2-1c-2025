@@ -100,6 +100,9 @@ public abstract class Ubicable extends Seccion {
     @Override
     public void limpiarSeccion(List<UnidadGeneral> pilaDescarte) {
         List<UnidadGeneral> cartas = List.copyOf(this.cartas);
+        for (UnidadGeneral unidad : cartas) {
+            unidad.reiniciarPuntaje();
+        }
         pilaDescarte.addAll(cartas);
         this.cartas.clear();
     }

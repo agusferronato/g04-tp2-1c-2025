@@ -25,10 +25,6 @@ public class Puntaje {
         return Math.max(this.puntajeActual, puntaje);
     }
 
-    public int devolverPuntajeBase() {
-        return puntajeBase;
-    }
-
     public void congelarPuntaje() {
         this.puntajeActual = 1;
     }
