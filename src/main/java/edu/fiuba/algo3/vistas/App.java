@@ -30,6 +30,7 @@ public class App extends Application {
         LayoutPlayer mainLayout = new LayoutPlayer(stage, submitButton, controladorJuego);
         Scene scene = new Scene(mainLayout.getRoot(), 800, 600);
         stage.setScene(scene);
+        stage.setFullScreenExitHint("");
         stage.setFullScreen(true);
         stage.show();
     }
