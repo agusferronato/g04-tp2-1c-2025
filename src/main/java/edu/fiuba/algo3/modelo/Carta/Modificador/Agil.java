@@ -20,4 +20,9 @@ public class Agil extends Modificador {
         cartaBase.ubicarEn(seccion);
         seccion.actualizarValores();
     }
+
+    @Override
+    public String getTipo () {
+        return "Agil";
+    }
 }

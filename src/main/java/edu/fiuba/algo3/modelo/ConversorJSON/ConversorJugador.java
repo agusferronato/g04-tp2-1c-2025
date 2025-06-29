@@ -55,7 +55,7 @@ public class ConversorJugador {
         if (!nombreModificador.isEmpty()) {
 
             Modificador modificador =  ParserModificador.
-                    obtenerModificador(this, nombresSecciones, nombreModificador, cartaBase, nombreSeccion);
+                    obtenerModificador(this, nombresSecciones, nombreModificador, cartaBase, nombre);
             modificador.setImage(imagen);
             return modificador;
         }

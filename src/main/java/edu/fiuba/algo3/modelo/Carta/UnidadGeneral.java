@@ -85,17 +85,19 @@ public abstract class UnidadGeneral extends Carta {
         return seccion;
     }
 
+    public String getTipo () { return "Unidad"; }
+
     public String getFormato() {
-        return "Unidad\nCarta: " + getNombre() + "\nPuntos: " + calcularPuntaje(0);
+        return getTipo() + "\nCarta: " + getNombre() + "\nPuntos: " + calcularPuntaje(0);
     }
 
     @Override
     public String getFormatoCarta() {
-        return "Unidad\nCarta: " + getNombre() + "\nPuntos: " + calcularPuntaje(0);
+        return getTipo() + "\nCarta: " + getNombre() + "\nPuntos: " + calcularPuntaje(0);
     }
 
     @Override
     public String getDescripcion() {
-        return "Unidad\nCarta: " + getNombre();
+        return getTipo() + "\nCarta: " + getNombre();
     }
 }

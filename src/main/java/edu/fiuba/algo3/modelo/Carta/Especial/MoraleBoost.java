@@ -25,4 +25,8 @@ public class MoraleBoost extends Especial {
         seccion.actualizarValores();
     }
 
+    @Override
+    public String getTipo () {
+        return "Morale boost";
+    }
 }

@@ -44,4 +44,9 @@ public class Legendaria extends Modificador {
     public void reiniciarPuntaje() {
         cartaBase.reiniciarPuntaje();
     }
+
+    @Override
+    public String getTipo () {
+        return "Legendaria";
+    }
 }

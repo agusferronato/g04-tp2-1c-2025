@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 public abstract class Carta {
     private String tipo;
     private String image;
+
     public Carta(String tipo) {
         this.tipo = tipo;
     }

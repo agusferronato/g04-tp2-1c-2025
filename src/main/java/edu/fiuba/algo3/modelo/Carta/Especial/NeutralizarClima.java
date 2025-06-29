@@ -23,4 +23,9 @@ public class NeutralizarClima extends Especial {
         seccion.quitarComando(new ComandoCongelar());
         seccion.actualizarValores();
     }
+
+    @Override
+    public String getTipo () {
+        return "Neutralizar clima";
+    }
 }

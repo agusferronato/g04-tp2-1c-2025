@@ -11,6 +11,8 @@
             { "nombre": "Arquero de Infantería Negro", "puntos": 10, "modificador": [], "seccion": "Rango", "imagen": "imagenes/FotosCartas/arquero.jpg" },
             { "nombre": "Pirata del Clan Dimun", "puntos": 6, "modificador": [], "seccion": "Rango", "imagen": "imagenes/FotosCartas/piratadelclandimun.jpg." },
             { "nombre": "Cazadores de Dragones de Crinfrid", "puntos": 5, "modificador": ["Carta Unida"], "seccion": "Rango", "imagen": "imagenes/FotosCartas/cazadordragon.jpg" },
+            { "nombre": "Cazadores de Dragones de Crinfrid", "puntos": 5, "modificador": [], "seccion": "Rango", "imagen": "imagenes/FotosCartas/cazadordragon.jpg" },
+
             { "nombre": "Catapulta", "puntos": 8, "modificador": ["Carta Unida"], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/asedio.png" },
             { "nombre": "Ballesta", "puntos": 6, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/asedio.png" },
             { "nombre": "Medico del Estandarte de Dun", "puntos": 5, "modificador": ["Medico"], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/asedio.png" },

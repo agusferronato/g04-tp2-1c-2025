@@ -20,4 +20,9 @@ public class SumaValoresBase extends Modificador {
         seccion.agregarComando(comando);
         seccion.actualizarValores();
     }
+
+    @Override
+    public String getTipo () {
+        return "Suma valor base";
+    }
 }

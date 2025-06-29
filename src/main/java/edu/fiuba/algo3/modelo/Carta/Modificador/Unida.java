@@ -22,4 +22,9 @@ public class Unida extends Modificador {
         cartaBase.ubicarEn(seccion);
         seccion.actualizarValores();
     }
+
+    @Override
+    public String getTipo () {
+        return "Unida";
+    }
 }

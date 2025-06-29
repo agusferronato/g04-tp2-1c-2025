@@ -20,4 +20,8 @@ public class TierraArrasada extends Especial {
         secciones.quemarCartasMasFuertes();
     }
 
+    @Override
+    public String getTipo () {
+        return "Tierra arrasada";
+    }
 }

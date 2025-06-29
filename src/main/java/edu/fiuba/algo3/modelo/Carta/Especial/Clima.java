@@ -28,4 +28,8 @@ public class Clima extends Especial {
         this.seccion.actualizarValores();
     }
 
+    @Override
+    public String getTipo () {
+        return "Clima";
+    }
 }

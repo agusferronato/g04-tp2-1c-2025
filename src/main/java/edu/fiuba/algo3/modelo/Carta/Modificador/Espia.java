@@ -21,4 +21,9 @@ public class Espia extends Modificador {
         jugador.tomarCartasDelMazo(cartasDelMazoATomar);
         seccion.actualizarValores();
     }
+
+    @Override
+    public String getTipo () {
+        return "Espia";
+    }
 }

@@ -14,10 +14,6 @@ public class Mazo {
         this.cartas = cartas;
     }
 
-    public void agregarCartas (List<? extends Carta> cartas) {
-        this.cartas.addAll(cartas);
-    }
-
     public void agregarCarta (Carta carta) {
         this.cartas.add(carta);
     }

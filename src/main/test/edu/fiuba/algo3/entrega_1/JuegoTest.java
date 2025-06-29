@@ -118,7 +118,7 @@ public class JuegoTest {
         contenedor.agregar(seccion);
 
         Mazo mazo = new Mazo();
-        Carta carta = new Unidad(seccion);
+        Carta carta = new Unidad(seccion, new Puntaje(10));
         mazo.agregarCarta(carta);
 
         Tablero tablero = new Tablero();

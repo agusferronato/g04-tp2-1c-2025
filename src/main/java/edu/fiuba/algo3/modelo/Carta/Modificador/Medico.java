@@ -17,4 +17,9 @@ public class Medico extends Modificador {
         }
         cartaBase.ubicar();
     }
+
+    @Override
+    public String getTipo () {
+        return "Medico";
+    }
 }

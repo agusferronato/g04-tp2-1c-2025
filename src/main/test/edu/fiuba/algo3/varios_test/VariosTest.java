@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Carta.Especial.MoraleBoost;
 import edu.fiuba.algo3.modelo.Carta.Especial.TierraArrasada;
 import edu.fiuba.algo3.modelo.Carta.Modificador.Legendaria;
 import edu.fiuba.algo3.modelo.Carta.Modificador.SumaValoresBase;
+import edu.fiuba.algo3.modelo.Carta.Modificador.Unida;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Tablero;
 import edu.fiuba.algo3.modelo.Seccion.Asedio;
@@ -189,5 +190,40 @@ public class VariosTest {
         assertThrows(CartaYaJugadaError.class, () -> {
             jugador.jugarCarta(carta);
         });
+    }
+
+    @Test
+    public void test06JugadorJuegaUnaCartaUnidaYElValorSeDuplicaCorrectamente () {
+        int puntajeEsperado = 20;
+        int puntajeInicial = 5;
+
+        String tipo = "Catapulta";
+        Rango rango = new Rango();
+        Asedio asedio = new Asedio();
+
+        ContenedorSecciones contenedor = new ContenedorSecciones();
+        contenedor.agregar(rango);
+        contenedor.agregar(asedio);
+
+        Unidad carta = new Unidad(tipo, rango, new Puntaje(puntajeInicial));
+        Unida modificador = new Unida(carta, rango, tipo);
+
+        Unidad otraCarta = new Unidad(tipo, rango, new Puntaje(puntajeInicial));
+
+        Mazo mazo = new Mazo();
+        mazo.agregarCarta(modificador);
+        mazo.agregarCarta(otraCarta);
+
+        Jugador jugador = new Jugador("Agustin", mazo, contenedor);
+
+        jugador.tomarCartasDelMazo(2);
+
+        jugador.jugarCarta(otraCarta);
+
+
+        jugador.jugarCarta(modificador);
+
+
+        assertEquals(puntajeEsperado, jugador.calcularPuntaje());
     }
 }
