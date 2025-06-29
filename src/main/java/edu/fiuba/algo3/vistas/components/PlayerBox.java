@@ -51,8 +51,7 @@ public class PlayerBox {
                         "-fx-background-radius: 15;"
         );
         frame.setPadding(new Insets(40));
-        frame.setMaxWidth(600);
-        frame.setMaxHeight(900);
+
     }
 
     public StackPane getFrame() {

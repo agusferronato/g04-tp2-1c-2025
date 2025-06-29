@@ -38,20 +38,15 @@ public class LayoutPlayer {
         HBox buttonBox = new HBox(button.getButton());
         buttonBox.setAlignment(Pos.BOTTOM_CENTER);
         buttonBox.setPadding(new Insets(20, 20, 50, 20));
-
+        frame.getFrame().maxWidthProperty().bind(stage.widthProperty().multiply(0.3));
+        frame.getFrame().maxHeightProperty().bind(stage.heightProperty().multiply(0.9));
+        frame.getFrame().getChildren().add(buttonBox);
         root = new StackPane();
         root.getChildren().addAll(
                 backgroundImage.getImageView(),
-                frame.getFrame(),
-                buttonBox
+                frame.getFrame()
         );
-        /*
-        Scene scene = new Scene(root, 800, 600);
-        stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.setTitle("Creación Jugador");
-        stage.show();
-        */
+
     }
     public StackPane getRoot() {
         return root;
