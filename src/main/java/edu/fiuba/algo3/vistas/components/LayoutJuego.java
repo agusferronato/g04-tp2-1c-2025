@@ -349,41 +349,79 @@ public class LayoutJuego {
 
 
     public void mostrarGanador(Jugador ganador) {
-        // Crear un nuevo layout para la pantalla final
+        Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 100);
+        Font buttonCardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 35);
         VBox contenedorFinal = new VBox(20);
         contenedorFinal.setAlignment(Pos.CENTER);
         contenedorFinal.setPadding(new Insets(30));
-        contenedorFinal.setStyle("-fx-background-color: linear-gradient(to bottom, #1e3c72, #2a5298);");
+
 
         Label titulo = new Label("Fin del juego");
-        titulo.setFont(Font.font("Arial", 36));
-        titulo.setTextFill(Color.WHITE);
-
+        titulo.setFont(cardinalFont);
+        titulo.setTextFill(Color.GOLD);
 
         Label nombreGanador = new Label("Empate");
-
         if (ganador != null) {
             nombreGanador = new Label("Ganó: " + ganador.getNombre());
-
         }
-
-        nombreGanador.setFont(Font.font("Arial", 28));
+        nombreGanador.setFont(cardinalFont);
         nombreGanador.setTextFill(Color.GOLD);
+
+        VBox contenedorGanador = new VBox(20);
+        contenedorGanador.setAlignment(Pos.TOP_CENTER);
+        contenedorGanador.setPadding(new Insets(10));
+        contenedorGanador.getChildren().addAll(titulo, nombreGanador);
 
         Button salir = new Button("Salir");
         salir.setOnAction(e -> {
             Stage stage = (Stage) contenedorFinal.getScene().getWindow();
             stage.close();
         });
+        salir.setFont(buttonCardinalFont);
+        salir.setPrefSize(250, 100);
+        salir.setStyle(
+                "-fx-background-color: #ffcc00; " +
+                        "-fx-background-radius: 25px; " +
+                        "-fx-padding: 10 10  10; " +
+                        "-fx-background-insets: 0;"
+        );
+        salir.setCursor(Cursor.HAND);
 
-        contenedorFinal.getChildren().addAll(titulo, nombreGanador, salir);
+        DropShadow outerGlow = new DropShadow();
+        outerGlow.setColor(Color.web("#ffffaa"));
+        outerGlow.setRadius(30);
+        outerGlow.setSpread(0.6);
 
-        Scene escenaGanador = new Scene(contenedorFinal, 600, 400);
+        InnerShadow innerGlow = new InnerShadow();
+        innerGlow.setColor(Color.web("#ffffaa"));
+        innerGlow.setRadius(20);
+        innerGlow.setChoke(0.3);
+        innerGlow.setInput(outerGlow);
 
-        // Obtener el Stage actual
+        salir.setOnMouseEntered(e -> salir.setEffect(innerGlow));
+        salir.setOnMouseExited(e -> salir.setEffect(null));
+
+        HBox buttonBox = new HBox();
+        buttonBox.getChildren().addAll(salir);
+        buttonBox.setAlignment(Pos.BOTTOM_CENTER);
+        VBox.setVgrow(contenedorGanador, Priority.ALWAYS);
+
+        buttonBox.setAlignment(Pos.BOTTOM_CENTER);
+
+        contenedorFinal.getChildren().addAll(contenedorGanador, buttonBox);
+        contenedorFinal.setPadding(new Insets(30, 30, 50, 30));
+
         Stage stage = (Stage) root.getScene().getWindow();
+        BackgroundImage fondo = new BackgroundImage(stage, "/imagenes/FondoResultado.jpg");
+
+        StackPane rootFondo = new StackPane();
+        rootFondo.getChildren().addAll(fondo.getImageView(), contenedorFinal);
+
+        Scene escenaGanador = new Scene(rootFondo, 600, 400);
         stage.setScene(escenaGanador);
+        stage.setFullScreen(true);
     }
+
 
     public void mostrarAnuncio(String mensaje) {
         Label anuncio = new Label(mensaje);
