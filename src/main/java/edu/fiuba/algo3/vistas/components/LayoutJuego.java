@@ -309,6 +309,19 @@ public class LayoutJuego {
         layoutPrincipal.setLeft(contenedor);
     }
 
+
+    public void deshabilitarBotones () {
+        for (Button boton : botonesJugador) {
+            boton.setDisable(true);
+        }
+    }
+
+    public void habilitarBotones () {
+        for (Button boton : botonesJugador) {
+            boton.setDisable(false);
+        }
+    }
+
     private void crearBotonDerecha() {
         Button button = new Button("Pasar");
         Font cardinalFont = Font.loadFont(getClass().getResourceAsStream("/fonts/Cardinal.ttf"), 40);

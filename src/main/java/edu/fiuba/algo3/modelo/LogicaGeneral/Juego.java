@@ -139,18 +139,29 @@ public class Juego {
     }
 
     public void simularJuegoUnaVezDe(Jugador adversario, LayoutJuego layout) {
+        layout.crearInfoIzquierda();
         if (jugadorActual.equals(adversario) && jugadorContrarioA(adversario).pasoDeRonda()) {
             double random = Math.random();
             if (random < 0.75) {
+                layout.deshabilitarBotones();
                 jugadorActual.jugarCartaAlAzarYPasar(this);
-                simularJuegoUnaVezDe(adversario, layout);
+                PauseTransition pausa = new PauseTransition(Duration.seconds(3));
+                pausa.setOnFinished(event -> {
+                    layout.habilitarBotones();
+                    mostrarCondicionPartida(layout);
+                    layout.crearCentroTablero();
+                    layout.crearInfoIzquierda();
+                    layout.actualizarZonaMano();
+                    simularJuegoUnaVezDe(adversario, layout);
+                });
+                pausa.play();
             } else {
                 pasar();
+                mostrarCondicionPartida(layout);
+                layout.crearCentroTablero();
+                layout.crearInfoIzquierda();
+                layout.actualizarZonaMano();
             }
-            mostrarCondicionPartida(layout);
-            layout.crearCentroTablero();
-            layout.crearInfoIzquierda();
-            layout.actualizarZonaMano();
         } else {
             simularJuegoDe(adversario, layout);
         }
