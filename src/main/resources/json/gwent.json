@@ -30,29 +30,29 @@
     },
     "mazo_jugador_dos": {
         "unidades": [
-            { "nombre": "Berserker", "puntos": 4, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Comando de Rayas Azules", "puntos": 4, "modificador": ["Carta Unida"], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Blueboy Lugos", "puntos": 6, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Botchling", "puntos": 4, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Fuerza de Defensa Bovina", "puntos": 8, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Cahir Mawr Dyffryn aep Ceallach", "puntos": 6, "modificador": [], "seccion": "Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Harpía Celaeno", "puntos": 2, "modificador": ["Agil"], "seccion": "Cuerpo a Cuerpo, Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Cerys", "puntos": 10, "modificador": ["Legendaria"], "seccion": "Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Ciaran aep Easnillien", "puntos": 3, "modificador": ["Agil"], "seccion": "Cuerpo a Cuerpo, Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Cirilla Fiona Elen Riannon", "puntos": 15, "modificador": ["Legendaria"], "seccion": "Rango", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Doncella Escudo del Clan Drummond", "puntos": 4, "modificador": ["Carta Unida"], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Skald del Clan Heymaey", "puntos": 4, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Herrero del Clan Tordarroch", "puntos": 4, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Guerrero del Clan an Craite", "puntos": 6, "modificador": ["Carta Unida"], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Crone: Brewess", "puntos": 6, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" }
+            { "nombre": "Berserker", "puntos": 4, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/berserker.png" },
+            { "nombre": "Comando de Rayas Azules", "puntos": 4, "modificador": ["Carta Unida"], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/comandoazul.jpg" },
+            { "nombre": "Blueboy Lugos", "puntos": 6, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/blueboylugos.jpg" },
+            { "nombre": "Botchling", "puntos": 4, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/botchling.jpg" },
+            { "nombre": "Fuerza de Defensa Bovina", "puntos": 8, "modificador": [], "seccion": "Cuerpo a Cuerpo", "imagen": "imagenes/FotosCartas/fuerzadefensabovina.jpg" },
+            { "nombre": "Cahir Mawr Dyffryn aep Ceallach", "puntos": 6, "modificador": [], "seccion": "Rango", "imagen": "imagenes/FotosCartas/cahirmawr.jpg" },
+            { "nombre": "Harpía Celaeno", "puntos": 2, "modificador": ["Agil"], "seccion": "Cuerpo a Cuerpo, Rango", "imagen": "imagenes/FotosCartas/harpia_celaeno.png" },
+            { "nombre": "Cerys", "puntos": 10, "modificador": ["Legendaria"], "seccion": "Rango", "imagen": "imagenes/FotosCartas/cerys.jpg" },
+            { "nombre": "Ciaran aep Easnillien", "puntos": 3, "modificador": ["Agil"], "seccion": "Cuerpo a Cuerpo, Rango", "imagen": "imagenes/FotosCartas/ciaranaep.jpg" },
+            { "nombre": "Cirilla Fiona Elen Riannon", "puntos": 15, "modificador": ["Legendaria"], "seccion": "Rango", "imagen": "imagenes/FotosCartas/cirillafiona.png" },
+            { "nombre": "Doncella Escudo del Clan Drummond", "puntos": 4, "modificador": ["Carta Unida"], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/doncellaescudo.jpg" },
+            { "nombre": "Skald del Clan Heymaey", "puntos": 4, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/skaldheymaey.jpg" },
+            { "nombre": "Herrero del Clan Tordarroch", "puntos": 4, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/herrerotordarroch.jpg" },
+            { "nombre": "Guerrero del Clan an Craite", "puntos": 6, "modificador": ["Carta Unida"], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/Guerrero_del_Clan_an_Craite.png" },
+            { "nombre": "Crone: Brewess", "puntos": 6, "modificador": [], "seccion": "Asedio", "imagen": "imagenes/FotosCartas/cronebrewess.jpeg" }
         ],
         "especiales": [
-            { "nombre": "Quemar", "descripcion": "Elimina las cartas más fuertes del campo de batalla.", "tipo": "Tierra arrasada", "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Quemar", "descripcion": "Elimina las cartas más fuertes del campo de batalla.", "tipo": "Tierra arrasada" , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Tiempo despejado", "descripcion": "Elimina todos los efectos de clima en el tablero.", "tipo": "Clima", "afectado": ["Cuerpo a Cuerpo", "Rango", "Asedio"] , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Tiempo despejado", "descripcion": "Elimina todos los efectos de clima en el tablero.", "tipo": "Clima", "afectado": ["Cuerpo a Cuerpo", "Rango", "Asedio"] , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Tiempo despejado", "descripcion": "Elimina todos los efectos de clima en el tablero.", "tipo": "Clima", "afectado": ["Cuerpo a Cuerpo", "Rango", "Asedio"] , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" },
-            { "nombre": "Lluvia torrencial", "descripcion": "Establece la fuerza de todas las cartas de Asedio en 1 para ambos jugadores.", "tipo": "Clima", "afectado": ["Asedio"] , "imagen": "imagenes/Eiffel_Tower_Vertical.JPG" }
+            { "nombre": "Quemar", "descripcion": "Elimina las cartas más fuertes del campo de batalla.", "tipo": "Tierra arrasada", "imagen": "imagenes/FotosCartas/quemar.jpg" },
+            { "nombre": "Quemar", "descripcion": "Elimina las cartas más fuertes del campo de batalla.", "tipo": "Tierra arrasada", "imagen": "imagenes/FotosCartas/quemar.jpg" },
+            { "nombre": "Tiempo despejado", "descripcion": "Elimina todos los efectos de clima en el tablero.", "tipo": "Clima", "afectado": ["Cuerpo a Cuerpo", "Rango", "Asedio"] , "imagen": "imagenes/FotosCartas/tiempodespejado.png" },
+            { "nombre": "Tiempo despejado", "descripcion": "Elimina todos los efectos de clima en el tablero.", "tipo": "Clima", "afectado": ["Cuerpo a Cuerpo", "Rango", "Asedio"] , "imagen": "imagenes/FotosCartas/tiempodespejado.png" },
+            { "nombre": "Tiempo despejado", "descripcion": "Elimina todos los efectos de clima en el tablero.", "tipo": "Clima", "afectado": ["Cuerpo a Cuerpo", "Rango", "Asedio"] , "imagen": "imagenes/FotosCartas/tiempodespejado.png" },
+            { "nombre": "Lluvia torrencial", "descripcion": "Establece la fuerza de todas las cartas de Asedio en 1 para ambos jugadores.", "tipo": "Clima", "afectado": ["Asedio"] , "imagen": "imagenes/FotosCartas/lluvia.png" }
         ]
     }
 }
