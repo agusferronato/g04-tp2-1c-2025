@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vistas.components;
 
 
+import edu.fiuba.algo3.vistas.Sonido.SonidoSeleccion;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;

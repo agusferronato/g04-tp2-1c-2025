@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vistas.components;
 
 import edu.fiuba.algo3.controllers.ControladorJuego;
 import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.vistas.Sonido.SonidoSeleccion;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -52,6 +53,7 @@ public class LayoutMazos {
         SubmitButton botonDejarElMazoIgual = new SubmitButton(e -> {}, "Dejar");
 
         botonSumarCartas.setOnAction(() -> {
+            SonidoSeleccion.ejecutarSonido();
             botonComenzarPartida.setVisible(true);
             botonDejarElMazoIgual.getButton().setVisible(false);
             botonSumarCartas.getButton().setVisible(false);
@@ -60,6 +62,7 @@ public class LayoutMazos {
         });
 
         botonDejarElMazoIgual.setOnAction(() -> {
+            SonidoSeleccion.ejecutarSonido();
             botonComenzarPartida.setVisible(true);
             botonDejarElMazoIgual.getButton().setVisible(false);
             botonSumarCartas.getButton().setVisible(false);

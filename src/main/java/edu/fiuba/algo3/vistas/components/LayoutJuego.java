@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Carta.UnidadGeneral;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
+import edu.fiuba.algo3.vistas.Sonido.SonidoSeleccion;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,12 +18,17 @@ import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -156,8 +162,10 @@ public class LayoutJuego {
                 UnidadGeneral unidad = cartas.get(j);
 
                 // Fondo visual
-                Image imagen = new Image(getClass().getResourceAsStream("/" + unidad.getImage()));
+                InputStream stream = getClass().getResourceAsStream("/" + unidad.getImage());
+                Image imagen = new Image(stream);
                 ImageView fondoCarta = new ImageView(imagen);
+
                 fondoCarta.setFitWidth(90);
                 fondoCarta.setFitHeight(130);
                 fondoCarta.setPreserveRatio(false);
@@ -340,6 +348,7 @@ public class LayoutJuego {
         outerGlow.setSpread(0.6);
 
         button.setOnAction(e -> {
+            SonidoSeleccion.ejecutarSonido();
             controlador.pasar();
         });
 

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.controllers;
 
 import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Carta.Mazo;
 import edu.fiuba.algo3.modelo.ConversorJSON.ConversorJSON;
 import edu.fiuba.algo3.modelo.ConversorJSON.ConversorJugador;
 import edu.fiuba.algo3.modelo.ConversorJSON.InstanciasSecciones;
@@ -11,8 +10,7 @@ import edu.fiuba.algo3.modelo.LogicaGeneral.Moneda;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Tablero;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
 import edu.fiuba.algo3.vistas.components.LayoutJuego;
-import javafx.animation.PauseTransition;
-import javafx.util.Duration;
+import edu.fiuba.algo3.vistas.Sonido.SonidoCarta;
 
 import java.util.List;
 
@@ -100,6 +98,7 @@ public class ControladorJuego {
 
     public void jugar(Carta carta) {
         juego.jugar(carta);
+        SonidoCarta.ejecutarSonidoCarta();
         layout.crearCentroTablero();
         layout.crearInfoIzquierda();
         layout.actualizarZonaMano();

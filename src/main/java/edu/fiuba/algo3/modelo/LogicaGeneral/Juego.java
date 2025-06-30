@@ -3,7 +3,6 @@ package edu.fiuba.algo3.modelo.LogicaGeneral;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.vistas.components.LayoutJuego;
 import javafx.animation.PauseTransition;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -120,17 +119,28 @@ public class Juego {
 
 
     public void simularJuegoDe(Jugador adversario, LayoutJuego layout) {
+        layout.crearInfoIzquierda();
         if (jugadorActual.equals(adversario) && !adversario.pasoDeRonda()) {
             double random = Math.random();
             if (random < 0.75) {
-                adversario.jugarCartaAlAzar(this);
+                layout.deshabilitarBotones();
+                PauseTransition pausa = new PauseTransition(Duration.seconds(3));
+                pausa.setOnFinished(event -> {
+                    adversario.jugarCartaAlAzar(this);
+                    layout.habilitarBotones();
+                    mostrarCondicionPartida(layout);
+                    layout.crearCentroTablero();
+                    layout.crearInfoIzquierda();
+                    layout.actualizarZonaMano();
+                });
+                pausa.play();
             } else {
                 pasar();
+                mostrarCondicionPartida(layout);
+                layout.crearCentroTablero();
+                layout.crearInfoIzquierda();
+                layout.actualizarZonaMano();
             }
-            mostrarCondicionPartida(layout);
-            layout.crearCentroTablero();
-            layout.crearInfoIzquierda();
-            layout.actualizarZonaMano();
         }
     }
 
@@ -144,9 +154,9 @@ public class Juego {
             double random = Math.random();
             if (random < 0.75) {
                 layout.deshabilitarBotones();
-                jugadorActual.jugarCartaAlAzarYPasar(this);
                 PauseTransition pausa = new PauseTransition(Duration.seconds(3));
                 pausa.setOnFinished(event -> {
+                    jugadorActual.jugarCartaAlAzarYPasar(this);
                     layout.habilitarBotones();
                     mostrarCondicionPartida(layout);
                     layout.crearCentroTablero();

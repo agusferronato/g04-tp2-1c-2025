@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.LogicaGeneral;
 import edu.fiuba.algo3.modelo.Carta.*;
 import edu.fiuba.algo3.modelo.Seccion.ContenedorSecciones;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
+import edu.fiuba.algo3.vistas.Sonido.SonidoCarta;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -183,10 +184,13 @@ public class Jugador {
         return rondasGanadas;
     }
 
+
+    /* Simulacion */
     public void jugarCartaAlAzar(Juego juego) {
         if (!mano.isEmpty()) {
             Carta carta = mano.get(0);
             juego.jugar(carta);
+            SonidoCarta.ejecutarSonidoCarta();
         } else {
             juego.pasar();
         }
@@ -196,6 +200,7 @@ public class Jugador {
         if (!mano.isEmpty()) {
             Carta carta = mano.get(0);
             jugarCarta(carta);
+            SonidoCarta.ejecutarSonidoCarta();
         } else {
             juego.pasar();
         }

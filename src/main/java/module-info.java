@@ -3,6 +3,7 @@ module edu.fiuba.algo3 {
     requires json.simple;
     requires com.google.gson;
     requires java.desktop;
+    requires javafx.media;
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.vistas;
     opens edu.fiuba.algo3.modelo;
