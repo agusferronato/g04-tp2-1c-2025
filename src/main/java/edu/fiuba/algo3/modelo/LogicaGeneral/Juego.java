@@ -117,6 +117,10 @@ public class Juego {
             layout.mostrarGanador(ganador);
     }
 
+    public int getRondas() {
+        return rondas;
+    }
+
 
     public void simularJuegoDe(Jugador adversario, LayoutJuego layout) {
         layout.crearInfoIzquierda();
@@ -127,11 +131,10 @@ public class Juego {
                 PauseTransition pausa = new PauseTransition(Duration.seconds(3));
                 pausa.setOnFinished(event -> {
                     adversario.jugarCartaAlAzar(this);
-                    layout.habilitarBotones();
                     mostrarCondicionPartida(layout);
                     layout.crearCentroTablero();
                     layout.crearInfoIzquierda();
-                    layout.actualizarZonaMano();
+                    layout.habilitarBotones();
                 });
                 pausa.play();
             } else {
@@ -144,9 +147,6 @@ public class Juego {
         }
     }
 
-    public int getRondas() {
-        return rondas;
-    }
 
     public void simularJuegoUnaVezDe(Jugador adversario, LayoutJuego layout) {
         layout.crearInfoIzquierda();
@@ -161,7 +161,6 @@ public class Juego {
                     mostrarCondicionPartida(layout);
                     layout.crearCentroTablero();
                     layout.crearInfoIzquierda();
-                    layout.actualizarZonaMano();
                     simularJuegoUnaVezDe(adversario, layout);
                 });
                 pausa.play();

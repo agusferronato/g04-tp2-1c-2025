@@ -10,5 +10,4 @@ public class SonidoSeleccion {
     public static void ejecutarSonido() {
         efecto.play();
     }
-
 }

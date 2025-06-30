@@ -161,7 +161,6 @@ public class LayoutJuego {
             for (int j = 0; j < cartas.size(); j++) {
                 UnidadGeneral unidad = cartas.get(j);
 
-                // Fondo visual
                 InputStream stream = getClass().getResourceAsStream("/" + unidad.getImage());
                 Image imagen = new Image(stream);
                 ImageView fondoCarta = new ImageView(imagen);
@@ -213,6 +212,15 @@ public class LayoutJuego {
 
 
     public void crearZonaMano() {
+
+        botonesJugador.clear();
+
+        if (zonaCartas != null) {
+            zonaCartas.getChildren().clear();
+        }
+
+        crearBotonDerecha();
+
         zonaCartas = new HBox(10);
         zonaCartas.setAlignment(Pos.CENTER);
         zonaCartas.setPadding(new Insets(10));

@@ -12,8 +12,11 @@ import edu.fiuba.algo3.modelo.ConversorJSON.*;
 import edu.fiuba.algo3.modelo.LogicaGeneral.Jugador;
 import edu.fiuba.algo3.modelo.Seccion.CuerpoACuerpo;
 import edu.fiuba.algo3.modelo.Seccion.Ubicable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.junit.jupiter.api.Test;
 
+import java.io.InputStream;
 import java.util.List;
 
 import static edu.fiuba.algo3.modelo.ConversorJSON.Constantes.*;
