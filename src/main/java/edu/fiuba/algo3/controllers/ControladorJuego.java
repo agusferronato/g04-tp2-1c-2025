@@ -101,7 +101,7 @@ public class ControladorJuego {
         SonidoCarta.ejecutarSonidoCarta();
         layout.crearCentroTablero();
         layout.crearInfoIzquierda();
-        layout.actualizarZonaMano();
+        layout.crearZonaMano();
         juego.simularJuegoDe(adversario, layout);
     }
 

@@ -274,12 +274,6 @@ public class LayoutJuego {
 
 
 
-    public void actualizarZonaMano () {
-        zonaCartas = new HBox(10);
-        crearZonaMano();
-    }
-
-
     public StackPane getRoot() {
         return root;
     }
@@ -345,15 +339,15 @@ public class LayoutJuego {
         button.setPrefSize(250, 100);
         button.setStyle(
                 "-fx-background-color: #ffcc00; " +
-                        "-fx-background-radius: 25px; " +
+                        "-fx-background-radius: 5px; " +
                         "-fx-padding: 10 10 10 10; " +
                         "-fx-background-insets: 0;"
         );
         button.setCursor(Cursor.HAND);
         DropShadow outerGlow = new DropShadow();
         outerGlow.setColor(Color.web("#ffffaa"));
-        outerGlow.setRadius(30);
-        outerGlow.setSpread(0.6);
+        outerGlow.setRadius(15);
+        outerGlow.setSpread(0.3);
 
         button.setOnAction(e -> {
             SonidoSeleccion.ejecutarSonido();
@@ -362,13 +356,8 @@ public class LayoutJuego {
 
         botonesJugador.add(button);
 
-        InnerShadow innerGlow = new InnerShadow();
-        innerGlow.setColor(Color.web("#ffffaa"));
-        innerGlow.setRadius(20);
-        innerGlow.setChoke(0.3);
-        innerGlow.setInput(outerGlow);
 
-        button.setOnMouseEntered(e -> button.setEffect(innerGlow));
+        button.setOnMouseEntered(e -> button.setEffect(outerGlow));
         button.setOnMouseExited(e -> button.setEffect(null));
         VBox box = new VBox(button);
         box.setPadding(new Insets(10));
@@ -411,7 +400,7 @@ public class LayoutJuego {
         salir.setPrefSize(250, 100);
         salir.setStyle(
                 "-fx-background-color: #ffcc00; " +
-                        "-fx-background-radius: 25px; " +
+                        "-fx-background-radius: 5px; " +
                         "-fx-padding: 10 10  10; " +
                         "-fx-background-insets: 0;"
         );
@@ -419,16 +408,11 @@ public class LayoutJuego {
 
         DropShadow outerGlow = new DropShadow();
         outerGlow.setColor(Color.web("#ffffaa"));
-        outerGlow.setRadius(30);
-        outerGlow.setSpread(0.6);
+        outerGlow.setRadius(15);
+        outerGlow.setSpread(0.3);
 
-        InnerShadow innerGlow = new InnerShadow();
-        innerGlow.setColor(Color.web("#ffffaa"));
-        innerGlow.setRadius(20);
-        innerGlow.setChoke(0.3);
-        innerGlow.setInput(outerGlow);
 
-        salir.setOnMouseEntered(e -> salir.setEffect(innerGlow));
+        salir.setOnMouseEntered(e -> salir.setEffect(outerGlow));
         salir.setOnMouseExited(e -> salir.setEffect(null));
 
         HBox buttonBox = new HBox();

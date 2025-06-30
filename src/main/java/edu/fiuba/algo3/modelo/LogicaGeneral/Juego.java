@@ -87,6 +87,7 @@ public class Juego {
 
     public void calcularGanadorRonda () {
         jugadorActual.ganaRondaSiTieneMasPuntosQue(jugadorContrarioA(jugadorActual));
+        jugadorContrarioA(jugadorActual).ganaRondaSiTieneMasPuntosQue(jugadorActual);
     }
 
     public Jugador calcularGanadorJuego () {
@@ -142,37 +143,41 @@ public class Juego {
                 mostrarCondicionPartida(layout);
                 layout.crearCentroTablero();
                 layout.crearInfoIzquierda();
-                layout.actualizarZonaMano();
+                layout.crearZonaMano();
             }
         }
     }
 
 
     public void simularJuegoUnaVezDe(Jugador adversario, LayoutJuego layout) {
-        layout.crearInfoIzquierda();
-        if (jugadorActual.equals(adversario) && jugadorContrarioA(adversario).pasoDeRonda()) {
-            double random = Math.random();
-            if (random < 0.75) {
-                layout.deshabilitarBotones();
-                PauseTransition pausa = new PauseTransition(Duration.seconds(3));
-                pausa.setOnFinished(event -> {
-                    jugadorActual.jugarCartaAlAzarYPasar(this);
-                    layout.habilitarBotones();
+        try {
+            layout.crearInfoIzquierda();
+            if (jugadorActual.equals(adversario) && jugadorContrarioA(adversario).pasoDeRonda()) {
+                double random = Math.random();
+                if (random < 0.75) {
+                    layout.deshabilitarBotones();
+                    PauseTransition pausa = new PauseTransition(Duration.seconds(3));
+                    pausa.setOnFinished(event -> {
+                        jugadorActual.jugarCartaAlAzarYPasar(this);
+                        layout.habilitarBotones();
+                        mostrarCondicionPartida(layout);
+                        layout.crearCentroTablero();
+                        layout.crearInfoIzquierda();
+                        simularJuegoUnaVezDe(adversario, layout);
+                    });
+                    pausa.play();
+                } else {
+                    pasar();
                     mostrarCondicionPartida(layout);
                     layout.crearCentroTablero();
                     layout.crearInfoIzquierda();
-                    simularJuegoUnaVezDe(adversario, layout);
-                });
-                pausa.play();
+                    layout.crearZonaMano();
+                }
             } else {
-                pasar();
-                mostrarCondicionPartida(layout);
-                layout.crearCentroTablero();
-                layout.crearInfoIzquierda();
-                layout.actualizarZonaMano();
+                simularJuegoDe(adversario, layout);
             }
-        } else {
-            simularJuegoDe(adversario, layout);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

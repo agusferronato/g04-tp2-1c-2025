@@ -2,10 +2,12 @@ package edu.fiuba.algo3.vistas.components;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -24,7 +26,7 @@ public class SubmitButton {
         button.setFont(cardinalFont);
         button.setStyle(
                 "-fx-background-color: #ffcc00; " +
-                        "-fx-background-radius: 25px; " +
+                        "-fx-background-radius: 5px; " +
                         "-fx-padding: 10 10  10; " +
                         "-fx-background-insets: 0;"
         );
@@ -32,16 +34,16 @@ public class SubmitButton {
         button.setOnAction(action);
         DropShadow outerGlow = new DropShadow();
         outerGlow.setColor(Color.web("#ffffaa"));
-        outerGlow.setRadius(30);
-        outerGlow.setSpread(0.6);
+        outerGlow.setRadius(15);
+        outerGlow.setSpread(0.3);
 
         InnerShadow innerGlow = new InnerShadow();
         innerGlow.setColor(Color.web("#ffffaa"));
-        innerGlow.setRadius(20);
-        innerGlow.setChoke(0.3);
+        innerGlow.setRadius(10);
+        innerGlow.setChoke(0.1);
         innerGlow.setInput(outerGlow);
 
-        button.setOnMouseEntered(e -> button.setEffect(innerGlow));
+        button.setOnMouseEntered(e -> button.setEffect(outerGlow));
         button.setOnMouseExited(e -> button.setEffect(null));
     }
 

@@ -23,25 +23,18 @@ public class PlayButton {
         button.setPrefSize(250, 100);
         button.setStyle(
                 "-fx-background-color: #ffcc00; " +
-                        "-fx-background-radius: 25px; " +
-                        "-fx-padding: 10 10  10; " +
+                        "-fx-background-radius: 5px; " +
+                        "-fx-padding: 15 30 15 30; " +
                         "-fx-background-insets: 0;"
         );
         button.setCursor(Cursor.HAND);
 
-
         DropShadow outerGlow = new DropShadow();
         outerGlow.setColor(Color.web("#ffffaa"));
-        outerGlow.setRadius(30);
-        outerGlow.setSpread(0.6);
+        outerGlow.setRadius(15);
+        outerGlow.setSpread(0.3);
 
-        InnerShadow innerGlow = new InnerShadow();
-        innerGlow.setColor(Color.web("#ffffaa"));
-        innerGlow.setRadius(20);
-        innerGlow.setChoke(0.3);
-        innerGlow.setInput(outerGlow);
-
-        button.setOnMouseEntered(e -> button.setEffect(innerGlow));
+        button.setOnMouseEntered(e -> button.setEffect(outerGlow));
         button.setOnMouseExited(e -> button.setEffect(null));
 
         button.setOnAction(action);
