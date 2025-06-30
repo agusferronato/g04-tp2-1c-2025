@@ -7,10 +7,10 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo 4
 
-* **Integrante 1** - [integrante1](https://github.com/agusferronato)
-* **Integrante 2** - [integrante2](https://github.com/matillorens21)
-* **Integrante 3** - [integrante3](https://github.com/MillaresFaustino)
-* **Integrante 4** - [integrante4](https://github.com/szottig)
+* **Integrante 1** - [Agustin Ferronato](https://github.com/agusferronato)
+* **Integrante 2** - [Matias Llorens](https://github.com/matillorens21)
+* **Integrante 3** - [Faustino Millares](https://github.com/MillaresFaustino)
+* **Integrante 4** - [Santiago Zottig](https://github.com/szottig)
 
 Corrector: **Santiago Valdez**
 
