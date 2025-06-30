@@ -8,23 +8,19 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo 4
 
 * **Integrante 1** - [integrante1](https://github.com/agusferronato)
-* **Integrante 2** - [integrante2](https://github.com/)
-* **Integrante 3** - [integrante3](https://github.com/)
-* **Integrante 4** - [integrante4](https://github.com/)
+* **Integrante 2** - [integrante2](https://github.com/matillorens21)
+* **Integrante 3** - [integrante3](https://github.com/MillaresFaustino)
+* **Integrante 4** - [integrante4](https://github.com/szottig)
 
-Corrector: **{Santiago Valdez}**
+Corrector: **Santiago Valdez**
 
 ## Aplicación
 
 La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/fiuba/algo3_proyecto_base_tp2/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
 
-```bash
-$ java -jar <archivo.jar>
 ```
-
-## Desarrollo
-
-Aquellos que deseen colaborar con el proyecto pueden consultar la [guía de desarrollo](./docs/Desarrollo.md).
+$ mvn javafx:run    
+```
 
 ## Licencia
 
